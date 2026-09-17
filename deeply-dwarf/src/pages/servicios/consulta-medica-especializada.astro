@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHeroWithProcedure from "../../components/servicios/ServiceHeroWithProcedure.astro";
+---
+
+<Layout title="Consulta Médica Especializada | Clínica Antioquia">
+  <main class="min-h-screen">
+    <ServiceHeroWithProcedure
+      title="Consulta Médica Especializada"
+      cornerImage="/servicios/img-consulta-especializada.png"
+      directedTo="Paciente adulto y pediátrico"
+      locations={[
+        {
+          nombre: "Sede Itagüí",
+          detalle: "(15 consultorios y 1 sala de procedimientos)",
+        },
+        {
+            nombre: "Sede Bello",
+            detalle: "(10 consultorios y 1 sala de procedimientos)",
+        },
+      ]}
+      features={[
+        {
+          texto:
+            "En la sede de Itagüí ofrecemos atención de consulta médica especializada para las siguientes especialidades:",
+            procedimientos:[
+                "Anestesia",
+                "Cirugía General",
+                "Cirugía Pediátrica",
+                "Ginecología",
+                "Ortopedia y Traumatología",
+                "Urología",
+                "Cirugía Plástica reconstructiva",
+                "Cirugía Vascular",
+                "Neurocirugía",
+                "Cirugia Maxilofacial",
+                "Cirugía de la mano",
+            ]
+        },
+        {
+            texto:
+            "En la sede de Bello ofrecemos atención de consulta médica especializada para las siguientes especialidades:",
+            procedimientos:[
+                "Anestesia",
+                "Cirugía General",
+                "Ginecología",
+                "Ortopedia",
+                "Otorrinolaringología",
+                "Cirugía Ginecológica y Laparoscópica",
+                "Cirugía Vascular",
+                "Cirugía maxilofacial",
+            ]
+        },
+      ]}
+    />
+  </main>
+</Layout>

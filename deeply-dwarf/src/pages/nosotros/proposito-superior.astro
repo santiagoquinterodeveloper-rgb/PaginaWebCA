@@ -1,0 +1,102 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Propósito Superior | Clínica Antioquia"
+  description="Inspirar confianza y bienestar mediante un cuidado integral, humanizado y capaz de resolver lo complejo. Conozca el propósito superior de la Clínica Antioquia."
+>
+  <main
+    class="relative min-h-[calc(100vh-80px)] w-full overflow-hidden bg-white"
+  >
+    <!-- ========================================================= FLOR DECORATIVA DE FONDO ========================================================= -->
+    <div
+      class="pointer-events-none absolute z-0 left-[-220px] top-[-120px] h-[920px] w-[920px] opacity-[0.28] sm:left-[-180px] sm:top-[-100px] sm:h-[1000px] sm:w-[1000px] lg:left-[-170px] lg:top-[-130px] lg:h-[1060px] lg:w-[1060px] xl:left-[-150px] xl:top-[-150px] xl:h-[1120px] xl:w-[1120px]"
+    >
+      <img
+        src="/proposito-superior/img-03.png"
+        alt=""
+        aria-hidden="true"
+        class="block h-full w-full object-contain"
+      />
+    </div>
+    <!-- ========================================================= COMPOSICIÓN PRINCIPAL ========================================================= -->
+    <div
+      class="relative z-10 mx-auto flex w-full max-w-[1648px] flex-col px-5 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 lg:min-h-[calc(100vh-80px)] lg:flex-row lg:items-center lg:px-[7.2%] lg:py-10 xl:px-[7.2%]"
+    >
+      <!-- ======================================================= LADO IZQUIERDO — FOTOGRAFÍA MOBILE: order-2 → aparece DESPUÉS del propósito. DESKTOP: lg:order-1 → vuelve a la izquierda. ======================================================= -->
+      <section
+        class="relative order-2 flex shrink-0 items-center justify-center lg:order-1 lg:w-[38%] lg:justify-start xl:w-[38.5%]"
+        aria-label="Personal de la Clínica Antioquia"
+      >
+        <div
+          class="relative w-full max-w-[476px] overflow-hidden rounded-[32px] sm:rounded-[36px] md:rounded-[38px] lg:rounded-[42px]"
+        >
+          <img
+            src="/proposito-superior/img-02.png"
+            alt="Personal de salud de la Clínica Antioquia"
+            class="block h-auto w-full object-contain"
+          />
+        </div>
+      </section>
+      <!-- ======================================================= LADO DERECHO — PROPÓSITO SUPERIOR MOBILE: order-1 → aparece PRIMERO. DESKTOP: lg:order-2 → vuelve a la derecha. ======================================================= -->
+      <section
+        class="relative order-1 flex flex-1 flex-col items-center pt-2 text-center sm:pt-4 md:pt-6 lg:order-2 lg:pt-0 lg:pl-[1.5%] xl:pl-[0.5%]"
+        aria-labelledby="proposito-superior-title"
+      >
+        <!-- ===================================================== TÍTULO ===================================================== -->
+        <div
+          class="relative flex w-full items-center justify-center overflow-visible lg:justify-start"
+        >
+          <!-- =================================================== CÍRCULO AZUL + ICONO MOBILE: 64px SM: 70px TABLET: 76px DESKTOP: 92px DESKTOP GRANDE: 96px =================================================== -->
+          <div
+            class="relative z-20 flex shrink-0 items-center justify-center rounded-full bg-[#45a1e6] shadow-none h-[64px] w-[64px] sm:h-[70px] sm:w-[70px] md:h-[76px] md:w-[76px] lg:h-[92px] lg:w-[92px] xl:h-[96px] xl:w-[96px]"
+          >
+            <img
+              src="/proposito-superior/icon-01.png"
+              alt=""
+              aria-hidden="true"
+              class="h-[42px] w-[42px] sm:h-[48px] sm:w-[48px] md:h-[54px] md:w-[54px] lg:h-[72px] lg:w-[72px] xl:h-[76px] xl:w-[76px] object-contain"
+            />
+          </div>
+          <!-- =================================================== PÍLDORA DEL TÍTULO Se redujo su ANCHO y ALTURA. MOBILE: max-width 300px altura 58px SM: max-width 340px altura 64px TABLET: max-width 430px altura 70px DESKTOP: max-width 560px altura 73px XL: max-width 620px altura 73px =================================================== -->
+          <div
+            class="relative z-10 -ml-[18px] flex h-[58px] w-full max-w-[300px] flex-none items-center overflow-hidden rounded-full bg-[#003085] pl-[36px] pr-5 sm:-ml-[22px] sm:h-[64px] sm:max-w-[340px] sm:pl-[42px] sm:pr-6 md:-ml-[26px] md:h-[70px] md:max-w-[430px] md:pl-[50px] md:pr-7 lg:-ml-[34px] lg:h-[73px] lg:max-w-[560px] lg:pl-[66px] lg:pr-8 xl:-ml-[36px] xl:h-[73px] xl:max-w-[620px] xl:pl-[70px] xl:pr-8"
+          >
+            <h1
+              id="proposito-superior-title"
+              class="whitespace-nowrap font-['Nunito'] text-[27px] font-extrabold leading-none tracking-[-1px] text-white sm:text-[31px] sm:tracking-[-1.2px] md:text-[37px] md:tracking-[-1.3px] lg:text-[45px] lg:tracking-[-1.5px] xl:text-[49px]"
+            >
+              Propósito superior
+            </h1>
+          </div>
+        </div>
+        <!-- ===================================================== MENSAJE PRINCIPAL ===================================================== -->
+        <div
+          class="mt-6 w-full max-w-[720px] px-2 sm:mt-7 md:mt-8 lg:mt-[28px] xl:mt-[28px]"
+        >
+          <p
+            class="font-['Poppins'] text-[15px] font-medium leading-[1.35] text-[#111111] sm:text-[17px] md:text-[19px] lg:text-[20px] xl:text-[21px]"
+          >
+            Inspirar <span class="text-[#45a1e6]"> confianza </span> y <span
+              class="text-[#45a1e6]"
+            >
+              bienestar
+            </span> mediante un cuidado integral, humanizado y capaz de resolver lo
+            complejo.
+          </p>
+        </div>
+        <!-- ===================================================== DIAGRAMA PACIENTES / COLABORADORES / FAMILIAS ===================================================== -->
+        <div
+          class="mt-6 flex w-full items-center justify-center sm:mt-7 md:mt-8 lg:mt-[24px] xl:mt-[22px]"
+        >
+          <img
+            src="/proposito-superior/img-1.png"
+            alt="Pacientes, colaboradores y familias"
+            class="block h-auto w-[300px] max-w-full object-contain sm:w-[350px] md:w-[400px] lg:w-[475px] xl:w-[485px]"
+          />
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>

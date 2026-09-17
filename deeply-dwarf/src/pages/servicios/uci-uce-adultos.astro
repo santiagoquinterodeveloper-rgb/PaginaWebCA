@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/servicios/ServiceHero.astro";
+---
+
+<Layout title="UCI - UCE Adultos | Clínica Antioquia">
+  <main class="min-h-screen">
+    <ServiceHero
+      title="UCI - UCE Adultos"
+      cornerImage="/servicios/img-uci-uce.png"
+      directedTo="Paciente adulto"
+      locations={[
+        {
+          nombre: "Sede Itagüí",
+          detalle: "(12 camas uci y 8 camas uce)",
+        },
+      ]}
+      features={[
+        {
+          texto:
+            "En la sede de Itagüí, contamos con 12 camas para la Unidad de Cuidado Intensivo y 8 para la Unidad de Cuidados Especiales. La unidad cuenta con un equipo altamente calificado entre intensivistas, enfermeros, terapeutas y nutricionistas quienes, en conjunto con las diferentes especialidades clínicas, quirúrgicas y demás profesionales de apoyo prestan un servicio con calidad y seguridad.",
+        },
+      ]}
+    />
+  </main>
+</Layout>

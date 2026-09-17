@@ -1,0 +1,90 @@
+---
+import WorkCard from './work-card.astro';
+---
+
+<div class="relative w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-10 my-auto">
+  
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+    
+    <!-- Bloque de imágenes (Lado izquierdo en desktop / Último en mobile) -->
+    <div class="order-2 lg:order-1 lg:col-span-6 flex flex-col w-full max-w-[540px] lg:max-w-none mx-auto">
+      
+      <!-- Imagen superior (img-03.png) -->
+      <div class="w-full rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-md mb-4 sm:mb-5">
+        <img 
+          src="/trabaja-con-nosotros/img-03.png" 
+          alt="Equipo de profesionales Clínica Antioquia" 
+          class="w-full h-auto object-cover block"
+        />
+      </div>
+
+      <!-- Fila inferior: img-01 (más estrecha) + img-02 (más ancha) -->
+      <div class="flex gap-4 sm:gap-5 w-full items-stretch">
+        
+        <!-- Imagen inferior izquierda (img-01.png) -->
+        <div class="w-[42%] rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-md">
+          <img 
+            src="/trabaja-con-nosotros/img-01.png" 
+            alt="Profesional de la salud" 
+            class="w-full h-full object-cover block"
+          />
+        </div>
+
+        <!-- Imagen inferior derecha (img-02.png) -->
+        <div class="w-[58%] rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-md">
+          <img 
+            src="/trabaja-con-nosotros/img-02.png" 
+            alt="Colaboradores Clínica Antioquia" 
+            class="w-full h-full object-cover block"
+          />
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bloque de contenido principal y tarjetas (Lado derecho en desktop / Primero en mobile) -->
+    <div class="order-1 lg:order-2 lg:col-span-6 relative flex flex-col justify-center">
+      
+      <!-- Contenido en primer plano -->
+      <div class="relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left">
+        
+        <!-- Título principal -->
+        <h2 class="font-['Nunito'] font-extrabold text-[#003085] text-3xl sm:text-4xl lg:text-[46px] uppercase leading-[1.1] tracking-tight mb-3 sm:mb-4">
+          TRABAJA CON<br class="hidden sm:inline" /> NOSOTROS
+        </h2>
+
+        <!-- Descripción -->
+        <p class="font-['Poppins'] text-slate-800 text-sm sm:text-base lg:text-[16px] leading-relaxed mb-6 sm:mb-8 max-w-[480px]">
+          En Clínica Antioquia creemos en el talento, la calidez y el compromiso para brindar una atención segura y humana.
+        </p>
+
+        <!-- Cuadrícula de 2 Tarjetas (WorkCard) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 w-full max-w-[580px] lg:max-w-none">
+          
+          <!-- Primera Tarjeta: Banco de Hojas de Vida -->
+          <WorkCard 
+            image="/trabaja-con-nosotros/img-04.jpg"
+            title="NUESTRO BANCO DE HOJAS DE VIDA"
+            description="Registra tu hoja de vida y sé parte de nuestro equipo de profesionales."
+            href="#banco-hojas-vida"
+          />
+
+          <!-- Segunda Tarjeta: Conoce nuestras ofertas (Computrabajo) -->
+          <WorkCard 
+            image="/trabaja-con-nosotros/img-05.jpg"
+            title="CONOCE NUESTRAS OFERTAS"
+            description="Consulta nuestras vacantes disponibles y encuentra tu próxima oportunidad."
+            href="https://co.computrabajo.com/empresas/ofertas-de-trabajo-de-clinica-antioquia-sa--977E3139B878CC15"
+            isExternal={true}
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

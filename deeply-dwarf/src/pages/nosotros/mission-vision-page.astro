@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EssenceCard from '../../components/mision-vision/essence-card.astro';
+import ValueCard from '../../components/mision-vision/value-card.astro';
+
+const essenceData = [
+  {
+    title: "Misión",
+    description: "Servicios de salud de alta complejidad, con una atención segura, humanizada y centrada en las personas, generando confianza, bienestar y valor sostenible para nuestros grupos de interés.",
+    icon: "/mision-vision/icon-02.png"
+  },
+  {
+    title: "Visión",
+    description: "Para 2030, ser reconocidos por la comunidad y las EAPB como la clínica de mayor confianza y la mejor opción de atención en salud en el sur del Valle de Aburrá y el Suroeste Antioqueño, destacándonos por la calidad, la seguridad y la humanización del servicio.",
+    icon: "/mision-vision/icon-01.png"
+  }
+];
+
+const valuesData = [
+  {
+    title: "Compasión",
+    description: "Reconocemos que cada persona trae consigo una historia, un miedo, una esperanza y un contexto único; por eso, actuamos con una sensibilidad que va más allá del procedimiento clínico.",
+    icon: "/mision-vision/icon-03.png"
+  },
+  {
+    title: "Respeto",
+    description: "Entendemos que la dignidad humana es un principio inviolable y que cada paciente, familiar y colaborador merece ser tratado con consideración, equidad y transparencia.",
+    icon: "/mision-vision/icon-03.png"
+  },
+  {
+    title: "Compromiso",
+    description: "Sostenemos un profundo sentido de pertenencia y entrega hacia nuestra misión institucional, trabajando con convicción para garantizar experiencias de atención seguras, humanas y oportunas.",
+    icon: "/mision-vision/icon-03.png"
+  },
+  {
+    title: "Responsabilidad",
+    description: "Asumimos que cada acción que realizamos, por pequeña que parezca, tiene efectos reales en la vida, la tranquilidad y la seguridad de las personas.",
+    icon: "/mision-vision/icon-03.png"
+  }
+];
+---
+
+<Layout 
+  title="Nuestra esencia, Misión, Visión y Valores | Clínica Antioquia"
+  description="Conozca nuestra misión, visión y los valores institucionales que guían la atención segura, humanizada y de alta complejidad en la Clínica Antioquia."
+>
+  <main class="w-full bg-white overflow-hidden">
+    
+    <!-- 1. Primera sección — Nuestra esencia -->
+    <section class="relative w-full pt-12 sm:pt-16 pb-16 sm:pb-24 lg:pb-28">
+      
+      <!-- Fondo fotográfico con tratamiento visual claro/desvanecido -->
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <img 
+          src="/mision-vision/img-01.jpeg" 
+          alt="Fachada Clínica Antioquia" 
+          class="w-full h-full object-cover object-top opacity-100 mix-blend-multiply filter contrast-105"
+        />
+        <!-- Overlay de gradiente suave para desvanecer hacia blanco en la parte inferior -->
+        <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/60 to-white"></div>
+      </div>
+
+      <!-- Contenido de la sección de esencia -->
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Título principal -->
+        <div class="text-center mb-6 sm:mb-8 lg:mb-10">
+          <h1 class="font-['Nunito'] font-extrabold text-[#003085] text-3xl sm:text-4xl lg:text-[44px] leading-tight tracking-tight">
+            Nuestra esencia
+          </h1>
+        </div>
+
+        <!-- Tarjetas Misión y Visión -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-30 items-stretch max-w-5xl mx-auto">
+          {essenceData.map((item) => (
+            <EssenceCard
+              title={item.title}
+              description={item.description}
+              icon={item.icon}
+            />
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. Segunda sección — Nuestros valores -->
+    <section class="relative w-full bg-white pt-6 sm:pt-10 pb-16 sm:pb-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Título de Valores -->
+        <div class="text-center mb-10 sm:mb-14 lg:mb-16">
+          <h2 class="font-['Nunito'] font-extrabold text-[#003085] text-3xl sm:text-4xl lg:text-[38px] uppercase tracking-wider">
+            NUESTROS VALORES
+          </h2>
+        </div>
+
+        <!-- Layout Cuadrícula + Imagen Lateral -->
+        <div class="flex flex-col lg:flex-row items-center lg:items-center justify-between gap-10 lg:gap-12">
+          
+          <!-- Cuadrícula 2x2 de Valores (Desktop) -->
+          <div class="w-full lg:w-[58%] grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+            {valuesData.map((value) => (
+              <ValueCard
+                title={value.title}
+                description={value.description}
+                icon={value.icon}
+              />
+            ))}
+          </div>
+
+          <!-- Imagen lateral de valores (Composición gráfica) -->
+          <div class="w-full lg:w-[42%] flex justify-center items-center mt-4 lg:mt-0">
+            <img 
+              src="/mision-vision/img-02.png" 
+              alt="Equipo de colaboradores Clínica Antioquia" 
+              class="w-full max-w-[360px] sm:max-w-[420px] lg:max-w-none h-auto object-contain transition-transform duration-300 hover:scale-[1.01]"
+            />
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</Layout>

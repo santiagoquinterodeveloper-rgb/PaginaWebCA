@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FloralBackground from '../components/inicio/FloralBackground.astro';
+import HeroCarousel from '../components/inicio/HeroCarousel.astro';
+import QuickAccessCard from '../components/inicio/QuickAccessCard.astro';
+import ServiceButton from '../components/inicio/ServiceButton.astro';
+import TrabajaConNosotrosSection from '../components/trabaja-con-nosotros/TrabajaConNosotrosSection.astro';
+import LegalButton from '../components/inicio/LegalButton.astro';
+
+// ── Datos ──────────────────────────────────────────────────────────────────
+
+const banners = [
+  { image: '/inicio/banner-01.png', alt: 'Banner Clínica Antioquia 1' },
+  { image: '/inicio/banner-02.png', alt: 'Banner Clínica Antioquia 2' },
+  { image: '/inicio/banner-03.png', alt: 'Banner Clínica Antioquia 3' },
+  { image: '/inicio/banner-04.png', alt: 'Banner Clínica Antioquia 4' },
+];
+
+const quickAccessCards: { image: string; label: string; href?: string }[] = [
+  { image: '/inicio/img-inicio-09.png', label: 'SEDES' },
+  { image: '/inicio/img-inicio-10.png', label: 'AGENDA TU CITA' },
+  { image: '/inicio/img-inicio-11.png', label: 'RESULTADOS EN LINEA' },
+  { image: '/inicio/img-inicio-12.png', label: 'INFORMACIÓN DE PACIENTES' },
+];
+
+const services: { icon: string; label: string; href?: string }[] = [
+  { icon: '/inicio/icon-consulta.png',         label: 'Consulta médica especializada' },
+  { icon: '/inicio/icon-laboratorio.png',       label: 'Laboratorio clínico' },
+  { icon: '/inicio/icon-urgencias.png',         label: 'Urgencias' },
+  { icon: '/inicio/icon-cirugia.png',           label: 'Cirugía' },
+  { icon: '/inicio/icon-hospitalizacion.png',   label: 'Hospitalización' },
+  { icon: '/inicio/icon-img-diagnosticas.png',  label: 'Imágenes diagnósticas' },
+  { icon: '/inicio/icon-uci-uce.png',           label: 'UCI – UCE Adultos' },
+];
+
+const legalButtons = [
+  {
+    label: 'Política de participación social en salud',
+  },
+  {
+    label: 'Política de tratamientos de datos personales',
+    pdf: '/inicio/GT-FO-009 Autorización para el Tratamiento de Datos Personales.pdf',
+  },
+  {
+    label: 'Gobierno corporativo',
+  },
+  {
+    label: 'Indicadores',
+    pdf: '/inicio/Indicadores de satisfacción julio 2026.pdf',
+  },
+  {
+    label: 'Estados financieros 2025',
+    pdf: '/inicio/Estados financieros 2025.pdf',
+  },
+];
+---
+
+<Layout
+  title="Inicio | Clínica Antioquia"
+  description="Clínica Antioquia – Atención médica de calidad, con calidez humana. Consulta nuestros servicios, agenda tu cita y conoce toda la información para pacientes."
+>
+  <main class="relative w-full bg-white overflow-x-hidden">
+
+    <!-- ── Background decorativo (flores) ───────────────────────── -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <FloralBackground />
+    </div>
+
+    <!-- ── Sección 1: Carrusel ───────────────────────────────────── -->
+    <section class="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-10 pt-2 lg:pt-6" aria-label="Carrusel principal">
+      <HeroCarousel banners={banners} autoplayInterval={5000} />
+    </section>
+
+    <!-- Línea divisoria 1 -->
+    <div class="relative z-10 w-full px-4 sm:px-6 lg:px-10 my-4 sm:my-6">
+      <div class="max-w-[1150px] mx-auto border-t border-slate-200/80"></div>
+    </div>
+
+    <!-- ── Sección 2: Accesos rápidos ───────────────────────────── -->
+    <section
+      class="relative z-10 w-full max-w-[1150px] mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-10"
+      aria-label="Accesos rápidos"
+    >
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 items-stretch justify-center">
+        {quickAccessCards.map((card) => (
+          <QuickAccessCard
+            image={card.image}
+            label={card.label}
+            href={card.href}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Línea divisoria 2 -->
+    <div class="relative z-10 w-full px-4 sm:px-6 lg:px-10 my-4 sm:my-6">
+      <div class="max-w-[1150px] mx-auto border-t border-slate-200/80"></div>
+    </div>
+
+    <!-- ── Sección 3: Nuestros servicios ────────────────────────── -->
+    <section
+      class="relative z-10 w-full max-w-[1150px] mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-10 lg:py-14"
+      aria-labelledby="servicios-titulo"
+    >
+      <h2
+        id="servicios-titulo"
+        class="font-['Nunito'] font-extrabold text-[#003085] text-2xl sm:text-3xl lg:text-[38px] uppercase text-center tracking-wide mb-10 sm:mb-12 lg:mb-14"
+      >
+        NUESTROS SERVICIOS
+      </h2>
+
+      <!-- Desktop: primera fila 4, segunda fila 3 centrada -->
+      <div class="hidden lg:flex lg:flex-col gap-12">
+        <!-- Fila 1: 4 servicios -->
+        <div class="flex justify-around items-start">
+          {services.slice(0, 4).map((s) => (
+            <ServiceButton icon={s.icon} label={s.label} href={s.href} />
+          ))}
+        </div>
+        <!-- Fila 2: 3 servicios centrados -->
+        <div class="flex justify-center gap-x-24 items-start">
+          {services.slice(4).map((s) => (
+            <ServiceButton icon={s.icon} label={s.label} href={s.href} />
+          ))}
+        </div>
+      </div>
+
+      <!-- Tablet y mobile: grid adaptativo -->
+      <div class="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-8 justify-items-center">
+        {services.map((s) => (
+          <ServiceButton icon={s.icon} label={s.label} href={s.href} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Línea divisoria 3 -->
+    <div class="relative z-10 w-full px-4 sm:px-6 lg:px-10 my-4 sm:my-6">
+      <div class="max-w-[1150px] mx-auto border-t border-slate-200/80"></div>
+    </div>
+
+    <!-- ── Sección 4: Trabaja con nosotros ──────────────────────── -->
+    <section
+      class="relative z-10 w-full py-8 sm:py-10 lg:py-14 overflow-hidden"
+      aria-label="Trabaja con nosotros"
+    >
+      <TrabajaConNosotrosSection />
+    </section>
+
+    <!-- Línea divisoria 4 -->
+    <div class="relative z-10 w-full px-4 sm:px-6 lg:px-10 my-4 sm:my-6">
+      <div class="max-w-[1150px] mx-auto border-t border-slate-200/80"></div>
+    </div>
+
+    <!-- ── Sección 5: Información legal ─────────────────────────── -->
+    <section
+      class="relative z-10 w-full max-w-[1150px] mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-12 lg:py-16"
+      aria-labelledby="legal-titulo"
+    >
+      <div class="relative max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 lg:p-12 bg-gradient-to-b from-blue-50/40 via-slate-50/20 to-transparent border border-blue-100/60 shadow-sm overflow-hidden">
+        
+        <!-- Encabezado centrado con icono decorado -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 text-center">
+            <img
+              src="/inicio/icon-info-legal.png"
+              alt=""
+              aria-hidden="true"
+              class="w-15 h-15 sm:w-20 sm:h-20 object-contain"
+            />
+          
+          <h2
+            id="legal-titulo"
+            class="font-['Nunito'] font-extrabold text-[#003085] text-2xl sm:text-3xl lg:text-[36px] uppercase tracking-wide"
+          >
+            Información legal
+          </h2>
+        </div>
+
+        <!-- Botones legales apilados y centrados -->
+        <div class="flex flex-col gap-3.5 sm:gap-4.5 max-w-2xl mx-auto relative z-10">
+          {legalButtons.map((btn) => (
+            <LegalButton label={btn.label} pdf={btn.pdf} />
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</Layout>

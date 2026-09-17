@@ -1,0 +1,19 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class="flex items-center gap-3 sm:gap-4 my-2 sm:my-3">
+  <img 
+    src="/organos-directivos/icon-01.png" 
+    alt="" 
+    aria-hidden="true" 
+    class="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 object-contain shrink-0" 
+  />
+  <span class="font-['Nunito'] font-bold text-[#003085] text-base sm:text-lg md:text-[20px] leading-snug">
+    {name}
+  </span>
+</div>

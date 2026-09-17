@@ -1,0 +1,41 @@
+---
+interface Props {
+  label: string;
+  pdf?: string;
+}
+
+const { label, pdf } = Astro.props;
+---
+
+{pdf ? (
+  <a
+    href={pdf}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="legal-btn relative group flex items-center justify-between w-full font-['Nunito'] font-extrabold text-white text-sm sm:text-base lg:text-[17px]
+           bg-[#003085] hover:bg-[#002570] rounded-full py-3.5 px-6 sm:px-8
+           shadow-md hover:shadow-xl hover:-translate-y-0.5
+           border border-blue-400/20
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-[#003085] focus-visible:ring-offset-2
+           transition-all duration-200 ease-out"
+  >
+    <span class="w-full text-center tracking-wide">{label}</span>
+    <!-- Indicador de archivo PDF -->
+    <span class="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center justify-center w-7 h-7 rounded-full bg-white/15 group-hover:bg-white/25 transition-colors">
+      <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    </span>
+  </a>
+) : (
+  <div
+    class="legal-btn relative flex items-center justify-between w-full font-['Nunito'] font-extrabold text-white text-sm sm:text-base lg:text-[17px]
+           bg-[#003085] rounded-full py-3.5 px-6 sm:px-8
+           shadow-md border border-blue-400/20
+           transition-all duration-200 ease-out"
+    role="button"
+    aria-disabled="true"
+  >
+    <span class="w-full text-center tracking-wide">{label}</span>
+  </div>
+)}

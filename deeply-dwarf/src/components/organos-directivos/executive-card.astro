@@ -1,0 +1,48 @@
+---
+interface Props {
+  image: string;
+  name: string;
+  title: string;
+  isFeatured?: boolean;
+  class?: string;
+}
+const {
+  image,
+  name,
+  title,
+  isFeatured = false,
+  class: className = '',
+} = Astro.props;
+---
+<div class={`relative flex flex-col items-center text-center group ${className}`}>
+  
+  <!-- Contenedor de Fotografía y Flor de Fondo (icon-02.png) -->
+  <div class={`relative flex items-center justify-center ${isFeatured ? 'w-[240px] h-[240px] sm:w-[270px] sm:h-[270px]' : 'w-[200px] h-[200px] sm:w-[230px] sm:h-[230px]'}`}>
+    
+    <!-- Flor decorativa grande (icon-02.png) -->
+    <img 
+      src="/organos-directivos/icon-02.png" 
+      alt="" 
+      aria-hidden="true" 
+      class="absolute inset-0 w-full h-full object-contain pointer-events-none z-0 transition-transform duration-300 group-hover:scale-105" 
+    />
+    <!-- Fotografía circular de la persona -->
+    <div class={`relative z-10 rounded-full overflow-hidden border-2 border-white shadow-md ${isFeatured ? 'w-[145px] h-[145px] sm:w-[165px] sm:h-[165px]' : 'w-[125px] h-[125px] sm:w-[140px] sm:h-[140px]'}`}>
+      <img 
+        src={image} 
+        alt={name} 
+        class="w-full h-full object-cover object-top block"
+      />
+    </div>
+  </div>
+  <!-- Nombre del integrante -->
+  <h4 class={`font-['Nunito'] font-extrabold text-[#003085] tracking-tight mt-1 mb-2 ${isFeatured ? 'text-lg sm:text-xl md:text-2xl' : 'text-base sm:text-lg md:text-xl'}`}>
+    {name}
+  </h4>
+  <!-- Insignia / Badge del Cargo -->
+  <div class={`inline-flex items-center justify-center rounded-full px-4 sm:px-5 py-1 sm:py-1.5 shadow-sm ${isFeatured ? 'bg-[#45a1e6] text-white' : 'bg-[#45a1e6] text-white'}`}>
+    <span class="font-['Nunito'] font-bold text-xs sm:text-sm tracking-wide whitespace-nowrap">
+      {title}
+    </span>
+  </div>
+</div>

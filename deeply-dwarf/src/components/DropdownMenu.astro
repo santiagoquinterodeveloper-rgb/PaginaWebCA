@@ -1,0 +1,72 @@
+---
+import flor from '../assets/iconos pagina web-07.png';
+
+interface MenuItem {
+  title: string;
+  link: string;
+}
+
+interface Props {
+  items: MenuItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<!--
+  Dropdown panel — solo visible en desktop (lg+).
+  El <li> padre debe tener la clase `group` para activar el hover CSS.
+-->
+<div
+  class="
+    pointer-events-none absolute left-0 top-full z-50 mt-1
+    min-w-[260px] overflow-hidden rounded-xl border border-brand bg-white
+    opacity-0 shadow-lg transition-all duration-150
+    group-hover:pointer-events-auto group-hover:opacity-100
+    group-focus-within:pointer-events-auto group-focus-within:opacity-100
+  "
+  role="region"
+>
+  <!-- Flor decorativa (esquina superior derecha) -->
+  <img
+    src={flor.src}
+    alt=""
+    aria-hidden="true"
+    class="pointer-events-none absolute right-0 top-0 h-24 w-auto select-none opacity-60"
+  />
+
+  <!-- Ítems del menú -->
+  <ul role="list" class="relative py-1">
+    {
+      items.map((item, index) => (
+        <li class:list={[index < items.length - 1 && 'border-b border-gray-100']}>
+          <a
+            href={item.link}
+            class="
+              font-poppins group/item flex items-center justify-between
+              px-5 py-3 text-sm text-gray-700
+              transition-colors duration-100
+              hover:bg-blue-50 hover:text-brand
+              focus-visible:bg-blue-50 focus-visible:text-brand
+              focus-visible:outline-none
+            "
+          >
+            <span>{item.title}</span>
+            <!-- Flecha derecha -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 shrink-0 text-brand opacity-60 transition-transform duration-100 group-hover/item:translate-x-0.5 group-hover/item:opacity-100"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

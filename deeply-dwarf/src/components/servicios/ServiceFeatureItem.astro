@@ -1,0 +1,20 @@
+---
+interface Props {
+  texto: string;
+}
+
+const { texto } = Astro.props;
+---
+
+<div class="flex items-start gap-4 sm:gap-5">
+  <img
+    src="/servicios/icon-3.png"
+    alt=""
+    aria-hidden="true"
+    class="h-12 w-12 sm:h-14 sm:w-14 md:h-25 md:w-25 shrink-0 object-contain mt-1"
+  />
+  <p
+    class="font-['Nunito'] text-gray-700 text-base sm:text-lg leading-relaxed"
+    set:html={texto}
+  />
+</div>

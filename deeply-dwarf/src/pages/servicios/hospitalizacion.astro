@@ -1,0 +1,43 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/servicios/ServiceHero.astro";
+---
+
+<Layout
+  title="Hospitalización | Clínica Antioquia"
+  description="Servicios de hospitalización para pacientes adultos y pediátricos en Clínica Antioquia sedes Itagüí y Bello."
+>
+  <main class="min-h-screen">
+    <ServiceHero
+      title="Hospitalización"
+      cornerImage="/servicios/img-hospitalizacion.png"
+      directedTo="Paciente adulto y pediátrico"
+      locations={[
+        {
+          nombre: "Sede Itagüí",
+          detalle:
+            "(112 camas para paciente adulto y 7 camas para paciente pediátrico)",
+        },
+        {
+          nombre: "Sede Bello",
+          detalle:
+            "(21 camas para paciente adulto y 8 camas paciente pediátrico)",
+        },
+      ]}
+      features={[
+        {
+          texto:
+            "En ambas sedes nuestro servicio cuenta con 119 camas, de las cuales 112 están destinadas para hospitalización de pacientes adultos y 7 para hospitalización de pacientes pediátricos.",
+        },
+        {
+          texto:
+            "En nuestra sede de Bello, 29 camas de las cuales 21 son para pacientes adultos y 8 para pacientes pediátricos. De estas habitaciones 3 son individuales y las restantes son bipersonales, mientras que en nuestra sede de Itagüí contamos con 41 habitaciones individuales.",
+        },
+        {
+          texto:
+            "Se cuenta con un equipo multidisciplinario compuesto por enfermería, especialidades clínicas y quirúrgicas, profesionales en nutrición, terapia respiratoria, fisioterapia, trabajo social y psicología que garantizan una atención integral y con calidad.",
+        },
+      ]}
+    />
+  </main>
+</Layout>

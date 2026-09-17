@@ -1,0 +1,290 @@
+---
+interface BannerItem {
+  image: string;
+  alt?: string;
+  href?: string;
+  external?: boolean;
+}
+
+interface Props {
+  banners: BannerItem[];
+  autoplayInterval?: number; // ms, 0 = sin autoplay
+}
+
+const { banners, autoplayInterval = 5000 } = Astro.props;
+const id = 'hero-carousel';
+---
+
+<div
+  id={id}
+  class="relative w-full max-w-[1280px] mx-auto overflow-hidden bg-gray-50 rounded-lg sm:rounded-xl lg:rounded-2xl shadow-sm group"
+  role="region"
+  aria-label="Carrusel de banners"
+>
+  <!-- Track de slides -->
+  <div
+    id={`${id}-track`}
+    class="flex transition-transform duration-500 ease-in-out"
+    aria-live="polite"
+  >
+    {banners.map((banner, i) => (
+      <div
+        class="w-full shrink-0"
+        role="group"
+        aria-label={`Slide ${i + 1} de ${banners.length}`}
+        aria-hidden={i !== 0 ? 'true' : 'false'}
+        data-slide={i}
+      >
+        {banner.href ? (
+          <a
+            href={banner.href}
+            {...banner.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+            class="block w-full"
+            tabindex={i === 0 ? '0' : '-1'}
+          >
+            <img
+              src={banner.image}
+              alt={banner.alt ?? ''}
+              class="w-full h-auto block object-contain"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          </a>
+        ) : (
+          <img
+            src={banner.image}
+            alt={banner.alt ?? ''}
+            class="w-full h-auto block object-contain"
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+        )}
+      </div>
+    ))}
+  </div>
+
+  <!-- Botón Anterior -->
+  <button
+    type="button"
+    id={`${id}-prev`}
+    aria-label="Banner anterior"
+    class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#003085]/60 hover:bg-[#003085] text-white backdrop-blur-xs shadow-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white hover:scale-105 active:scale-95 cursor-pointer"
+  >
+    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Botón Siguiente -->
+  <button
+    type="button"
+    id={`${id}-next`}
+    aria-label="Banner siguiente"
+    class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#003085]/60 hover:bg-[#003085] text-white backdrop-blur-xs shadow-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white hover:scale-105 active:scale-95 cursor-pointer"
+  >
+    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Indicadores de posición -->
+  <div
+    class="absolute bottom-2.5 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10"
+    role="tablist"
+    aria-label="Navegación de slides"
+  >
+    {banners.map((_, i) => (
+      <button
+        type="button"
+        id={`${id}-dot-${i}`}
+        role="tab"
+        aria-selected={i === 0 ? 'true' : 'false'}
+        aria-label={`Ir al slide ${i + 1}`}
+        data-index={i}
+        class={`carousel-dot rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 cursor-pointer ${
+          i === 0
+            ? 'w-6 h-2.5 bg-[#003085]'
+            : 'w-2.5 h-2.5 bg-white/70 hover:bg-white'
+        }`}
+      />
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ id, autoplayInterval, total: banners.length }}>
+  (function () {
+    const root = document.getElementById(id);
+    if (!root || root.dataset.carouselInit === 'true') return;
+    root.dataset.carouselInit = 'true';
+
+    const track = document.getElementById(`${id}-track`);
+    if (!track) return;
+
+    const dots = Array.from(root.querySelectorAll('.carousel-dot'));
+    const slides = Array.from(track.querySelectorAll('[data-slide]'));
+    const prevBtn = document.getElementById(`${id}-prev`);
+    const nextBtn = document.getElementById(`${id}-next`);
+
+    if (total <= 1 || slides.length <= 1) return;
+
+    let current = 0;
+    let timer = null;
+    let isTransitioning = false;
+    let isHovered = false;
+    let isFocused = false;
+    let transitionFallbackTimer = null;
+
+    function unlockTransition() {
+      if (transitionFallbackTimer) {
+        clearTimeout(transitionFallbackTimer);
+        transitionFallbackTimer = null;
+      }
+      isTransitioning = false;
+    }
+
+    function onTransitionEnd(e) {
+      if (e && e.target !== track) return;
+      unlockTransition();
+    }
+
+    track.addEventListener('transitionend', onTransitionEnd);
+
+    function goTo(index) {
+      if (isTransitioning) return;
+
+      const nextIndex = (index + total) % total;
+      if (nextIndex === current) return;
+
+      isTransitioning = true;
+      current = nextIndex;
+
+      // Actualizar slides y accesibilidad
+      slides.forEach((slide, idx) => {
+        const isActive = idx === current;
+        slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        const link = slide.querySelector('a');
+        if (link) {
+          link.setAttribute('tabindex', isActive ? '0' : '-1');
+        }
+      });
+
+      // Actualizar indicadores (dots)
+      dots.forEach((dot, idx) => {
+        const isActive = idx === current;
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        if (isActive) {
+          dot.classList.add('w-6', 'bg-[#003085]');
+          dot.classList.remove('w-2.5', 'bg-white/70');
+        } else {
+          dot.classList.remove('w-6', 'bg-[#003085]');
+          dot.classList.add('w-2.5', 'bg-white/70');
+        }
+      });
+
+      // Desplazamiento visual
+      track.style.transform = `translateX(-${current * 100}%)`;
+
+      // Timeout de seguridad por si transitionend no se dispara
+      if (transitionFallbackTimer) clearTimeout(transitionFallbackTimer);
+      transitionFallbackTimer = setTimeout(unlockTransition, 600);
+    }
+
+    function stopAutoplay() {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      if (autoplayInterval <= 0 || total <= 1) return;
+      if (isHovered || isFocused || document.hidden) return;
+
+      timer = setInterval(() => {
+        if (!isTransitioning && !isHovered && !isFocused && !document.hidden) {
+          goTo(current + 1);
+        }
+      }, autoplayInterval);
+    }
+
+    function handleManualNav(index) {
+      if (isTransitioning) return;
+      stopAutoplay();
+      goTo(index);
+      // Si el usuario no está manteniendo el puntero ni el foco dentro del carrusel, reanudar
+      if (!isHovered && !isFocused && !document.hidden) {
+        startAutoplay();
+      }
+    }
+
+    // Eventos indicadores (dots)
+    dots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = parseInt(dot.dataset.index || '0', 10);
+        handleManualNav(idx);
+      });
+    });
+
+    // Eventos botones laterales
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleManualNav(current - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleManualNav(current + 1);
+      });
+    }
+
+    // Soporte navegación por teclado
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handleManualNav(current - 1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleManualNav(current + 1);
+      }
+    });
+
+    // Pausar y reanudar por cursor (hover)
+    root.addEventListener('mouseenter', () => {
+      isHovered = true;
+      stopAutoplay();
+    });
+
+    root.addEventListener('mouseleave', () => {
+      isHovered = false;
+      startAutoplay();
+    });
+
+    // Pausar y reanudar por foco (accesibilidad con teclado)
+    root.addEventListener('focusin', () => {
+      isFocused = true;
+      stopAutoplay();
+    });
+
+    root.addEventListener('focusout', (e) => {
+      if (!root.contains(e.relatedTarget)) {
+        isFocused = false;
+        startAutoplay();
+      }
+    });
+
+    // Pausar cuando la pestaña no está visible para evitar desincronización
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    });
+
+    // Iniciar autoplay
+    startAutoplay();
+  })();
+</script>

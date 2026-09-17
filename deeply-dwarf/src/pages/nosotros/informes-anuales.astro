@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const listItems = [
+  "Presentación y gobierno",
+  "Grupos de interés y materialidad",
+  "Desempeño integral (económico, asistencial, social, ambiental)",
+  "Destacados",
+  "Retos",
+  "Agradecimientos"
+];
+---
+
+<Layout 
+  title="Memoria de Sostenibilidad - Informes Anuales | Clínica Antioquia"
+  description="Consulte la Memoria de Sostenibilidad de la Clínica Antioquia. Información sobre nuestro desempeño económico, asistencial, social, ambiental y de gobierno."
+>
+  <main class="relative w-full bg-[#1b4375] overflow-hidden pt-8 sm:pt-12 lg:pt-16 pb-0">
+    
+    <!-- Imagen de fondo (img-02.jpg) -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <img 
+        src="/informes-anuales/img-02.jpg" 
+        alt="" 
+        aria-hidden="true"
+        class="w-full h-full object-cover object-center"
+      />
+      <!-- Tratamiento de degradado radial azul semitransparente -->
+      <div 
+        class="absolute inset-0 z-10 pointer-events-none"
+        style="background: radial-gradient(ellipse at 50% 50%, rgba(90, 137, 199, 0.35) 0%, rgba(46, 87, 140, 0.72) 60%, rgba(18, 48, 92, 0.88) 100%);"
+      ></div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="relative z-20 w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-12 pt-4 pb-0">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-end">
+        
+        <!-- Lado izquierdo: Título, Bloque translúcido, Lista de ítems y Botón -->
+        <div class="lg:col-span-7 flex flex-col items-start space-y-6 sm:space-y-7 pb-8 sm:pb-12 lg:pb-14">
+          
+          <!-- Encabezado con Chevron azul y Título -->
+          <div class="flex items-center gap-2 sm:gap-3">
+            <span class="font-['Nunito'] font-extrabold text-[#003085] text-3xl sm:text-4xl lg:text-[50px] leading-none select-none">&gt;</span>
+            <h1 class="font-['Nunito'] font-extrabold text-[#003085] text-2xl sm:text-4xl lg:text-[46px] xl:text-[50px] leading-none tracking-tight">
+              Memoria de sostenibilidad
+            </h1>
+          </div>
+
+          <!-- Bloque descriptivo translúcido (efecto vidrio / glassmorphism) -->
+          <div class="w-full max-w-[650px] rounded-2xl sm:rounded-3xl bg-white/20 backdrop-blur-md border border-white/35 p-5 sm:p-7 lg:p-8 shadow-lg">
+            <p class="font-['Poppins'] text-white text-xs sm:text-sm lg:text-[15px] leading-relaxed font-normal">
+              La Clínica Antioquia S.A ha preparado su memoria de sostenibilidad 2025 utilizando como referencia los Estándares GRI para el periodo comprendido entre enero 1 de 2025 y diciembre 31 de 2025, con el propósito de presentar información acerca del desempeño económico, ambiental, social y de gobierno a sus grupos de interés, además de dar respuesta a los principios éticos y de transparencia que rigen la institución.
+            </p>
+          </div>
+
+          <!-- Lista de contenidos con viñetas blancas sólidas -->
+          <ul class="space-y-3 sm:space-y-3.5 pt-1 sm:pt-2 max-w-[620px]">
+            {listItems.map((item) => (
+              <li class="flex items-start gap-3 text-white font-['Poppins'] text-sm sm:text-base lg:text-[16px] font-medium leading-snug">
+                <span class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white shrink-0 mt-1 shadow-sm"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- Botón "Ver informes" enlazado al PDF de la Memoria de Sostenibilidad 2025 -->
+          <div class="pt-3 sm:pt-4">
+            <a
+              href="/informes-anuales/Memoria%20de%20Sostenibilidad%202025.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center bg-[#003085] text-white font-['Nunito'] font-extrabold text-base sm:text-lg px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl sm:rounded-3xl shadow-md hover:bg-[#002366] hover:shadow-lg transition-all duration-300 transform active:scale-95"
+            >
+              Ver informe
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Lado derecho: Imagen de la persona (img-01.png) -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end items-end pt-4 lg:pt-0">
+          <div class="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[480px] xl:max-w-[530px]">
+            <img 
+              src="/informes-anuales/img-01.png" 
+              alt="Colaboradora Clínica Antioquia" 
+              class="w-full h-auto object-contain block drop-shadow-xl"
+            />
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+</Layout>

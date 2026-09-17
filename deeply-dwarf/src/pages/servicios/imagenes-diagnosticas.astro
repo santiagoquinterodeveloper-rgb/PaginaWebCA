@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHeroWithProcedure from "../../components/servicios/ServiceHeroWithProcedure.astro";
+---
+
+<Layout title="Imagenes Diagnosticas | Clínica Antioquia">
+  <main class="min-h-screen">
+    <ServiceHeroWithProcedure
+      title="Imagenes Diagnosticas"
+      cornerImage="/servicios/img-diagnosticas.png"
+      directedTo="Paciente adulto y pediátrico"
+      locations={[
+        {
+          nombre: "Sede Itagüí",
+          detalle:
+            "(Radiografía, ecografía, resonancia magnética y tomografía)",
+        },
+        {
+          nombre: "Sede Bello",
+          detalle: "(Radiografía)",
+        },
+      ]}
+      features={[
+        {
+          texto:
+            "Contamos con un amplio portafolio de servicios para la realización de imágenes diagnósticas para pacientes hospitalarios y particulares; algunos de los procedimientos más frecuentes son:",
+          procedimientos: [
+            "Ecografía de abdomen superior e hígado y vías biliares",
+            "Ecografías de abdomen total",
+            "Ecografías renales y vías urinarias",
+            "Ecografías pélvicas ginecológicas, transvaginales",
+            "Ecografías pélvicas y de próstata",
+            "Ecografías mamarias, de tejidos blandos, tórax y testicular",
+            "Tomografías simples y contrastadas",
+            "Urotac",
+            "Resonancia magnética de tórax",
+            "Resonancia magnética osteomuscular",
+            "Resonancia magnética de abdomen",
+            "Resonancia magnética neurocirugía cabeza y cuello",
+            "Radiografías simples de abdomen y miembros inferiores y superiores",
+          ],
+        },
+        {
+          texto:
+            "Se realizan algunos procedimientos de intervencionismo como:<br/><br/>(Los procedimientos podrán ser realizados en cirugía o en el servicio de imágenes diagnósticas según corresponda)",
+          procedimientos: [
+            "Biopsia de próstata, biopsia de mamá, nefrostimia, inserción de catéter pic, inserción de catéter doble J, cambio de nefrostomía, toracentesis, paracentesis, drenajes hepáticos y de abscesos.",
+          ],
+        },
+      ]}
+    />
+  </main>
+</Layout>

@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/servicios/ServiceHero.astro";
+---
+
+<Layout
+  title="Laboratorio clínico | Clínica Antioquia"
+  description="Servicios de laboratorio clínico para pacientes adultos y pediátricos en Clínica Antioquia sedes Itagüí y Bello."
+>
+  <main class="min-h-screen">
+    <ServiceHero
+      title="Laboratorio clínico"
+      cornerImage="/servicios/img-laboratorio.png"
+      directedTo="Paciente adulto y pediátrico"
+      locations={[
+        {
+          nombre: "Sede Itagüí",
+          detalle:
+            "(Aplica para pacientes intrahospitalarios y particulares)",
+        },
+        {
+          nombre: "Sede Bello",
+          detalle:
+            "(Aplica para pacientes intrahospitalarios y particulares)",
+        },
+      ]}
+      features={[
+        {
+          texto:
+            "Clínica Antioquia cuenta con servicio de laboratorio clínico para el procesamiento de muestras de pacientes particulares en la sede de Itagüí y para pacientes intrahospitalarios en ambas sedes.<br/><br/>Nuestros horarios de atención en Itagüí para pacientes particulares, es de Lunes a Sábado de 6:00 am a 10:00 am, y en Bello de Lunes a Viernes de 6:00 am a 2:00 pm y los Sábados de 6:00 am a 10:00 am, los resultados son enviados al correo electrónico.",
+        },
+      ]}
+    />
+  </main>
+</Layout>

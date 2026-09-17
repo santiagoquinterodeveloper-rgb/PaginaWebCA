@@ -1,0 +1,38 @@
+---
+interface Props {
+  icon: string;
+  label: string;
+  href?: string;
+}
+
+const { icon, label, href } = Astro.props;
+
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  {...href ? { href } : {}}
+  class={`service-btn flex flex-col items-center gap-3 lg:gap-4 group cursor-default${href ? ' cursor-pointer' : ''}`}
+  {...href ? { tabindex: '0' } : {}}
+>
+  <!-- Círculo azul con icono -->
+  <div
+    class="w-[90px] h-[90px] sm:w-[100px] sm:h-[100px] lg:w-[140px] lg:h-[140px] rounded-full bg-[#003085] flex items-center justify-center shadow-md
+           transition-transform duration-200 ease-out group-hover:scale-105 group-hover:shadow-lg"
+  >
+    <img
+      src={icon}
+      alt=""
+      aria-hidden="true"
+      class="w-[48px] h-[48px] sm:w-[54px] sm:h-[54px] lg:w-[76px] lg:h-[76px] object-contain"
+    />
+  </div>
+
+  <!-- Etiqueta -->
+  <span
+    class="font-['Poppins'] text-[#003085] text-center text-xs sm:text-sm lg:text-base font-semibold leading-tight max-w-[110px] lg:max-w-[160px]
+           group-hover:text-[#1a4daa] transition-colors duration-200"
+  >
+    {label}
+  </span>
+</Tag>

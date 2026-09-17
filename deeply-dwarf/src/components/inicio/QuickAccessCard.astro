@@ -1,0 +1,39 @@
+---
+interface Props {
+  image: string;
+  label: string;
+  href?: string;
+  external?: boolean;
+}
+
+const { image, label, href, external = false } = Astro.props;
+---
+
+<div class="flex flex-col h-full w-full justify-between items-center bg-transparent group overflow-hidden">
+  <!-- Imagen (ya tiene esquinas redondeadas en el archivo original) -->
+  <div class="w-full flex-1 flex items-center justify-center overflow-hidden">
+    <img
+      src={image}
+      alt={label}
+      class="w-full h-full object-cover block"
+    />
+  </div>
+
+  <!-- Botón -->
+  {href ? (
+    <a
+      href={href}
+      {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+      class="quick-access-btn w-full text-center font-['Nunito'] font-extrabold text-white text-xs sm:text-sm uppercase tracking-wide py-2.5 px-3 bg-[#003085] hover:bg-[#002070] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#003085] focus-visible:ring-offset-2 transition-colors duration-200 mt-auto rounded-full"
+    >
+      {label}
+    </a>
+  ) : (
+    <div
+      class="quick-access-btn w-full text-center font-['Nunito'] font-extrabold text-white text-xs sm:text-sm uppercase tracking-wide py-2.5 px-3 bg-[#003085] mt-auto rounded-full"
+    >
+      {label}
+    </div>
+  )}
+</div>
+

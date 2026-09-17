@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TrabajaConNosotrosSection from '../../components/trabaja-con-nosotros/TrabajaConNosotrosSection.astro';
+---
+
+<Layout 
+  title="Trabaja con Nosotros | Clínica Antioquia"
+  description="En Clínica Antioquia creemos en el talento, la calidez y el compromiso para brindar una atención segura y humana. Consulte nuestras ofertas y registre su hoja de vida."
+>
+  <main class="relative w-full bg-white min-h-[calc(100vh-80px)] flex items-center justify-center py-10 sm:py-14 lg:py-16 overflow-hidden">
+    
+    <!-- Flor decorativa de fondo -->
+    <div class="absolute -right-24 -top-16 sm:-right-36 sm:-top-24 lg:-right-48 lg:-top-32 w-[650px] sm:w-[850px] lg:w-[1050px] max-w-none opacity-25 pointer-events-none z-0">
+      <img 
+        src="/trabaja-con-nosotros/florGigante.png" 
+        alt="" 
+        aria-hidden="true"
+        class="w-full h-auto object-contain block"
+      />
+    </div>
+
+    <TrabajaConNosotrosSection />
+
+  </main>
+</Layout>

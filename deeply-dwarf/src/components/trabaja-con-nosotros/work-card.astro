@@ -1,0 +1,55 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  description: string;
+  href: string;
+  isExternal?: boolean;
+  class?: string;
+}
+
+const {
+  image,
+  title,
+  description,
+  href,
+  isExternal = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`flex flex-col rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-lg border border-slate-100/80 bg-[#003085] h-full ${className}`}>
+  <!-- Imagen superior contenida en marco azul -->
+  <div class="p-3 sm:p-4 pb-2 sm:pb-3 w-full shrink-0">
+    <div class="relative w-full h-[150px] sm:h-[170px] lg:h-[185px] overflow-hidden rounded-[18px] sm:rounded-[22px]">
+      <img 
+        src={image} 
+        alt={title} 
+        class="w-full h-full object-cover object-center block"
+      />
+    </div>
+  </div>
+
+  <!-- Bloque inferior azul (#003085) -->
+  <div class="px-5 pb-5 sm:px-6 sm:pb-6 lg:px-7 lg:pb-7 flex flex-col justify-between flex-1 text-center items-center bg-[#003085]">
+    <!-- Título en azul secundario (#45a1e6) -->
+    <h3 class="font-['Nunito'] font-extrabold text-[#45a1e6] text-base sm:text-lg lg:text-[18px] uppercase leading-snug tracking-tight mb-3 text-center">
+      {title}
+    </h3>
+
+    <!-- Descripción en blanco -->
+    <p class="font-['Poppins'] font-normal text-white/90 text-xs sm:text-sm leading-relaxed text-center mb-6">
+      {description}
+    </p>
+
+    <!-- Enlace Conoce más -->
+    <a 
+      href={href}
+      {...isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+      class="inline-flex items-center gap-1.5 font-['Nunito'] font-extrabold text-white text-sm sm:text-base hover:text-[#45a1e6] transition-colors mt-auto group"
+    >
+      <span>Conoce más</span>
+      <span class="text-base sm:text-lg leading-none transition-transform group-hover:translate-x-0.5">&gt;</span>
+    </a>
+  </div>
+</div>

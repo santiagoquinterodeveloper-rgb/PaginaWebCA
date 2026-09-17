@@ -1,0 +1,51 @@
+---
+interface Props {
+  icon: string;
+  text: string;
+  href?: string;
+  iconBgColor?: string;
+  pillBgColor?: string;
+  textColor?: string;
+  class?: string;
+}
+
+const {
+  icon,
+  text,
+  href,
+  iconBgColor = "bg-[#45a1e6]",
+  pillBgColor = "bg-[#003085]",
+  textColor = "text-white",
+  class: className = "",
+} = Astro.props;
+
+const Tag = href ? "a" : "div";
+---
+
+<Tag
+  {...href ? { href } : {}}
+  class={`inline-flex items-center justify-center relative max-w-full group ${className}`}
+>
+  <!-- Círculo del icono -->
+  <div
+    class={`relative z-20 flex shrink-0 items-center justify-center rounded-full ${iconBgColor} shadow-md h-[54px] w-[54px] sm:h-[62px] sm:w-[62px] md:h-[68px] md:w-[68px]`}
+  >
+    <img
+      src={icon}
+      alt=""
+      aria-hidden="true"
+      class="h-[30px] w-[30px] sm:h-[36px] sm:w-[36px] md:h-[40px] md:w-[40px] object-contain"
+    />
+  </div>
+
+  <!-- Cuerpo de la píldora -->
+  <div
+    class={`relative z-10 -ml-[18px] sm:-ml-[22px] md:-ml-[24px] flex h-[48px] sm:h-[54px] md:h-[60px] items-center overflow-hidden rounded-full ${pillBgColor} pl-[28px] sm:pl-[34px] md:pl-[38px] pr-6 sm:pr-8 md:pr-10 shadow-sm transition-all duration-300 ${href ? "group-hover:opacity-95" : ""}`}
+  >
+    <span
+      class={`font-['Nunito'] text-[15px] sm:text-[17px] md:text-[19px] lg:text-[20px] font-semibold leading-none tracking-tight ${textColor} whitespace-nowrap`}
+    >
+      {text}
+    </span>
+  </div>
+</Tag>

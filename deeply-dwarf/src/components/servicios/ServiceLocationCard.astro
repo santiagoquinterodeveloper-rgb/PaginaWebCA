@@ -1,0 +1,27 @@
+---
+interface LocationData {
+  nombre: string;
+  detalle: string;
+}
+
+interface Props {
+  locations: LocationData[];
+}
+
+const { locations } = Astro.props;
+
+const gridCols = locations.length === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2";
+---
+
+<div class={`grid ${gridCols} gap-4 bg-[#d6eaf8] rounded-2xl p-5 sm:p-6`}>
+  {locations.map((loc) => (
+    <div class="flex flex-col gap-1">
+      <p class="font-['Nunito'] text-[#003085] font-bold text-sm sm:text-base text-center">
+        {loc.nombre}
+      </p>
+      <p class="font-['Nunito'] text-[#003085] text-sm sm:text-base text-center leading-snug">
+        {loc.detalle}
+      </p>
+    </div>
+  ))}
+</div>

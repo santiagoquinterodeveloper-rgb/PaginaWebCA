@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BoardMemberName from '../../components/organos-directivos/board-member-name.astro';
+import ExecutiveCard from '../../components/organos-directivos/executive-card.astro';
+const boardMembers = [
+  "Alberto de María Auxiliadora Vélez Arango",
+  "William Ferney Gómez Jiménez",
+  "José Mauricio Gaviria Henao"
+];
+const executiveMembers = [
+  {
+    name: "Natasha Molina Vélez",
+    title: "Gerente General",
+    image: "/organos-directivos/img-gerente.png",
+    isFeatured: true
+  },
+  {
+    name: "Héctor Orozco Ramírez",
+    title: "Director Médico",
+    image: "/organos-directivos/img-medico.png",
+    isFeatured: false
+  },
+  {
+    name: "Leidy Marian Arteaga Cárdenas",
+    title: "Directora de Gestión Humana",
+    image: "/organos-directivos/img-gh.png",
+    isFeatured: false
+  },
+  {
+    name: "Natalia Agudelo Ramírez",
+    title: "Director de Calidad",
+    image: "/organos-directivos/img-calidad.png",
+    isFeatured: false
+  },
+  {
+    name: "Ana Karina Sánchez Montes",
+    title: "Director Administrativo y Financiero",
+    image: "/organos-directivos/img-financiero.png",
+    isFeatured: false
+  }
+];
+const featuredMember = executiveMembers.find(m => m.isFeatured);
+const regularMembers = executiveMembers.filter(m => !m.isFeatured);
+---
+<Layout 
+  title="Órganos Directivos | Clínica Antioquia"
+  description="Conozca a la Junta Directiva y el Comité Directivo de la Clínica Antioquia, líderes comprometidos con la excelencia, calidad y humanización en la salud."
+>
+  <main class="relative w-full bg-gradient-to-b from-slate-50/80 via-white to-blue-50/20 min-h-[calc(100vh-80px)] py-10 sm:py-14 lg:py-16 overflow-hidden">
+    
+    <!-- Elementos decorativos de fondo (flores tenues en bordes para profundidad) -->
+    <div class="absolute -right-28 -top-20 w-[550px] sm:w-[700px] lg:w-[850px] opacity-[0.12] pointer-events-none z-0">
+      <img 
+        src="/organos-directivos/icon-02.png" 
+        alt="" 
+        aria-hidden="true" 
+        class="w-full h-auto object-contain block"
+      />
+    </div>
+
+    <div class="absolute -left-32 -bottom-24 w-[600px] sm:w-[750px] lg:w-[900px] opacity-[0.12] pointer-events-none z-0">
+      <img 
+        src="/organos-directivos/icon-02.png" 
+        alt="" 
+        aria-hidden="true" 
+        class="w-full h-auto object-contain block"
+      />
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14 sm:space-y-16">
+      
+      <!-- ================= SECCIÓN 1: JUNTA DIRECTIVA ================= -->
+      <section class="flex flex-col items-center text-center bg-slate-50/90 rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-xs">
+        
+        <!-- Título de la página -->
+        <h1 class="font-['Nunito'] font-extrabold text-[#003085] text-3xl sm:text-4xl lg:text-[44px] uppercase tracking-tight mb-6">
+          ÓRGANOS DIRECTIVOS
+        </h1>
+        <!-- Píldora Encabezado "Junta Directiva" -->
+        <div class="bg-[#003085] text-white font-['Nunito'] font-extrabold text-xl sm:text-2xl px-8 sm:px-12 py-2.5 rounded-full shadow-sm mb-8">
+          Junta Directiva
+        </div>
+        <!-- Lista de Miembros de la Junta Directiva -->
+        <div class="flex flex-col items-start space-y-2 sm:space-y-3">
+          {boardMembers.map((name) => (
+            <BoardMemberName name={name} />
+          ))}
+        </div>
+      </section>
+      <!-- ================= SECCIÓN 2: COMITÉ DIRECTIVO ================= -->
+      <section class="flex flex-col items-center text-center">
+        
+        <!-- Píldora Encabezado "Comité Directivo" -->
+        <div class="bg-[#003085] text-white font-['Nunito'] font-extrabold text-xl sm:text-2xl px-8 sm:px-12 py-2.5 rounded-full shadow-sm mb-12 sm:mb-16">
+          Comité Directivo
+        </div>
+        <!-- Disposición del Comité Directivo -->
+        <div class="w-full space-y-12 sm:space-y-14">
+          
+          <!-- Integrante Destacada (Gerente General: Natasha Molina Vélez) -->
+          {featuredMember && (
+            <div class="flex justify-center">
+              <ExecutiveCard
+                name={featuredMember.name}
+                title={featuredMember.title}
+                image={featuredMember.image}
+                isFeatured={true}
+              />
+            </div>
+          )}
+          <!-- Resto del Comité Directivo (4 Directores) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 items-start justify-items-center">
+            {regularMembers.map((member) => (
+              <ExecutiveCard
+                name={member.name}
+                title={member.title}
+                image={member.image}
+                isFeatured={false}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,32 @@
+---
+// Componente para los servicios que tienen una lista de procedimientos
+interface Props {
+  texto: string;
+  procedimientos: string[];
+}
+
+const { texto, procedimientos } = Astro.props;
+---
+
+<div class="flex items-start gap-4 sm:gap-5">
+  <img
+    src="/servicios/icon-3.png"
+    alt=""
+    aria-hidden="true"
+    class="h-12 w-12 sm:h-14 sm:w-14 md:h-25 md:w-25 shrink-0 object-contain mt-1"
+  />
+
+  <div class="flex flex-col">
+    <p
+      class="font-['Nunito'] text-gray-700 text-base sm:text-lg leading-relaxed"
+      set:html={texto}
+    />
+    <br />
+
+    <ul
+      class="mt-2 list-disc pl-6 font-['Nunito'] text-gray-700 text-base sm:text-lg leading-relaxed"
+    >
+      {procedimientos.map((procedimiento) => <li>{procedimiento}</li>)}
+    </ul>
+  </div>
+</div>
