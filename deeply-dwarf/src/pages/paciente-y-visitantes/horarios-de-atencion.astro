@@ -1,0 +1,206 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const servicios24h = [
+  "Hospitalización",
+  "UCI - UCE",
+  "Urgencias",
+  "Cirugía emergente",
+];
+
+interface ServicioHorario {
+  nombre: string;
+  horarios: { dia: string; hora: string }[];
+}
+
+const serviciosHorario: ServicioHorario[] = [
+  {
+    nombre: "Atención centrada en la persona",
+    horarios: [
+      { dia: "Lunes a viernes", hora: "7:00 AM – 4:30 PM" },
+      { dia: "Sábados", hora: "8:00 AM – 12:00 PM" },
+    ],
+  },
+  {
+    nombre: "Consulta externa",
+    horarios: [
+      { dia: "Lunes a viernes", hora: "7:00 AM – 6:00 PM" },
+    ],
+  },
+  {
+    nombre: "Consulta ambulatoria",
+    horarios: [
+      { dia: "Lunes a viernes", hora: "7:00 AM – 7:00 PM" },
+    ],
+  },
+  {
+    nombre: "Imagenologia Rayos X",
+    horarios: [
+      { dia: "Lunes a viernes", hora: "9:00 AM – 1:00 PM  y 2:00 PM – 4:30 PM"  },
+    ],
+  },
+  {
+    nombre: "Tomografia",
+    horarios: [
+      { dia: "Lunes a viernes", hora: "7:00 AM – 1:00 PM y 2:00 PM – 4:30 PM" },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Horarios de Atención | Clínica Antioquia"
+  description="Consulta los horarios de atención de los servicios de Clínica Antioquia."
+>
+  <main class="relative w-full min-h-screen overflow-x-hidden">
+
+    <!-- Imagen de fondo con overlay azul -->
+    <div class="absolute inset-0 z-0 ">
+      <img
+        src="/pacientes-visitantes/horarios-de-atencion/Fondo-horario-de-atencion.png"
+        alt=""
+        aria-hidden="true"
+        class="w-full h-full object-cover object-center"
+      />
+      <div class="absolute inset-0 bg-[#3b94d1]/34"></div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-10 sm:py-14 lg:py-16">
+
+      <!-- Título -->
+      <h1 class="font-nunito font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#003085] leading-tight mb-10 sm:mb-12 lg:mb-0">
+        Horarios de atención
+      </h1>
+      <h2 class="font-nunito text-2xl sm:text-3xl text-white mb-6 lg:mb-12">
+        Estamos aquí para brindarte atención cuando la necesites
+      </h2>
+
+      <!-- Grid dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+
+        <!-- ── COLUMNA IZQUIERDA: Servicios 24 horas ── -->
+        <div>
+          <h2 class="font-nunito text-2xl sm:text-3xl text-white mb-6 border-l-4 border-white/60 pl-3">
+            Servicios 24 horas
+          </h2>
+
+          <ul class="space-y-2.5">
+            {servicios24h.map((servicio) => (
+              <li class="bg-white/15 text-[#003085] rounded-xl px-5 py-3.5 font-medium text-base sm:text-lg backdrop-blur-sm">
+                {servicio}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- ── COLUMNA DERECHA: Servicios con horario programado ── -->
+        <div>
+          <h2 class="font-nunito text-2xl sm:text-3xl text-white mb-6 border-l-4 border-white/60 pl-3">
+            Servicios con horario programado
+          </h2>
+
+          <!-- Desktop: hover tooltip / Mobile: accordion -->
+          <ul class="space-y-2.5">
+            {serviciosHorario.map((servicio, i) => (
+              <li
+                class="group relative rounded-xl overflow-hidden lg:overflow-visible"
+                data-accordion
+              >
+                <button
+                  type="button"
+                  class="w-full flex items-center justify-between gap-3 bg-white/15 backdrop-blur-sm text-white rounded-xl px-5 py-3.5 text-left transition-colors hover:bg-white/25"
+                  aria-expanded="false"
+                  aria-controls={`horario-${i}`}
+                  data-accordion-trigger
+                >
+                  <span class="font-medium sm:text-lg text-[#003085]">
+                    {servicio.nombre}
+                  </span>
+                  <!-- Chevron: solo en mobile -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="lg:hidden h-3.5 w-3.5 shrink-0 text-[#003085] transition-transform duration-200"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    data-chevron
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                <!-- Panel horarios -->
+                <div
+                  id={`horario-${i}`}
+                  class="
+                    max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out
+                    lg:max-h-none lg:overflow-visible
+                    lg:absolute lg:left-0 lg:top-full lg:mt-1.5 lg:z-20
+                    lg:w-full
+                    lg:opacity-0 lg:pointer-events-none
+                    lg:transition-opacity lg:duration-150
+                    lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto
+                  "
+                  data-accordion-panel
+                >
+                  <div class="mx-0 mt-0 mb-1 lg:mb-0 rounded-b-xl lg:rounded-xl bg-white/90 backdrop-blur-sm px-5 py-3 shadow-lg">
+                    {servicio.horarios.map((h) => (
+                      <div class="flex justify-between gap-4 text-sm py-1 border-b border-[#1c4482]/10 last:border-0">
+                        <span class="text-[#1c4482] font-semibold shrink-0">{h.dia}</span>
+                        <span class="text-gray-800 font-medium text-right">{h.hora}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const items = document.querySelectorAll("[data-accordion]");
+
+  items.forEach((item) => {
+    const trigger = item.querySelector("[data-accordion-trigger]") as HTMLButtonElement;
+    const panel   = item.querySelector("[data-accordion-panel]") as HTMLElement;
+    const chevron = item.querySelector("[data-chevron]") as SVGElement;
+
+    if (!trigger || !panel) return;
+
+    trigger.addEventListener("click", () => {
+      if (window.innerWidth >= 1024) return;
+
+      const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+      // Cerrar todos los demás
+      items.forEach((other) => {
+        if (other === item) return;
+        const otherTrigger = other.querySelector("[data-accordion-trigger]") as HTMLButtonElement;
+        const otherPanel   = other.querySelector("[data-accordion-panel]") as HTMLElement;
+        const otherChevron = other.querySelector("[data-chevron]") as SVGElement;
+        if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+        if (otherPanel)   otherPanel.style.maxHeight = "0px";
+        if (otherChevron) otherChevron.style.transform = "rotate(0deg)";
+      });
+
+      // Alternar el actual
+      if (isOpen) {
+        trigger.setAttribute("aria-expanded", "false");
+        panel.style.maxHeight = "0px";
+        if (chevron) chevron.style.transform = "rotate(0deg)";
+      } else {
+        trigger.setAttribute("aria-expanded", "true");
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        if (chevron) chevron.style.transform = "rotate(180deg)";
+      }
+    });
+  });
+</script>

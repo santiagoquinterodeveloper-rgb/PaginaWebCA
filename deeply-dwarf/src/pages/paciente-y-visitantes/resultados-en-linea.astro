@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const PORTAL_URL = "https://resultados.clinicantioquia.com.co/login#/login";
+// TODO: reemplazar por el enlace real cuando esté disponible
+const SOLICITUD_URL = "#";
+
+const buttonClasses =
+  "inline-flex items-center justify-center rounded-full bg-[#1c4482] py-2.5 px-6 text-base sm:text-lg font-medium text-white shadow-sm transition-colors hover:bg-[#15335f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2990cb]";
+---
+
+<Layout
+  title="Resultados en Línea | Clínica Antioquia"
+  description="Consulta tus resultados en línea en Clínica Antioquia de forma rápida y sencilla."
+>
+  <main
+    class="w-full bg-white pt-4 pb-8 sm:pt-6 sm:pb-12 lg:pt-6 lg:pb-12 px-6 sm:px-8 lg:px-12"
+  >
+    <div class="w-full max-w-6xl mx-auto flex flex-col gap-8 lg:gap-10">
+      <!-- 1. Texto: arriba -->
+      <div class="flex flex-col justify-start space-y-4 sm:space-y-6">
+        <h1
+          class="font-nunito font-extrabold text-4xl sm:text-5xl md:text-6xl text-[#1c4482] leading-[1.1] tracking-tight"
+        >
+          Resultados<br />en Línea
+        </h1>
+
+        <h2
+          class="font-nunito font-bold text-2xl sm:text-3xl md:text-4xl text-[#2990cb] pt-1"
+        >
+          ¿Cómo consultar tus resultados?
+        </h2>
+
+        <div
+          class="space-y-4 sm:space-y-5 text-base sm:text-lg lg:text-xl text-black leading-relaxed font-normal"
+        >
+          <p>
+            Si cuentas con el número de estudio:<br />
+            Haz clic en <strong class="text-[#1c4482] font-medium"
+              >“Ingresar”</strong
+            > para consultar tus resultados en línea.
+          </p>
+
+          <p>
+            Si no cuentas con el número de estudio:<br />
+            Haz clic en <strong class="text-[#1c4482] font-medium"
+              >“Realizar una solicitud”</strong
+            > para solicitar tus resultados.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2. Formularios: debajo del texto; apilados en mobile, lado a lado desde sm -->
+      <div
+        class="w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-6 lg:gap-10 items-start"
+      >
+        <!-- Formulario 1: con número de estudio (check verde) -->
+        <div class="w-full max-w-[260px] sm:max-w-[300px] mx-auto sm:mx-0 flex flex-col items-center">
+          <img
+            src="/pacientes-visitantes/resultados-en-linea/img-resultados-en-linea-07.png"
+            alt=""
+            aria-hidden="true"
+            class="w-full h-auto object-contain"
+          />
+          <div class="mt-3 w-full flex justify-center">
+            <a href={PORTAL_URL} class={`${buttonClasses} w-4/5`}>Ingresar</a>
+          </div>
+        </div>
+
+        <!-- Formulario 2: sin número de estudio (X roja) -->
+        <div class="w-full max-w-[260px] sm:max-w-[300px] mx-auto sm:mx-0 flex flex-col items-center">
+          <img
+            src="/pacientes-visitantes/resultados-en-linea/img-resultados-en-linea-08.png"
+            alt=""
+            aria-hidden="true"
+            class="w-full h-auto object-contain"
+          />
+          <div class="mt-3 w-full flex justify-center">
+            <a href={SOLICITUD_URL} class={`${buttonClasses} w-11/12`}
+              >Realizar solicitud</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

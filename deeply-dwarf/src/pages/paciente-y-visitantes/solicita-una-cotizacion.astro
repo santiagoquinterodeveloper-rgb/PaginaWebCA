@@ -1,0 +1,49 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const COTIZACION_URL = "#";
+---
+
+<Layout
+  title="Solicita una Cotización | Clínica Antioquia"
+  description="Solicita una cotización de forma fácil y rápida en Clínica Antioquia."
+>
+  <main class="w-full bg-white overflow-x-hidden">
+    <div class="w-full max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 sm:pt-8 lg:pt-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-end gap-0 lg:gap-0">
+
+        <!-- Columna izquierda: texto y botón -->
+        <div class="flex flex-col justify-center space-y-6 pb-10 lg:pb-35">
+          <h1
+            class="font-nunito font-extrabold text-5xl sm:text-6xl lg:text-7xl text-[#1c4482] leading-[1.1] tracking-tight"
+          >
+            ¿Necesitas<br />una cotización?
+          </h1>
+
+          <p class="text-gray-800 text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-md">
+            Estamos para ayudarte. Solicitala de forma fácil y rápida.
+          </p>
+
+          <div>
+            <a
+              href={COTIZACION_URL}
+              class="inline-flex items-center justify-center rounded-full bg-[#1c4482] px-8 sm:px-10 py-3.5 sm:py-4 text-lg sm:text-xl font-medium text-white shadow-sm transition-colors hover:bg-[#15335f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2990cb]"
+            >
+              Solicita una cotización
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna derecha: imagen de la chica (flush al fondo en mobile y desktop) -->
+        <div class="flex items-end justify-center lg:justify-end -mx-6 sm:-mx-8 lg:mx-0">
+          <img
+            src="/pacientes-visitantes/solicita-una-cotizacion/img-solicita-una-cotización.png"
+            alt="Asesora de Clínica Antioquia"
+            class="w-auto max-w-[85vw] sm:max-w-sm lg:max-w-none lg:h-[520px] xl:h-[550px] object-contain object-bottom block"
+          />
+        </div>
+
+      </div>
+    </div>
+  </main>
+</Layout>
