@@ -1,0 +1,56 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const PDF_URL = "/pacientes-visitantes/derechos-deberes/Derechos y Deberes ACP nuevo.pdf";
+---
+
+<Layout
+  title="Derechos y Deberes | Clínica Antioquia"
+  description="Conoce tus derechos y deberes como paciente en Clínica Antioquia para construir juntos una atención segura, respetuosa y humanizada."
+>
+  <main class="relative w-full min-h-[calc(100vh-72px)] overflow-hidden">
+    <!-- Fondo -->
+    <img
+      src="/pacientes-visitantes/derechos-deberes/fondo-derechos-deberes.png"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover object-center z-0"
+    />
+
+    <!-- Contenido -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-10 sm:py-14 lg:py-16 flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-0 min-h-[calc(100vh-72px)]">
+
+      <!-- Columna izquierda: texto -->
+      <div class="flex flex-col justify-center gap-6 lg:gap-8 w-full lg:w-1/2 lg:pr-10">
+        <h1 class="font-nunito font-extrabold text-5xl sm:text-6xl lg:text-7xl text-[#003085] leading-tight">
+          Derechos y deberes
+        </h1>
+
+        <p class="text-base sm:text-lg lg:text-xl text-gray-800 leading-relaxed max-w-lg">
+          Conocer tus derechos y cumplir tus deberes nos permite construir juntos una atención segura, respetuosa y humanizada.
+        </p>
+
+        <div>
+          <a
+            href={PDF_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-full bg-[#2990cb] px-8 py-3.5 text-base sm:text-lg font-semibold text-white shadow-sm transition-colors hover:bg-[#1f7ab5] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2990cb]"
+          >
+            Ir a derechos y deberes
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna derecha: imagen -->
+      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end self-end lg:self-auto">
+        <img
+          src="/pacientes-visitantes/derechos-deberes/img-derechos-deberes.png"
+          alt="Ilustración de atención médica humanizada"
+          class="w-[70%] sm:w-[55%] lg:w-[80%] max-w-[480px] object-contain object-bottom"
+        />
+      </div>
+
+    </div>
+  </main>
+</Layout>
