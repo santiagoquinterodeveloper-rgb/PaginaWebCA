@@ -13,11 +13,12 @@ const nosotrosItems = [
   { title: 'Propósito superior', link: '/nosotros/proposito-superior' },
   { title: 'Línea de transparencia', link: '/nosotros/linea-de-transparencia' },
   { title: 'Informes anuales', link: '/nosotros/informes-anuales' },
-  { title: 'Reconocimientos', link: '/nosotros/reconocimientos' },
+  /*{ title: 'Reconocimientos', link: '/nosotros/reconocimientos' },*/
   { title: 'Trabaja con nosotros', link: '/nosotros/trabaja-con-nosotros' },
   { title: 'Órganos directivos', link: '/nosotros/organos-directivos' },
   { title: 'Aliados', link: '/nosotros/aliados' },
   { title: 'Referencia', link: '/nosotros/referencia' },
+  { title: 'Sedes', link: '/nosotros/sedes' },
 ];
 
 const serviciosItems = [
@@ -32,23 +33,23 @@ const serviciosItems = [
 
 const pacienteItems = [
   { title: 'Resultados en línea', link: '/paciente-y-visitantes/resultados-en-linea' },
-  { title: 'Información para pacientes', link: '/paciente-y-visitantes/informacion-de-pacientes' },
+  /*{ title: 'Información para pacientes', link: '/paciente-y-visitantes/informacion-de-pacientes' },*/
   { title: 'Solicita una cotización', link: '/paciente-y-visitantes/solicita-una-cotizacion' },
   { title: 'Horarios de atención', link: '/paciente-y-visitantes/horarios-de-atencion' },
   { title: 'Gestión de PQRS', link: '/paciente-y-visitantes/gestion-de-pqrs' },
-  { title: 'Preparate para tu examen', link: '/paciente-y-visitantes/asociacion-de-usuarios' },
-  { title: 'Entrega de historia clínica', link: '/paciente-y-visitantes/entrega-de-historia-clinica' },
+  /*{ title: 'Preparate para tu examen', link: '/paciente-y-visitantes/preparate-para-tu-examen' },*/
+  /*{ title: 'Entrega de historia clínica', link: '/paciente-y-visitantes/entrega-de-historia-clinica' },*/
   { title: 'Derechos y deberes', link: '/paciente-y-visitantes/derechos-y-deberes' },
 ];
 
 const atencionCentradaEnLaPersonaItems = [
-  { title: 'Conocénos', link: '/atencion-centrada-en-la-persona/conocenos' },
-  { title: 'Asociación de usuarios', link: '/atencion-centrada-en-la-persona/asociacion-de-usuarios' },
+  /*{ title: 'Conocénos', link: '/atencion-centrada-en-la-persona/conocenos' },*/
+  { title: 'Asociación de usuarios', link: '/atencion-centrada-en-la-persona/asociacion-de-usuarios' }, 
   { title: 'Guía de pacientes y visitantes', link: '/atencion-centrada-en-la-persona/guia-de-pacientes-y-visitantes' },
-  { title: 'Participación ciudadana', link: '/atencion-centrada-en-la-persona/participacion-ciudadana' },
-  { title: 'Ingresa tu mascota', link: '/atencion-centrada-en-la-persona/ingresa-tu-mascota' },
-  { title: 'Conectar para cuidar', link: '/atencion-centrada-en-la-persona/conectar-para-cuidar' },
-  { title: 'Sala de lactancia', link: '/atencion-centrada-en-la-persona/sala-de-lactancia' },
+  { title: 'Participación ciudadana', link: '/atencion-centrada-en-la-persona/participacion-ciudadana' }, 
+  { title: 'Ingresa tu mascota', link: '/atencion-centrada-en-la-persona/ingresa-tu-mascota' }, 
+  { title: 'Conectar para cuidar', link: '/atencion-centrada-en-la-persona/conectar-para-cuidar' }, 
+  /*{ title: 'Sala de lactancia', link: '/atencion-centrada-en-la-persona/sala-de-lactancia' },*/
 ];
 
 const navLinks = [
@@ -57,13 +58,13 @@ const navLinks = [
   { label: 'Servicios',            href: '/servicios',            items: serviciosItems },
   { label: 'Paciente y visitantes',href: '/paciente-y-visitantes',items: pacienteItems },
   { label: 'Atención centrada en la persona', href: '/atencion-centrada-en-la-persona', items: atencionCentradaEnLaPersonaItems }, 
-  { label: 'Contacto',             href: '/contacto',             items: null },
+  /*{ label: 'Contacto',             href: '/contacto',             items: null },*/
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="w-full bg-white shadow-sm">
+<header class="sticky top-0 z-50 w-full bg-white shadow-sm">
   <nav
     class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
     aria-label="Navegación principal"

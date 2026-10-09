@@ -1,0 +1,123 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const BASE = "/atencion-centrada-persona/participacion-ciudadana";
+
+const compromisos = [
+  "Promover la participación de nuestros usuarios en los diferentes espacios institucionales.",
+  "Brindar información clara y oportuna sobre sus derechos y deberes en salud.",
+  "Escuchar las opiniones, sugerencias y propuestas de nuestros usuarios y comunidad.",
+  "Fortalecer el control social, facilitando la participación y seguimiento de la gestión institucional.",
+  "Generar espacios de diálogo y comunicación con nuestros usuarios y grupos de interés.",
+  "Promover el respeto por los derechos de los usuarios y una atención digna, humanizada y de calidad.",
+  "Recibir y gestionar las manifestaciones de la comunidad, identificando oportunidades de mejora para nuestros servicios.",
+  "Fortalecer una cultura de transparencia y participación, donde la voz de nuestros usuarios sea parte de la construcción de una mejor atención en salud",
+];
+
+const cardClass = "rounded-3xl bg-sky-100 px-6 py-8 sm:px-10 sm:py-10 text-gray-900 text-base sm:text-lg leading-relaxed sm:text-justify";
+const headingClass = "font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1c4482] text-center leading-tight";
+---
+
+<Layout
+  title="Participación Ciudadana | Clínica Antioquia"
+  description="Conoce la Política de Participación Social en Salud de Clínica Antioquia y cómo tu voz contribuye al mejoramiento de nuestros servicios."
+>
+  <main class="w-full bg-white overflow-hidden">
+    <div class="w-full max-w-4xl mx-auto px-6 sm:px-10 py-8 sm:py-12 lg:py-14 flex flex-col gap-14 sm:gap-20">
+
+      <!-- 1. Qué es la política -->
+      <section>
+        <h1 class="font-nunito font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#1c4482] leading-tight">
+          Política de Participación Social en Salud
+        </h1>
+        <h2 class="mt-6 sm:mt-8 font-nunito font-bold text-xl sm:text-2xl text-[#1c4482]">
+          ¿Qué es la Política de Participación Social en Salud?
+        </h2>
+
+        <div class={`mt-5 ${cardClass} pb-16 sm:pb-24`}>
+          <p>
+            La Política de Participación Social en Salud (PPSS) es una estrategia que busca
+            fortalecer la participación activa de las personas, familias y comunidades en las
+            decisiones y acciones relacionadas con la salud.<br />
+            En Clínica Antioquia, promovemos esta política como un espacio para escuchar,
+            informar y vincular a nuestros usuarios y comunidad, reconociendo sus opiniones,
+            necesidades y propuestas como elementos importantes para el mejoramiento continuo
+            de nuestros servicios.<br />
+            A través de la participación social, buscamos fortalecer una relación basada en la
+            confianza, el diálogo, la transparencia y el respeto por los derechos de nuestros
+            usuarios, contribuyendo así a una atención cada vez más humana y cercana.
+          </p>
+          <p class="mt-6 text-center font-semibold text-[#1c4482]">
+            La norma principal es la Resolución 2063 de 2017, mediante la cual el Ministerio
+            de Salud y Protección Social adopta la Política de Participación Social en Salud (PPSS).
+          </p>
+        </div>
+        <img
+          src={`${BASE}/img-participacion-cuidadana-08.png`}
+          alt="Mascota de Clínica Antioquia acompañando a una paciente"
+          class="relative -mt-12 sm:-mt-20 mx-auto sm:ml-[28%] sm:mr-0 w-64 sm:w-80 h-auto object-contain"
+        />
+      </section>
+
+      <!-- 2. Contamos contigo -->
+      <section>
+        <h2 class={headingClass}>En Clínica Antioquia contamos contigo</h2>
+
+        <div class={`mt-8 ${cardClass}`}>
+          <p>
+            En Clínica Antioquia reconocemos la participación social como un elemento
+            fundamental para construir una atención en salud más humana, transparente y cercana
+            a las necesidades de nuestra comunidad.<br />
+            Por eso, contamos con espacios y mecanismos de participación social en salud que
+            permiten a nuestros usuarios, familias y comunidad expresar sus opiniones, presentar
+            propuestas, ejercer sus derechos y contribuir al mejoramiento continuo de nuestros
+            servicios.
+          </p>
+        </div>
+        <img
+          src={`${BASE}/img-participacion-cuidadana-09.png`}
+          alt="Mascota de Clínica Antioquia conversando con un usuario"
+          class="relative -mt-10 sm:-mt-16 ml-auto sm:mr-6 w-56 sm:w-72 h-auto object-contain"
+        />
+      </section>
+
+      <!-- 3. Cumplimos con -->
+      <section>
+        <h2 class={headingClass}>En Clínica Antioquia cumplimos con:</h2>
+        <ul class="mt-8 flex flex-col gap-4 sm:gap-5 text-sm sm:text-base text-gray-900">
+          {compromisos.map((texto) => (
+            <li class="flex items-start gap-4">
+              <span class="mt-1.5 h-3 w-3 shrink-0 rounded-full bg-sky-500" aria-hidden="true"></span>
+              <span>{texto}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- 4. Tu participación es importante -->
+      <section>
+        <h2 class={headingClass}>Tu participación es importante</h2>
+
+        <div class={`mt-8 ${cardClass}`}>
+          <p>
+            En Clínica Antioquia creemos que escuchar a nuestra comunidad nos permite mejorar.
+            Cada opinión, propuesta, sugerencia o aporte representa una oportunidad para
+            continuar fortaleciendo nuestros servicios y responder a las necesidades de quienes
+            confían en nosotros. Participa, opina y haz parte de la construcción de una mejor
+            salud para todos.
+          </p>
+          <p class="mt-3 font-semibold text-[#1c4482]">En Clínica Antioquia, tu voz cuenta</p>
+          <p>
+            Porque participar también es una forma de construir salud. Queremos escucharte y
+            hacerte parte de las acciones que nos permiten mejorar cada día.
+          </p>
+        </div>
+        <img
+          src={`${BASE}/img-participacion-cuidadana-10.png`}
+          alt="Mascota de Clínica Antioquia abrazando a una usuaria"
+          class="relative -mt-10 sm:-mt-16 w-44 sm:w-56 h-auto object-contain"
+        />
+      </section>
+    </div>
+  </main>
+</Layout>

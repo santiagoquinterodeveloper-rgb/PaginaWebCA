@@ -1,0 +1,124 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const BASE = "/Nosotros/sedes";
+
+const ITAGUI_MAP_URL = "https://maps.google.com/maps?q=6.1698522,-75.6129286&z=17&output=embed";
+const BELLO_MAP_URL = "https://maps.google.com/maps?q=6.3335625,-75.5561909&z=17&output=embed";
+
+const ITAGUI_MAPS_LINK = "https://www.google.com/maps/place/Cl%C3%ADnica+Antioquia+-+Sede+Itag%C3%BC%C3%AD/@6.1698522,-75.6155035,17z";
+const BELLO_MAPS_LINK = "https://www.google.com/maps/place/Clinica+Antioqu%C3%ADa+-+Sede+Bello/@6.3335625,-75.5587658,17z";
+
+interface Sede {
+  nombre: string;
+  direccion: string;
+  telefono: string;
+  telefonoExt: string;
+  whatsapp: string;
+  foto: string;
+  fotoAlt: string;
+  mapEmbed: string;
+  mapLink: string;
+}
+
+const sedes: Sede[] = [
+  {
+    nombre: "Sede Itagüí",
+    direccion: "Calle 45 N° 49-02",
+    telefono: "32222 11",
+    telefonoExt: "ext: 1147",
+    whatsapp: "316 834 73 21",
+    foto: `${BASE}/img-sedes-17.png`,
+    fotoAlt: "Edificio Clínica Antioquia - Sede Itagüí",
+    mapEmbed: ITAGUI_MAP_URL,
+    mapLink: ITAGUI_MAPS_LINK,
+  },
+  {
+    nombre: "Sede Bello",
+    direccion: "Calle 45 N° 49-02",
+    telefono: "32222 11",
+    telefonoExt: "ext: 1147",
+    whatsapp: "316 834 73 21",
+    foto: `${BASE}/img-sedes-18.png`,
+    fotoAlt: "Edificio Clínica Antioquia - Sede Bello",
+    mapEmbed: BELLO_MAP_URL,
+    mapLink: BELLO_MAPS_LINK,
+  },
+];
+---
+
+<Layout
+  title="Nuestras Sedes | Clínica Antioquia"
+  description="Conoce las sedes de Clínica Antioquia en Itagüí y Bello. Dirección, teléfono, WhatsApp y ubicación en el mapa."
+>
+  <main class="relative w-full min-h-screen overflow-hidden">
+    <!-- Fondo -->
+    <img
+      src="/pacientes-visitantes/derechos-deberes/fondo-derechos-deberes.png"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover object-center z-0"
+    />
+    <!-- Contenido -->
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 pt-8 sm:pt-12 lg:pt-14 pb-12 sm:pb-16 lg:pb-20">
+
+      <h1 class="font-nunito font-extrabold text-5xl sm:text-6xl lg:text-7xl text-[#003085] leading-tight mb-10 sm:mb-14">
+        Nuestras sedes
+      </h1>
+
+      <div class="flex flex-col gap-14 sm:gap-16 lg:gap-20">
+        {sedes.map((sede) => (
+          <section>
+            <!-- Nombre de la sede -->
+            <h2 class="font-nunito font-bold text-3xl sm:text-4xl lg:text-5xl text-[#2990cb] mb-4 sm:mb-5">
+              {sede.nombre}
+            </h2>
+
+            <!-- Info de contacto -->
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm sm:text-base lg:text-lg text-gray-900 mb-6 sm:mb-8">
+              <span class="inline-flex items-center gap-1.5">
+                <img src={`${BASE}/ICON-SEDES-19.png`} alt="" aria-hidden="true" class="h-5 sm:h-6 w-auto" />
+                <span class="font-medium">{sede.direccion}</span>
+              </span>
+              <span class="text-gray-400" aria-hidden="true">|</span>
+              <span class="inline-flex items-center gap-1.5">
+                <img src={`${BASE}/ICON-SEDES-21.png`} alt="" aria-hidden="true" class="h-5 sm:h-6 w-auto" />
+                <span class="font-medium">{sede.telefono} {sede.telefonoExt}</span>
+              </span>
+              <span class="text-gray-400" aria-hidden="true">|</span>
+              <span class="inline-flex items-center gap-1.5">
+                <img src={`${BASE}/ICON-SEDES-20.png`} alt="" aria-hidden="true" class="h-5 sm:h-6 w-auto" />
+                <span class="font-medium">{sede.whatsapp}</span>
+              </span>
+            </div>
+
+            <!-- Mapa + Foto -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <!-- Mapa de Google -->
+              <div class="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+                <iframe
+                  src={sede.mapEmbed}
+                  title={`Mapa de ${sede.nombre}`}
+                  class="w-full h-full border-0"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                ></iframe>
+              </div>
+
+              <!-- Foto del edificio -->
+              <div class="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+                <img
+                  src={sede.foto}
+                  alt={sede.fotoAlt}
+                  loading="lazy"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>

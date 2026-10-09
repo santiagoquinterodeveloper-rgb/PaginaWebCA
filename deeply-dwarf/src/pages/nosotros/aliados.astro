@@ -1,0 +1,82 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const BASE = "/Nosotros/aliados";
+
+interface Aliado {
+  nombre: string;
+  logo: string;
+  servicio: string;
+  // Para logos con mucho margen transparente en el archivo
+  logoGrande?: boolean;
+}
+
+const aliados: Aliado[] = [
+  { nombre: "Sura", logo: "Img-02-sura.png", servicio: "EPS, ARL y Póliza" },
+  { nombre: "Salud Total", logo: "Img-03-saludtotal.png", servicio: "EPS", logoGrande: true },
+  { nombre: "Colsanitas", logo: "Img-04-colsanitas.png", servicio: "ARL y medicina prepagada" },
+  { nombre: "Colmena Seguros", logo: "Img-05-colmena.png", servicio: "Riesgos laborales" },
+  { nombre: "AXA Colpatria", logo: "Img-06-colpatria.png", servicio: "ARL" },
+  { nombre: "HDI Seguros", logo: "Img-07-hdi.png", servicio: "Accidentes personales" },
+  { nombre: "Aurora Seguros de Vida", logo: "Img-08-AuroraSeguros.png", servicio: "ARL, seguros de vida, accidentes personales y escolares" },
+  { nombre: "Aseguradora Solidaria de Colombia", logo: "Img-09-AseguradoraSolidaria.png", servicio: "Póliza" },
+  { nombre: "Colmédica", logo: "Img-10-colmedica.png", servicio: "Medicina prepagada" },
+  { nombre: "Seguros Bolívar", logo: "Img-11-seguros bolivar.png", servicio: "ARL" },
+  { nombre: "Positiva", logo: "Img-12-positiva.png", servicio: "ARL y accidentes personales", logoGrande: true },
+  { nombre: "Seguros del Estado", logo: "Img-13-seguros-de-vida-del-estado.png", servicio: "Póliza" },
+  { nombre: "Seguros Mundial", logo: "Img-14-mundial_seguros-.png", servicio: "Póliza" },
+];
+---
+
+<Layout
+  title="Nuestros Aliados | Clínica Antioquia"
+  description="Conoce los aseguradores con los que Clínica Antioquia tiene convenio para la prestación de servicios a nuestros pacientes."
+>
+  <main class="relative w-full overflow-hidden bg-white">
+    <!-- Flores decorativas (solo desde lg) -->
+    <img
+      src={`${BASE}/Icon-02 flor derecha.png`}
+      alt=""
+      aria-hidden="true"
+      class="hidden lg:block pointer-events-none absolute left-0 top-[55%] -translate-y-1/2 w-[22%] max-w-md z-0"
+    />
+    <img
+      src={`${BASE}/Icon-01 flor izquierda.png`}
+      alt=""
+      aria-hidden="true"
+      class="hidden lg:block pointer-events-none absolute right-0 top-[55%] -translate-y-1/2 w-[22%] max-w-md z-0"
+    />
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 pt-8 sm:pt-12 lg:pt-14 pb-12 sm:pb-16 lg:pb-20">
+      <!-- Encabezado -->
+      <h1 class="font-nunito font-extrabold text-5xl sm:text-6xl lg:text-7xl text-[#1c4482] leading-tight">
+        Nuestros aliados
+      </h1>
+      <p class="mt-4 max-w-3xl text-base sm:text-lg lg:text-xl text-gray-900 leading-relaxed">
+        Estos son los aseguradores con los que Clínica Antioquia tiene convenio para la prestación de servicios a nuestros pacientes.
+      </p>
+
+      <!-- Logos: 1 col (base) · 2 (sm) · 4 (md) · 5 (lg) -->
+      <ul class="mt-12 sm:mt-16 lg:mt-20 flex flex-wrap justify-center gap-y-10 sm:gap-y-12 lg:gap-y-14">
+        {aliados.map((aliado) => (
+          <li class="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 px-4 flex flex-col items-center text-center">
+            <div class="h-20 sm:h-24 w-full flex items-center justify-center">
+              <img
+                src={`${BASE}/${aliado.logo}`}
+                alt={aliado.nombre}
+                loading="lazy"
+                class:list={[
+                  "w-auto object-contain",
+                  aliado.logoGrande ? "h-36 sm:h-44 max-w-none" : "max-h-full max-w-[200px]",
+                ]}
+              />
+            </div>
+            <p class="mt-4 font-nunito font-semibold text-base sm:text-lg lg:text-xl text-[#2990cb] leading-snug">
+              {aliado.servicio}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </main>
+</Layout>

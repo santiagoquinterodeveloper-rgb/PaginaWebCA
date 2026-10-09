@@ -2,14 +2,16 @@
 interface Props {
   label: string;
   pdf?: string;
+  link?: string;
 }
 
-const { label, pdf } = Astro.props;
+const { label, pdf, link } = Astro.props;
 ---
 
-{pdf ? (
+{pdf || link ? (
   <a
-    href={pdf}
+    /*link= {link}*/
+    href={pdf || link}
     target="_blank"
     rel="noopener noreferrer"
     class="legal-btn relative group flex items-center justify-between w-full font-['Nunito'] font-extrabold text-white text-sm sm:text-base lg:text-[17px]

@@ -17,10 +17,10 @@ const banners = [
 ];
 
 const quickAccessCards: { image: string; label: string; href?: string }[] = [
-  { image: '/inicio/img-inicio-09.png', label: 'SEDES' },
-  { image: '/inicio/img-inicio-10.png', label: 'AGENDA TU CITA' },
-  { image: '/inicio/img-inicio-11.png', label: 'RESULTADOS EN LINEA' },
-  { image: '/inicio/img-inicio-12.png', label: 'INFORMACIÓN DE PACIENTES' },
+  { image: '/inicio/img-inicio-09.png', label: 'SEDES', href: '/nosotros/sedes' },
+  { image: '/inicio/img-inicio-10.png', label: 'AGENDA TU CITA', href: '/agenda-tu-cita' },
+  { image: '/inicio/img-inicio-11.png', label: 'RESULTADOS EN LINEA', href: '/paciente-y-visitantes/resultados-en-linea' },
+  { image: '/inicio/img-inicio-12.png', label: 'INFORMACIÓN DE PACIENTES', href: '/paciente-y-visitantes/informacion-de-pacientes' },
 ];
 
 const services: { icon: string; label: string; href?: string }[] = [
@@ -36,6 +36,7 @@ const services: { icon: string; label: string; href?: string }[] = [
 const legalButtons = [
   {
     label: 'Política de participación social en salud',
+    link: '/atencion-centrada-en-la-persona/participacion-ciudadana',
   },
   {
     label: 'Política de tratamientos de datos personales',
@@ -43,6 +44,7 @@ const legalButtons = [
   },
   {
     label: 'Gobierno corporativo',
+    link: '/atencion-centrada-en-la-persona/gobierno-corporativo',
   },
   {
     label: 'Indicadores',
@@ -178,7 +180,7 @@ const legalButtons = [
         <!-- Botones legales apilados y centrados -->
         <div class="flex flex-col gap-3.5 sm:gap-4.5 max-w-2xl mx-auto relative z-10">
           {legalButtons.map((btn) => (
-            <LegalButton label={btn.label} pdf={btn.pdf} />
+            <LegalButton label={btn.label} pdf={btn.pdf} link={btn.link} />
           ))}
         </div>
 

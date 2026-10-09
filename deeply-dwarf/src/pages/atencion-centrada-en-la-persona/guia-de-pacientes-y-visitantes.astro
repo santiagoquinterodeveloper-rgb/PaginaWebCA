@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const BASE = "/atencion-centrada-persona/guia-de-pacientes-y-visitantes";
+const PDF_URL = encodeURI(`${BASE}/PE-PO-010 Folleto Política del Acompañante.pdf`);
+---
+
+<Layout
+  title="Guía de pacientes y visitantes | Clínica Antioquia"
+  description="Información útil para orientarte durante tu visita a Clínica Antioquia: horarios, servicios, recomendaciones y normas."
+>
+  <main class="relative w-full overflow-hidden bg-white lg:min-h-[calc(100vh-72px)]">
+    <!-- Fondo con flores -->
+    <img
+      src={`${BASE}/fondo-guia-pacientes-y-visitantes.png`}
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover object-center z-0"
+    />
+
+    <!-- Contenido -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-10 sm:pt-14 lg:pt-16 pb-10 sm:pb-14">
+      <h1 class="font-nunito font-extrabold text-4xl sm:text-5xl lg:text-7xl text-[#1c4482] leading-tight">
+        Guía de pacientes y visitantes
+      </h1>
+
+      <div class="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-6 items-start">
+        <div class="lg:col-span-3 lg:pl-4">
+          <div class="space-y-6 text-base sm:text-lg lg:text-xl text-gray-900 leading-snug sm:text-justify">
+            <p>Queremos que tu experiencia en Clínica Antioquia sea clara, segura y acompañada.</p>
+            <p>
+              En esta guía encontrarás información útil para orientarte durante tu visita: horarios,
+              servicios, recomendaciones, normas y aspectos importantes que te ayudarán a conocer
+              nuestros espacios y facilitar tu atención
+            </p>
+          </div>
+
+          <a
+            href={PDF_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-8 sm:mt-10 inline-flex items-center justify-center rounded-full bg-[#3b94d1] px-8 sm:px-12 py-3.5 sm:py-4 font-nunito text-lg sm:text-2xl text-white shadow-sm transition-colors hover:bg-[#2a7db8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c4482]"
+          >
+            Ir a política del acompañante
+          </a>
+        </div>
+
+        <div class="lg:col-span-2 flex justify-center lg:justify-end lg:mt-6">
+          <img
+            src={`${BASE}/img-guia-pacientes-y-visitantes.png`}
+            alt="Trabajadora social de Clínica Antioquia sonriendo"
+            class="w-64 sm:w-80 lg:w-[125%] max-w-md lg:max-w-none lg:-mr-28 h-auto object-contain"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

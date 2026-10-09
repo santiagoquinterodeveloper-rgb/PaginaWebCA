@@ -1,0 +1,72 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const BASE = "/atencion-centrada-persona/asociacion-de-usuarios";
+// TODO: reemplazar por el enlace real de "Conoce más" cuando esté disponible
+const CONOCE_MAS_URL = "#";
+
+const tarjetas = [
+  {
+    titulo: "¿Qué es la asociación de usuarios?",
+    texto:
+      "Un espacio de participación social en salud que representa los intereses, necesidades y expectativas de nuestros usuarios, familias y cuidadores.",
+  },
+  {
+    titulo: "¿Qué hacemos?",
+    texto:
+      "Promovemos el diálogo entre la comunidad y Clínica Antioquia, impulsando la participación activa y la construcción conjunta de oportunidades de mejora.",
+  },
+  {
+    titulo: "¿Qué nos respalda?",
+    texto:
+      "La Asociación de Usuarios está respaldada por el Decreto 1757 de 1994 y la Resolución 2063 de 2017, relacionados con la participación social en salud.",
+  },
+];
+---
+
+<Layout
+  title="Asociación de usuarios | Clínica Antioquia"
+  description="Conoce la Asociación de Usuarios de Clínica Antioquia: un espacio de participación social en salud donde tu voz construye una mejor atención."
+>
+  <main class="relative w-full overflow-hidden bg-white">
+    <!-- Foto de grupo: la imagen trae el recorte curvo como transparencia -->
+    <div
+      class="relative overflow-hidden aspect-[1310/770] w-full lg:absolute lg:top-0 lg:right-0 lg:w-[54.4%] z-0"
+    >
+      <img
+        src={`${BASE}/Img-asociacion-de-usuarios.png`}
+        alt="Integrantes de la Asociación de Usuarios junto a una trabajadora social de Clínica Antioquia"
+        class="absolute top-0 max-w-none w-[122%] -left-[22.1%] h-auto"
+      />
+    </div>
+
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:pl-[4%] lg:pr-[3%] py-8 sm:py-10 lg:py-12">
+      <!-- Encabezado -->
+      <div class="lg:pl-[4%]">
+        <h1 class="font-nunito font-extrabold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-[#1c4482] leading-[1.1]">
+          Asociación<br />de usuarios
+        </h1>
+      </div>
+
+      <p class="mt-6 sm:mt-8 inline-block rounded-full bg-[#1c4482] px-6 sm:px-12 py-2.5 sm:py-3 font-nunito text-xl sm:text-3xl lg:text-4xl font-semibold text-white leading-snug">
+        Tu voz construye una mejor atención
+      </p>
+
+      <!-- Tarjetas + botón -->
+      <div class="mt-10 sm:mt-12 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:w-[72%]">
+          {tarjetas.map((tarjeta) => (
+            <li class="rounded-[2.5rem] bg-[#5db3e6] px-6 py-8 sm:px-8 sm:py-10 text-[#1c4482]">
+              <h2 class="font-nunito font-bold text-center text-white sm:text-lg lg:text-xl leading-snug">
+                {tarjeta.titulo}
+              </h2>
+              <p class="mt-5 font-nunito font-bold text-base sm:text-lg lg:text-xl leading-snug text-left sm:text-justify">
+                {tarjeta.texto}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </main>
+</Layout>
