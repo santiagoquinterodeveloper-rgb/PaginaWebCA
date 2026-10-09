@@ -1,0 +1,295 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const BASE = "/atencion-centrada-persona/conectar-para-cuidar";
+
+const estrategias = [
+  {
+    titulo: "Me Cuido para Cuidarte",
+    texto:
+      "Promover el bienestar integral de los familiares y cuidadores de pacientes con estancia hospitalaria prolongada, mediante estrategias de acompañamiento, orientación y apoyo psicológico orientadas a la prevención del síndrome del cuidador, para fortalecer el autocuidado, las habilidades de afrontamiento y la regulación emocional frente a las demandas y desafíos derivados del proceso de cuidado.",
+  },
+  {
+    titulo: "Hablemos de Salud Mental",
+    texto:
+      'Establecer los lineamientos para la planeación, ejecución, seguimiento y evaluación de la estrategia "Hablemos de Salud Mental" en Clínica Antioquia, mediante el desarrollo de actividades mensuales de educación, acompañamiento y fortalecimiento de habilidades emocionales dirigidas a pacientes, familias, usuarios y colaboradores. La estrategia busca promover el bienestar emocional, la salud mental y el desarrollo de herramientas que permitan afrontar de manera saludable las diferentes situaciones relacionadas con la atención en salud, la vida cotidiana y el entorno laboral.',
+  },
+  {
+    titulo: "Clínica Antioquia Contigo",
+    texto:
+      "Fortalecer la educación y participación en salud de usuarios y comunidad mediante espacios educativos presenciales y virtuales de la estrategia Clínica Antioquia Contigo, promoviendo el autocuidado, la seguridad del paciente, la prevención de infecciones y la gestión de riesgos, para contribuir a una atención segura, humanizada y de calidad y fomentar la corresponsabilidad en el cuidado de la salud.",
+  },
+  {
+    titulo: "Actividades ACP",
+    texto:
+      "Mediante actividades educativas y de capacitación dirigidas a colaboradores, pacientes, familias y cuidadores, promoviendo una atención humanizada, participativa y respetuosa, que reconozca sus derechos, necesidades y preferencias y fomente su participación activa en el proceso de atención.",
+  },
+  {
+    titulo: "Actividades especiales",
+    texto:
+      "Establecer lineamientos para planear, ejecutar y hacer seguimiento a actividades de celebración, reconocimiento y conmemoración que fortalezcan la humanización, la participación del paciente y su familia, y la atención centrada en la persona.",
+  },
+  {
+    titulo: "UCI Humanizada",
+    texto:
+      "En Clínica Antioquia trabajamos por una atención en salud más cercana, cálida y centrada en las personas. Nuestro programa UCI Humanizada busca brindar una experiencia integral al paciente y su familia, promoviendo el acompañamiento, la comunicación, el respeto y el bienestar emocional durante la estancia en la Unidad de Cuidados Intensivos. A través de un equipo humano comprometido, fortalecemos espacios de escucha y acompañamiento que permiten que el cuidado vaya más allá de lo clínico, poniendo siempre en el centro la dignidad y las necesidades de cada paciente y su familia.",
+  },
+];
+
+const fotos = [
+  { src: `${BASE}/img-nuestras estrategias-20.png`, alt: "Actividad recreativa con familias y pacientes" },
+  { src: `${BASE}/img-nuestras estrategias-21.png`, alt: "Lectura compartida con niños en la clínica" },
+  { src: `${BASE}/img-nuestras estrategias-22.png`, alt: "Equipo de colaboradores en capacitación" },
+  { src: `${BASE}/img-nuestras estrategias-19.png`, alt: "Celebración del día del niño" },
+  { src: `${BASE}/img-nuestras estrategias-18.png`, alt: "Evento Clínica Antioquia Contigo – Gestión del Duelo" },
+];
+---
+
+<Layout
+  title="Conectar para cuidar | Clínica Antioquia"
+  description="Conectar para cuidarte: estrategias y actividades de Atención Centrada en la Persona para el bienestar integral de pacientes, familias y colaboradores."
+>
+  <main
+    class="relative w-full overflow-hidden"
+    style={`background: url('${BASE}/fondo-conectar-para-cuidar.png') top center / 100% auto no-repeat; background-color: #fff;`}
+  >
+    <!-- ============================================================ -->
+    <!-- HERO: Conectar para cuidar                                   -->
+    <!-- ============================================================ -->
+    <section class="mx-auto max-w-7xl px-6 pt-12 pb-16 sm:px-10 lg:px-16 lg:pt-16 lg:pb-24">
+      <div class="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-12">
+        <!-- Texto -->
+        <div class="w-full lg:w-[58%]">
+          <h1
+            class="font-nunito text-4xl font-extrabold leading-[1.1] text-[#1c3c6e] sm:text-5xl lg:text-6xl xl:text-7xl"
+          >
+            Conectar para cuidar
+          </h1>
+
+          <div class="mt-6 space-y-4 font-nunito text-base leading-relaxed text-gray-700 sm:text-lg lg:text-xl sm:text-justify">
+            <p>
+              En Clínica Antioquia, creemos que cuidar va más allá de atender una necesidad de salud.
+              Significa escuchar, comprender, acompañar y reconocer a cada persona como protagonista de
+              su propio cuidado.
+            </p>
+            <p>
+              Por eso, desde Atención Centrada en la Persona (ACP) creamos "Conectar para cuidarte",
+              un espacio que reúne nuestras estrategias y actividades para fortalecer el bienestar integral
+              de nuestros pacientes, sus familias y nuestros colaboradores.
+            </p>
+            <p>
+              A través de estas iniciativas buscamos generar conexiones que permitan brindar una atención
+              más humana, cercana y significativa, promoviendo el cuidado físico, emocional y mental en
+              cada etapa de la experiencia en salud.
+            </p>
+          </div>
+        </div>
+
+        <!-- Foto persona -->
+        <div class="flex w-full justify-center lg:w-[42%]">
+          <img
+            src={`${BASE}/img-conectar-para-cuidar (2).png`}
+            alt="Colaboradora de Clínica Antioquia haciendo un corazón con las manos"
+            class="h-auto w-[280px] object-contain sm:w-[340px] lg:w-full lg:max-w-[420px]"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- NUESTRAS ESTRATEGIAS – Slider                                -->
+    <!-- ============================================================ -->
+    <section
+      class="relative py-12 sm:py-16 lg:py-20"
+      style={`background: url('${BASE}/fondo-nestras-estrategias.png') center / cover no-repeat;`}
+    >
+      <div class="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+        <h2
+          class="font-nunito text-3xl font-extrabold text-[#1c3c6e] sm:text-4xl lg:text-5xl xl:text-6xl"
+        >
+          Nuestras estrategias
+        </h2>
+
+        <!-- Slider container -->
+        <div class="relative mt-10" id="estrategias-slider">
+          <!-- Slide wrapper -->
+          <div class="overflow-hidden">
+            <div
+              class="flex transition-transform duration-500 ease-in-out"
+              id="slider-track"
+            >
+              <!-- SLIDE 1: Tarjetas azules -->
+              <div class="w-full flex-shrink-0">
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {estrategias.map((e) => (
+                    <div class="rounded-2xl bg-[#5db3e6]/90 px-6 py-7 backdrop-blur-sm">
+                      <h3 class="font-nunito text-center text-lg font-bold text-[#1c3c6e] sm:text-xl">
+                        {e.titulo}
+                      </h3>
+                      <p class="mt-4 font-nunito text-sm leading-relaxed text-[#1c3c6e] sm:text-base sm:text-justify">
+                        {e.texto}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- SLIDE 2: Galería de fotos -->
+              <div class="w-full flex-shrink-0">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {fotos.map((foto, i) => (
+                    <div
+                      class:list={[
+                        "overflow-hidden rounded-2xl shadow-md",
+                        i >= 3 && "sm:col-span-1 lg:col-span-1",
+                        i === 4 && "sm:col-span-2 lg:col-span-1",
+                      ]}
+                    >
+                      <img
+                        src={foto.src}
+                        alt={foto.alt}
+                        class="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indicadores + flechas -->
+          <div class="mt-8 flex items-center justify-center gap-6">
+            <button
+              type="button"
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-[#1c3c6e] text-white shadow transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1c3c6e] disabled:opacity-40"
+              id="slider-prev"
+              aria-label="Diapositiva anterior"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+
+            <div class="flex gap-2" id="slider-dots"></div>
+
+            <button
+              type="button"
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-[#1c3c6e] text-white shadow transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1c3c6e] disabled:opacity-40"
+              id="slider-next"
+              aria-label="Diapositiva siguiente"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CONECTAR TAMBIÉN ES CUIDAR                                   -->
+    <!-- ============================================================ -->
+    <section class="mx-auto max-w-7xl px-6 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-24">
+      <!-- Encabezado con decoración -->
+      <div class="mb-10">
+        <span class="text-3xl text-[#5db3e6]" aria-hidden="true">✦</span>
+        <h2
+          class="font-nunito text-3xl font-extrabold text-[#1c3c6e] sm:text-4xl lg:text-5xl xl:text-6xl"
+        >
+          Conectar también es cuidar
+        </h2>
+      </div>
+
+      <div class="flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-16">
+        <!-- Texto -->
+        <div class="w-full space-y-5 font-nunito text-base leading-relaxed text-gray-700 sm:text-lg lg:w-[50%] lg:text-xl sm:text-justify">
+          <p>
+            Cada estrategia nace de una misma convicción: las personas están en el centro de todo lo
+            que hacemos.
+          </p>
+          <p>
+            En Clínica Antioquia seguimos construyendo una cultura de cuidado en la que escuchar,
+            acompañar, conectar y reconocer al otro hacen parte de nuestra manera de brindar salud.
+          </p>
+          <p>
+            Conectar para cuidarte: porque cuando nos conectamos con las personas, hacemos del cuidado
+            una experiencia más humana.
+          </p>
+        </div>
+
+        <!-- Diagrama circular -->
+        <div class="flex w-full justify-center lg:w-[50%]">
+          <img
+            src={`${BASE}/img-conectar-para-cuidar (1).png`}
+            alt="Diagrama circular: Pacientes – Trato empático y atención compasiva; Colaboradores – Relaciones de confianza y promesa de valor; Familias – Valoramos intereses y necesidades"
+            class="h-auto w-[320px] object-contain sm:w-[400px] lg:w-full lg:max-w-[480px]"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  // ─── Slider "Nuestras estrategias" ─────────────────────────────────
+  const track = document.getElementById("slider-track") as HTMLElement | null;
+  const prevBtn = document.getElementById("slider-prev") as HTMLButtonElement | null;
+  const nextBtn = document.getElementById("slider-next") as HTMLButtonElement | null;
+  const dotsContainer = document.getElementById("slider-dots") as HTMLElement | null;
+
+  if (track && prevBtn && nextBtn && dotsContainer) {
+    const slides = track.children;
+    const total = slides.length;
+    let current = 0;
+
+    // Crear dots
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className =
+        "h-3 w-3 rounded-full transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1c3c6e]";
+      dot.setAttribute("aria-label", `Ir a diapositiva ${i + 1}`);
+      dot.addEventListener("click", () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateUI() {
+      track!.style.transform = `translateX(-${current * 100}%)`;
+      prevBtn!.disabled = current === 0;
+      nextBtn!.disabled = current === total - 1;
+
+      const dots = dotsContainer!.querySelectorAll("button");
+      dots.forEach((d, i) => {
+        d.classList.toggle("bg-[#1c3c6e]", i === current);
+        d.classList.toggle("bg-[#1c3c6e]/30", i !== current);
+      });
+    }
+
+    function goTo(index: number) {
+      current = Math.max(0, Math.min(index, total - 1));
+      updateUI();
+    }
+
+    prevBtn.addEventListener("click", () => goTo(current - 1));
+    nextBtn.addEventListener("click", () => goTo(current + 1));
+
+    // Swipe táctil
+    let startX = 0;
+    track.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", (e) => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        goTo(current + (diff > 0 ? 1 : -1));
+      }
+    });
+
+    updateUI();
+  }
+</script>

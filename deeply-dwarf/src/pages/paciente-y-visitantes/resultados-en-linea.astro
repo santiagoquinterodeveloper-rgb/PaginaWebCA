@@ -1,86 +1,61 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const PORTAL_URL = "https://resultados.clinicantioquia.com.co/login#/login";
-// TODO: reemplazar por el enlace real cuando esté disponible
-const SOLICITUD_URL = "#";
-
-const buttonClasses =
-  "inline-flex items-center justify-center rounded-full bg-[#1c4482] py-2.5 px-6 text-base sm:text-lg font-medium text-white shadow-sm transition-colors hover:bg-[#15335f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2990cb]";
+const BASE = "/pacientes-visitantes/resultados-en-linea";
+const RESULTADOS_URL = "https://resultados.clinicantioquia.com.co/login#/login";
 ---
 
 <Layout
-  title="Resultados en Línea | Clínica Antioquia"
-  description="Consulta tus resultados en línea en Clínica Antioquia de forma rápida y sencilla."
+  title="Resultados en línea | Clínica Antioquia"
+  description="Consulta tus resultados en línea de Clínica Antioquia con tu número de estudio."
 >
-  <main
-    class="w-full bg-white pt-4 pb-8 sm:pt-6 sm:pb-12 lg:pt-6 lg:pb-12 px-6 sm:px-8 lg:px-12"
-  >
-    <div class="w-full max-w-6xl mx-auto flex flex-col gap-8 lg:gap-10">
-      <!-- 1. Texto: arriba -->
-      <div class="flex flex-col justify-start space-y-4 sm:space-y-6">
+  <main class="relative w-full overflow-hidden bg-white">
+    <div
+      class="relative mx-auto grid w-full max-w-[1600px] grid-cols-1 items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:grid-cols-2 lg:gap-8 lg:px-[6%] lg:py-16"
+    >
+      <!-- Columna izquierda: texto -->
+      <div class="relative lg:pb-56">
         <h1
-          class="font-nunito font-extrabold text-4xl sm:text-5xl md:text-6xl text-[#1c4482] leading-[1.1] tracking-tight"
+          class="font-nunito text-5xl font-extrabold leading-[1.05] text-[#203f8c] sm:text-6xl lg:text-7xl xl:text-8xl"
         >
           Resultados<br />en Línea
         </h1>
 
-        <h2
-          class="font-nunito font-bold text-2xl sm:text-3xl md:text-4xl text-[#2990cb] pt-1"
-        >
+        <h2 class="mt-6 font-nunito text-xl font-semibold text-[#3b94d1] sm:text-2xl lg:mt-8 lg:text-3xl xl:text-4xl">
           ¿Cómo consultar tus resultados?
         </h2>
 
-        <div
-          class="space-y-4 sm:space-y-5 text-base sm:text-lg lg:text-xl text-black leading-relaxed font-normal"
-        >
-          <p>
-            Si cuentas con el número de estudio:<br />
-            Haz clic en <strong class="text-[#1c4482] font-medium"
-              >“Ingresar”</strong
-            > para consultar tus resultados en línea.
-          </p>
-
-          <p>
-            Si no cuentas con el número de estudio:<br />
-            Haz clic en <strong class="text-[#1c4482] font-medium"
-              >“Realizar una solicitud”</strong
-            > para solicitar tus resultados.
-          </p>
-        </div>
+        <p class="mt-6 font-nunito text-lg leading-snug text-black sm:text-2xl lg:mt-10 lg:text-3xl xl:text-4xl">
+          Con el número de estudio:<br />
+          Haz clic en <strong class="font-semibold text-[#203f8c]">“Ingresar”</strong> para consultar tus resultados
+          en línea.
+        </p>
+        <!-- Flecha decorativa (solo desktop): baja bajo el texto hacia el botón -->
+        <img
+          src={`${BASE}/icon-01.png`}
+          alt=""
+          aria-hidden="true"
+          class="pointer-events-none absolute bottom-0 left-[40%] hidden w-[50%] rotate-45 lg:block"
+        />
       </div>
 
-      <!-- 2. Formularios: debajo del texto; apilados en mobile, lado a lado desde sm -->
-      <div
-        class="w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-6 lg:gap-10 items-start"
-      >
-        <!-- Formulario 1: con número de estudio (check verde) -->
-        <div class="w-full max-w-[260px] sm:max-w-[300px] mx-auto sm:mx-0 flex flex-col items-center">
-          <img
-            src="/pacientes-visitantes/resultados-en-linea/img-resultados-en-linea-07.png"
-            alt=""
-            aria-hidden="true"
-            class="w-full h-auto object-contain"
-          />
-          <div class="mt-3 w-full flex justify-center">
-            <a href={PORTAL_URL} class={`${buttonClasses} w-4/5`}>Ingresar</a>
-          </div>
-        </div>
+      <!-- Columna derecha: tarjeta de login + botón -->
+      <div class="mx-auto flex w-full max-w-md flex-col items-center lg:max-w-[560px]">
+        <img
+          src={`${BASE}/img-resultados-en-linea-07.png`}
+          alt="Formulario de resultados en línea: tipo de documento, número de documento y número de estudio"
+          class="h-auto w-full"
+          loading="eager"
+        />
 
-        <!-- Formulario 2: sin número de estudio (X roja) -->
-        <div class="w-full max-w-[260px] sm:max-w-[300px] mx-auto sm:mx-0 flex flex-col items-center">
-          <img
-            src="/pacientes-visitantes/resultados-en-linea/img-resultados-en-linea-08.png"
-            alt=""
-            aria-hidden="true"
-            class="w-full h-auto object-contain"
-          />
-          <div class="mt-3 w-full flex justify-center">
-            <a href={SOLICITUD_URL} class={`${buttonClasses} w-11/12`}
-              >Realizar solicitud</a
-            >
-          </div>
-        </div>
+        <a
+          href={RESULTADOS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex w-[80%] items-center justify-center rounded-xl bg-[#203f8c] px-8 py-3 font-nunito text-2xl font-semibold text-white shadow-sm transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#203f8c] sm:text-3xl lg:text-4xl"
+        >
+          Ingresar
+        </a>
       </div>
     </div>
   </main>
