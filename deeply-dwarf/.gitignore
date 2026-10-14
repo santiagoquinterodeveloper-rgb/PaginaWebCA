@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# Pagefind search index (generado por `npm run build`; se copia a public/ para dev)
+public/pagefind/
+
 # generated types
 .astro/
 

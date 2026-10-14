@@ -43,7 +43,7 @@ const pacienteItems = [
 ];
 
 const atencionCentradaEnLaPersonaItems = [
-  /*{ title: 'Conocénos', link: '/atencion-centrada-en-la-persona/conocenos' },*/
+  { title: 'Conocénos', link: '/atencion-centrada-en-la-persona/conocenos' },
   { title: 'Asociación de usuarios', link: '/atencion-centrada-en-la-persona/asociacion-de-usuarios' }, 
   { title: 'Guía de pacientes y visitantes', link: '/atencion-centrada-en-la-persona/guia-de-pacientes-y-visitantes' },
   { title: 'Participación ciudadana', link: '/atencion-centrada-en-la-persona/participacion-ciudadana' }, 
@@ -170,10 +170,29 @@ const currentPath = Astro.url.pathname;
       </a>
     </div>
 
+    <!-- Mobile right actions (search + menu) -->
+    <div class="flex items-center gap-1 lg:hidden">
+      <!-- Mobile search button -->
+      <button
+        type="button"
+        class="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
+        aria-label="Buscar"
+        id="btn-search-mobile"
+      >
+        <img
+          src={searchIcon.src}
+          alt=""
+          aria-hidden="true"
+          width="22"
+          height="22"
+          class="h-6 w-6 object-contain"
+        />
+      </button>
+
     <!-- Mobile menu button -->
     <button
       type="button"
-      class="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand lg:hidden"
+      class="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
       aria-controls="mobile-menu"
       aria-expanded="false"
       aria-label="Abrir menú de navegación"
@@ -206,6 +225,7 @@ const currentPath = Astro.url.pathname;
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
       </svg>
     </button>
+    </div>
   </nav>
 
   <!-- Mobile menu -->
@@ -375,6 +395,32 @@ const currentPath = Astro.url.pathname;
         closeMobileMenu();
         toggleBtn?.focus();
       }
+    }
+  });
+
+  // ─── Abrir modal de búsqueda (desktop + mobile) ─────────────────────────
+  function openSearch() {
+    // Si el menú móvil está abierto, lo cerramos para no superponer modales.
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      closeMobileMenu();
+    }
+    document.dispatchEvent(new CustomEvent('open-search'));
+  }
+
+  document.getElementById('btn-search')?.addEventListener('click', openSearch);
+  document.getElementById('btn-search-mobile')?.addEventListener('click', openSearch);
+
+  // Atajo "/" para abrir la búsqueda (desktop).
+  document.addEventListener('keydown', (e) => {
+    const target = e.target as HTMLElement | null;
+    const isTyping =
+      target &&
+      (target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable);
+    if (e.key === '/' && !isTyping) {
+      e.preventDefault();
+      openSearch();
     }
   });
 

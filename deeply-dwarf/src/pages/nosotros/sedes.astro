@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const BASE = "/Nosotros/sedes";
+const BASE = "/nosotros/sedes";
 
 const ITAGUI_MAP_URL = "https://maps.google.com/maps?q=6.1698522,-75.6129286&z=17&output=embed";
 const BELLO_MAP_URL = "https://maps.google.com/maps?q=6.3335625,-75.5561909&z=17&output=embed";
@@ -13,7 +13,6 @@ interface Sede {
   nombre: string;
   direccion: string;
   telefono: string;
-  telefonoExt: string;
   whatsapp: string;
   foto: string;
   fotoAlt: string;
@@ -24,22 +23,20 @@ interface Sede {
 const sedes: Sede[] = [
   {
     nombre: "Sede Itagüí",
-    direccion: "Calle 45 N° 49-02",
+    direccion: "Calle 45 N° 49-34",
     telefono: "32222 11",
-    telefonoExt: "ext: 1147",
     whatsapp: "316 834 73 21",
-    foto: `${BASE}/img-sedes-17.png`,
+    foto: `${BASE}/img-sedes-17.webp`,
     fotoAlt: "Edificio Clínica Antioquia - Sede Itagüí",
     mapEmbed: ITAGUI_MAP_URL,
     mapLink: ITAGUI_MAPS_LINK,
   },
   {
     nombre: "Sede Bello",
-    direccion: "Calle 45 N° 49-02",
+    direccion: "Calle 47 N° 48-14",
     telefono: "32222 11",
-    telefonoExt: "ext: 1147",
     whatsapp: "316 834 73 21",
-    foto: `${BASE}/img-sedes-18.png`,
+    foto: `${BASE}/img-sedes-18.webp`,
     fotoAlt: "Edificio Clínica Antioquia - Sede Bello",
     mapEmbed: BELLO_MAP_URL,
     mapLink: BELLO_MAPS_LINK,
@@ -54,7 +51,7 @@ const sedes: Sede[] = [
   <main class="relative w-full min-h-screen overflow-hidden">
     <!-- Fondo -->
     <img
-      src="/pacientes-visitantes/derechos-deberes/fondo-derechos-deberes.png"
+      src="/pacientes-visitantes/derechos-deberes/fondo-derechos-deberes.webp"
       alt=""
       aria-hidden="true"
       class="absolute inset-0 w-full h-full object-cover object-center z-0"
@@ -77,17 +74,12 @@ const sedes: Sede[] = [
             <!-- Info de contacto -->
             <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm sm:text-base lg:text-lg text-gray-900 mb-6 sm:mb-8">
               <span class="inline-flex items-center gap-1.5">
-                <img src={`${BASE}/ICON-SEDES-19.png`} alt="" aria-hidden="true" class="h-5 sm:h-6 w-auto" />
+                <img src={`${BASE}/ICON-SEDES-19.webp`} alt="" aria-hidden="true" class="h-5 sm:h-6 w-auto" />
                 <span class="font-medium">{sede.direccion}</span>
               </span>
               <span class="text-gray-400" aria-hidden="true">|</span>
               <span class="inline-flex items-center gap-1.5">
-                <img src={`${BASE}/ICON-SEDES-21.png`} alt="" aria-hidden="true" class="h-5 sm:h-6 w-auto" />
-                <span class="font-medium">{sede.telefono} {sede.telefonoExt}</span>
-              </span>
-              <span class="text-gray-400" aria-hidden="true">|</span>
-              <span class="inline-flex items-center gap-1.5">
-                <img src={`${BASE}/ICON-SEDES-20.png`} alt="" aria-hidden="true" class="h-5 sm:h-6 w-auto" />
+                <img src={`${BASE}/ICON-SEDES-20.webp`} alt="" aria-hidden="true" class="h-5 sm:h-6 w-auto" />
                 <span class="font-medium">{sede.whatsapp}</span>
               </span>
             </div>

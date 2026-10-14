@@ -1,13 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import ServiceHeroWithProcedure from "../../components/servicios/ServiceHeroWithProcedure.astro";
+import ServiceHero from "../../components/servicios/ServiceHero.astro";
 ---
 
-<Layout title="Imagenes Diagnosticas | Clínica Antioquia">
+<Layout title="Imágenes Diagnósticas | Clínica Antioquia">
   <main class="min-h-screen">
-    <ServiceHeroWithProcedure
-      title="Imagenes Diagnosticas"
-      cornerImage="/servicios/img-diagnosticas.png"
+    <ServiceHero
+      title="Imágenes diagnósticas"
+      cornerImage="/servicios/img-imagenes-diagnosticas.webp"
       directedTo="Paciente adulto y pediátrico"
       locations={[
         {
@@ -41,11 +41,11 @@ import ServiceHeroWithProcedure from "../../components/servicios/ServiceHeroWith
           ],
         },
         {
-          texto:
-            "Se realizan algunos procedimientos de intervencionismo como:<br/><br/>(Los procedimientos podrán ser realizados en cirugía o en el servicio de imágenes diagnósticas según corresponda)",
+          texto: "Se realizan algunos procedimientos de intervencionismo como:",
           procedimientos: [
             "Biopsia de próstata, biopsia de mamá, nefrostimia, inserción de catéter pic, inserción de catéter doble J, cambio de nefrostomía, toracentesis, paracentesis, drenajes hepáticos y de abscesos.",
           ],
+          nota: "(Los procedimientos podrán ser realizados en cirugía o en el servicio de imágenes diagnósticas según corresponda).",
         },
       ]}
     />

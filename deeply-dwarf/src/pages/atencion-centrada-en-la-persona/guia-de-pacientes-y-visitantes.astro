@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 
 const BASE = "/atencion-centrada-persona/guia-de-pacientes-y-visitantes";
-const PDF_URL = encodeURI(`${BASE}/PE-PO-010 Folleto Política del Acompañante.pdf`);
+const PDF_URL = encodeURI("/documentos/pe-po-010-folleto-politica-del-acompañante.pdf");
 ---
 
 <Layout
@@ -12,7 +12,7 @@ const PDF_URL = encodeURI(`${BASE}/PE-PO-010 Folleto Política del Acompañante.
   <main class="relative w-full overflow-hidden bg-white lg:min-h-[calc(100vh-72px)]">
     <!-- Fondo con flores -->
     <img
-      src={`${BASE}/fondo-guia-pacientes-y-visitantes.png`}
+      src={`${BASE}/fondo-guia-pacientes-y-visitantes.webp`}
       alt=""
       aria-hidden="true"
       class="absolute inset-0 w-full h-full object-cover object-center z-0"
@@ -47,7 +47,7 @@ const PDF_URL = encodeURI(`${BASE}/PE-PO-010 Folleto Política del Acompañante.
 
         <div class="lg:col-span-2 flex justify-center lg:justify-end lg:mt-6">
           <img
-            src={`${BASE}/img-guia-pacientes-y-visitantes.png`}
+            src={`${BASE}/img-guia-pacientes-y-visitantes.webp`}
             alt="Trabajadora social de Clínica Antioquia sonriendo"
             class="w-64 sm:w-80 lg:w-[125%] max-w-md lg:max-w-none lg:-mr-28 h-auto object-contain"
           />

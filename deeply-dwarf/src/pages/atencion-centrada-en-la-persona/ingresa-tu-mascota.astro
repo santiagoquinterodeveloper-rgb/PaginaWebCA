@@ -16,13 +16,13 @@ interface Crop {
 }
 
 const circulos: Crop[] = [
-  { src: "img-ingresa-a-tu-mascota-13.png", alt: "Personal de la Clínica abrazando a la perrita terapeuta", width: 120, left: -9.2, top: -16.9 },
-  { src: "img-ingresa-a-tu-mascota-14.png", alt: "Perrita terapeuta sentada junto a un escritorio", width: 111.8, left: -4.1, top: -30.3 },
-  { src: "img-ingresa-tu-mascota-3.png", alt: "Perrita terapeuta junto a una visitante", width: 111.3, left: -4.3, top: -2.1 },
+  { src: "img-ingresa-a-tu-mascota-13.webp", alt: "Personal de la Clínica abrazando a la perrita terapeuta", width: 120, left: -9.2, top: -16.9 },
+  { src: "img-ingresa-a-tu-mascota-14.webp", alt: "Perrita terapeuta sentada junto a un escritorio", width: 111.8, left: -4.1, top: -30.3 },
+  { src: "img-ingresa-tu-mascota-3.webp", alt: "Perrita terapeuta junto a una visitante", width: 111.3, left: -4.3, top: -2.1 },
 ];
 
 const fotoVisita: Crop = {
-  src: "img-ingresa-a-tu-mascota-12.png",
+  src: "img-ingresa-a-tu-mascota-12.webp",
   alt: "Dos colaboradoras de la Clínica con la perrita terapeuta",
   width: 121.6,
   left: -12.5,
@@ -30,7 +30,7 @@ const fotoVisita: Crop = {
 };
 
 const fotoPaciente: Crop = {
-  src: "img-ingresa-a-tu-mascota-11.png",
+  src: "img-ingresa-a-tu-mascota-11.webp",
   alt: "Perrita terapeuta saludando con su pata a una paciente",
   width: 127.4,
   left: -16.9,
@@ -64,7 +64,37 @@ const comportamientos = [
   "Comportamiento difícil de controlar.",
 ];
 
-const sectionTitle = "font-nunito font-bold text-3xl sm:text-4xl text-[#2990cb]";
+// Huellas decorativas del fondo (según el mock). x / y = centro de la huella en % del
+// ancho / alto de la página; las de los bordes quedan recortadas por el overflow-hidden.
+const HUELLA = encodeURI(`${BASE}/icon-guia para mascotas.webp`);
+const huellas = [
+  { x: 5, y: 8 },
+  { x: 88, y: 6 },
+  { x: 83, y: 11 },
+  { x: 2, y: 15 },
+  { x: 52, y: 18 },
+  { x: 3, y: 25 },
+  { x: 94, y: 24 },
+  { x: 97, y: 33 },
+  { x: 81, y: 37 },
+  { x: 4, y: 39 },
+  { x: 4, y: 46 },
+  { x: 56, y: 46 },
+  { x: 96, y: 45 },
+  { x: 59, y: 58 },
+  { x: 96, y: 59 },
+  { x: 3, y: 61 },
+  { x: 70, y: 65 },
+  { x: 97, y: 71 },
+  { x: 4, y: 73 },
+  { x: 81, y: 75 },
+  { x: 5, y: 84 },
+  { x: 81, y: 85 },
+  { x: 97, y: 89 },
+  { x: 5, y: 96 },
+];
+
+const sectionTitle ="font-nunito font-bold text-3xl sm:text-4xl text-[#2990cb]";
 const itemTitle = "font-nunito font-bold text-xl sm:text-2xl text-[#2990cb]";
 const bodyText = "mt-2 text-base sm:text-lg text-gray-900 leading-relaxed";
 const listClass = "mt-2 ml-5 list-disc space-y-1 text-base sm:text-lg text-gray-900 leading-relaxed";
@@ -74,8 +104,21 @@ const listClass = "mt-2 ml-5 list-disc space-y-1 text-base sm:text-lg text-gray-
   title="Ingresa a tu mascota | Clínica Antioquia"
   description="Conoce las recomendaciones para recibir la visita de tu mascota durante la estancia en Clínica Antioquia."
 >
-  <main class="w-full bg-white overflow-hidden">
-    <div class="w-full max-w-4xl mx-auto px-6 sm:px-10 py-8 sm:py-12 lg:py-14">
+  <main class="relative w-full bg-white overflow-hidden">
+    <!-- Huellas decorativas de fondo -->
+    <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+      {huellas.map((h) => (
+        <img
+          src={HUELLA}
+          alt=""
+          loading="lazy"
+          class="absolute w-[clamp(90px,10vw,190px)] max-w-none h-auto -translate-x-1/2 -translate-y-1/2"
+          style={`left:${h.x}%;top:${h.y}%`}
+        />
+      ))}
+    </div>
+
+    <div class="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-10 py-8 sm:py-12 lg:py-14">
 
       <!-- Encabezado -->
       <h1 class="font-nunito font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#1c4482] text-center leading-tight">

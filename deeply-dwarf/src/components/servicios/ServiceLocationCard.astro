@@ -13,13 +13,13 @@ const { locations } = Astro.props;
 const gridCols = locations.length === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2";
 ---
 
-<div class={`grid ${gridCols} gap-4 bg-[#d6eaf8] rounded-2xl p-5 sm:p-6`}>
+<div class={`grid ${gridCols} gap-x-6 gap-y-5 bg-[#8cccec] rounded-[2rem] lg:rounded-[2.5rem] px-6 py-6 lg:px-10 lg:py-8`}>
   {locations.map((loc) => (
-    <div class="flex flex-col gap-1">
-      <p class="font-['Nunito'] text-[#003085] font-bold text-sm sm:text-base text-center">
+    <div class="flex flex-col items-center gap-2">
+      <p class="font-['Nunito'] text-[#12458c] font-bold text-lg lg:text-2xl text-center leading-tight">
         {loc.nombre}
       </p>
-      <p class="font-['Nunito'] text-[#003085] text-sm sm:text-base text-center leading-snug">
+      <p class="font-['Nunito'] text-black text-sm lg:text-lg text-center leading-snug">
         {loc.detalle}
       </p>
     </div>

@@ -10,27 +10,27 @@ import LegalButton from '../components/inicio/LegalButton.astro';
 // ── Datos ──────────────────────────────────────────────────────────────────
 
 const banners = [
-  { image: '/inicio/banner-01.png', alt: 'Banner Clínica Antioquia 1' },
-  { image: '/inicio/banner-02.png', alt: 'Banner Clínica Antioquia 2' },
-  { image: '/inicio/banner-03.png', alt: 'Banner Clínica Antioquia 3' },
-  { image: '/inicio/banner-04.png', alt: 'Banner Clínica Antioquia 4' },
+  { image: '/inicio/banner-01.webp', alt: 'Banner Clínica Antioquia 1' },
+  { image: '/inicio/banner-02.webp', alt: 'Banner Clínica Antioquia 2' },
+  { image: '/inicio/banner-03.webp', alt: 'Banner Clínica Antioquia 3' },
+  { image: '/inicio/banner-04.webp', alt: 'Banner Clínica Antioquia 4' },
 ];
 
 const quickAccessCards: { image: string; label: string; href?: string }[] = [
-  { image: '/inicio/img-inicio-09.png', label: 'SEDES', href: '/nosotros/sedes' },
-  { image: '/inicio/img-inicio-10.png', label: 'AGENDA TU CITA', href: '/agenda-tu-cita' },
-  { image: '/inicio/img-inicio-11.png', label: 'RESULTADOS EN LINEA', href: '/paciente-y-visitantes/resultados-en-linea' },
-  { image: '/inicio/img-inicio-12.png', label: 'INFORMACIÓN DE PACIENTES', href: '/paciente-y-visitantes/informacion-de-pacientes' },
+  { image: '/inicio/img-inicio-09.webp', label: 'SEDES', href: '/nosotros/sedes' },
+  { image: '/inicio/img-inicio-10.webp', label: 'AGENDA TU CITA', href: '/agenda-tu-cita' },
+  { image: '/inicio/img-inicio-11.webp', label: 'RESULTADOS EN LINEA', href: '/paciente-y-visitantes/resultados-en-linea' },
+  { image: '/inicio/img-inicio-12.webp', label: 'INFORMACIÓN DE PACIENTES', href: '/paciente-y-visitantes/informacion-de-pacientes' },
 ];
 
 const services: { icon: string; label: string; href?: string }[] = [
-  { icon: '/inicio/icon-consulta.png',         label: 'Consulta médica especializada', href: '/servicios/consulta-medica-especializada'},
-  { icon: '/inicio/icon-laboratorio.png',       label: 'Laboratorio clínico', href: '/servicios/laboratorio-clinico'},
-  { icon: '/inicio/icon-urgencias.png',         label: 'Urgencias', href: '/servicios/urgencias'},
-  { icon: '/inicio/icon-cirugia.png',           label: 'Cirugía', href: '/servicios/cirugia'},
-  { icon: '/inicio/icon-hospitalizacion.png',   label: 'Hospitalización', href: '/servicios/hospitalizacion'},
-  { icon: '/inicio/icon-img-diagnosticas.png',  label: 'Imágenes diagnósticas', href: '/servicios/imagenes-diagnosticas'},
-  { icon: '/inicio/icon-uci-uce.png',           label: 'UCI – UCE Adultos', href: '/servicios/uci-uce-adultos'},
+  { icon: '/inicio/icon-consulta.webp',         label: 'Consulta médica especializada', href: '/servicios/consulta-medica-especializada'},
+  { icon: '/inicio/icon-laboratorio.webp',       label: 'Laboratorio clínico', href: '/servicios/laboratorio-clinico'},
+  { icon: '/inicio/icon-urgencias.webp',         label: 'Urgencias', href: '/servicios/urgencias'},
+  { icon: '/inicio/icon-cirugia.webp',           label: 'Cirugía', href: '/servicios/cirugia'},
+  { icon: '/inicio/icon-hospitalizacion.webp',   label: 'Hospitalización', href: '/servicios/hospitalizacion'},
+  { icon: '/inicio/icon-img-diagnosticas.webp',  label: 'Imágenes diagnósticas', href: '/servicios/imagenes-diagnosticas'},
+  { icon: '/inicio/icon-uci-uce.webp',           label: 'UCI – UCE Adultos', href: '/servicios/uci-uce-adultos'},
 ];
 
 const legalButtons = [
@@ -40,19 +40,19 @@ const legalButtons = [
   },
   {
     label: 'Política de tratamientos de datos personales',
-    pdf: '/inicio/GT-FO-009 Autorización para el Tratamiento de Datos Personales.pdf',
+    link: '/documentos/gt-fo-009-autorizacion-para-el-tratamiento-de-datos-personales.pdf',
   },
-  {
+  /*{
     label: 'Gobierno corporativo',
     link: '/atencion-centrada-en-la-persona/gobierno-corporativo',
-  },
+  },*/
   {
     label: 'Indicadores',
-    pdf: '/inicio/Indicadores de satisfacción julio 2026.pdf',
+    link: '/documentos/indicadores-de-satisfaccion-julio-2026.pdf',
   },
   {
     label: 'Estados financieros 2025',
-    pdf: '/inicio/Estados financieros 2025.pdf',
+    link: '/documentos/estados-financieros-2025.pdf',
   },
 ];
 ---
@@ -163,7 +163,7 @@ const legalButtons = [
         <!-- Encabezado centrado con icono decorado -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 text-center">
             <img
-              src="/inicio/icon-info-legal.png"
+              src="/inicio/icon-info-legal.webp"
               alt=""
               aria-hidden="true"
               class="w-15 h-15 sm:w-20 sm:h-20 object-contain"

@@ -1,20 +1,39 @@
 ---
 interface Props {
   texto: string;
+  procedimientos?: string[];
+  nota?: string;
+  justify?: boolean;
 }
 
-const { texto } = Astro.props;
+const { texto, procedimientos, nota, justify = true } = Astro.props;
+const align = justify ? "md:text-justify" : "";
 ---
 
-<div class="flex items-start gap-4 sm:gap-5">
+<div class="flex items-start">
   <img
-    src="/servicios/icon-3.png"
+    src="/servicios/icon-3.webp"
     alt=""
     aria-hidden="true"
-    class="h-12 w-12 sm:h-14 sm:w-14 md:h-25 md:w-25 shrink-0 object-contain mt-1"
+    class="h-16 w-16 sm:h-20 sm:w-20 lg:h-[7.5rem] lg:w-[7.5rem] -mt-3 -mr-1 lg:-mt-7 lg:-ml-6 shrink-0 object-contain"
   />
-  <p
-    class="font-['Nunito'] text-gray-700 text-base sm:text-lg leading-relaxed"
-    set:html={texto}
-  />
+
+  <div class="flex flex-col font-['Nunito'] text-black text-base lg:text-xl leading-relaxed">
+    <p class={align} set:html={texto} />
+
+    {
+      procedimientos && procedimientos.length > 0 && (
+        <ul class="mt-6 flex flex-col gap-3 lg:gap-4 pl-2 lg:pl-4">
+          {procedimientos.map((procedimiento) => (
+            <li class="flex items-start gap-1.5">
+              <span aria-hidden="true">•</span>
+              <span>{procedimiento}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {nota && <p class={`mt-6 ${align}`} set:html={nota} />}
+  </div>
 </div>

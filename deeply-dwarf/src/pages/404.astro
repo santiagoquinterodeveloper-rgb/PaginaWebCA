@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const FLOR = "/atencion-centrada-persona/conocenos/flor-icon-conocenos.webp";
+const MASCOTA = "/atencion-centrada-persona/participacion-ciudadana/img-participacion-cuidadana-09.webp";
+
+const enlaces = [
+  { label: "Servicios", href: "/servicios/hospitalizacion" },
+  { label: "Resultados en línea", href: "/paciente-y-visitantes/resultados-en-linea" },
+  { label: "Horarios de atención", href: "/paciente-y-visitantes/horarios-de-atencion" },
+  { label: "Gestión de PQRS", href: "/paciente-y-visitantes/gestion-de-pqrs" },
+];
+---
+
+<Layout
+  title="Página no encontrada | Clínica Antioquia"
+  description="La página que buscas no existe o fue movida. Vuelve al inicio de Clínica Antioquia."
+>
+  <main class="relative w-full overflow-hidden bg-white font-nunito">
+    <!-- Flores decorativas -->
+    <img src={FLOR} alt="" aria-hidden="true" class="pointer-events-none absolute -left-[8%] top-[4%] z-0 h-auto w-[30%] min-w-48" />
+    <img src={FLOR} alt="" aria-hidden="true" class="pointer-events-none absolute -right-[6%] top-[-4%] z-0 h-auto w-[32%] min-w-52" />
+    <img src={FLOR} alt="" aria-hidden="true" class="pointer-events-none absolute -bottom-[8%] right-[18%] z-0 h-auto w-[28%] min-w-48" />
+
+    <div class="relative z-10 mx-auto grid min-h-[70vh] w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 py-12 sm:px-10 lg:grid-cols-2 lg:gap-12 lg:py-16">
+      <!-- Texto -->
+      <div class="text-center lg:text-left">
+        <p class="text-8xl font-extrabold leading-none text-[#1f3a73] sm:text-9xl lg:text-[10rem]">
+          4<span class="text-[#3b94d1]">0</span>4
+        </p>
+        <h1 class="mt-4 text-3xl font-extrabold leading-tight text-[#1f3a73] sm:text-4xl lg:text-5xl">
+          No encontramos esta página
+        </h1>
+        <h2 class="mt-3 text-xl font-bold text-[#3b94d1] sm:text-2xl">
+          Pero sí queremos acompañarte
+        </h2>
+        <p class="mx-auto mt-5 max-w-md text-base leading-relaxed text-gray-700 sm:text-lg lg:mx-0">
+          La dirección que buscas no existe o fue movida. Te invitamos a volver al inicio o a visitar
+          alguno de nuestros enlaces más consultados.
+        </p>
+
+        <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
+          <a
+            href="/"
+            class="inline-flex items-center rounded-full bg-brand px-8 py-3 text-base font-bold text-white shadow-sm transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          >
+            Volver al inicio
+          </a>
+          <a
+            href="/agenda-tu-cita"
+            class="inline-flex items-center rounded-full border-2 border-[#1f3a73] px-8 py-[0.6rem] text-base font-bold text-[#1f3a73] transition-colors hover:bg-[#1f3a73] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f3a73]"
+          >
+            Agenda tu cita
+          </a>
+        </div>
+
+        <ul class="mt-8 flex flex-wrap justify-center gap-2 lg:justify-start">
+          {enlaces.map((e) => (
+            <li>
+              <a
+                href={e.href}
+                class="inline-block rounded-full bg-[#d3e6f4] px-4 py-2 text-sm font-semibold text-[#1f3a73] transition-colors hover:bg-[#bcd8ee]"
+              >
+                {e.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Mascota -->
+      <div class="flex justify-center">
+        <div class="relative w-full max-w-sm">
+          <div class="absolute inset-0 translate-x-4 translate-y-4 rotate-3 rounded-[2.5rem] bg-[#d3e6f4]" aria-hidden="true"></div>
+          <img
+            src={MASCOTA}
+            alt="Mascota de Clínica Antioquia conversando con un usuario"
+            class="relative h-auto w-full rounded-[2.5rem] object-contain"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

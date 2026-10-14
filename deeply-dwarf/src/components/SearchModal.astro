@@ -1,0 +1,348 @@
+---
+// ---------------------------------------------------------------------------
+// SearchModal.astro
+// Modal de búsqueda en todo el sitio. Usa Pagefind (índice generado en build).
+//
+// - En producción: Pagefind indexa el <body> de cada página (excluye <header>,
+//   <nav> y <footer> automáticamente) y expone /pagefind/pagefind.js.
+// - En dev (`astro dev`): /pagefind/ no existe aún; el modal lo detecta y
+//   muestra un mensaje. Para probar la búsqueda localmente:
+//     npm run build && npm run preview
+//
+// Se abre vía CustomEvent 'open-search' (lo disparan los botones del Navbar).
+// ---------------------------------------------------------------------------
+---
+
+<div
+  id="search-modal"
+  class="fixed inset-0 z-[100] hidden items-start justify-center bg-black/50 backdrop-blur-sm sm:pt-[10vh]"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="search-modal-title"
+  aria-hidden="true"
+>
+  <div
+    class="relative flex h-full w-full flex-col overflow-hidden bg-white shadow-xl sm:h-auto sm:max-h-[80vh] sm:w-full sm:max-w-2xl sm:rounded-2xl"
+  >
+    <!-- Header con input + botón de cierre -->
+    <div class="flex items-center gap-2 border-b border-gray-200 px-4 py-3 sm:px-5">
+      <!-- Icono de lupa -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 shrink-0 text-gray-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m21 21-4.3-4.3M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+        />
+      </svg>
+
+      <label for="search-input" id="search-modal-title" class="sr-only">
+        Buscar en el sitio
+      </label>
+      <input
+        id="search-input"
+        type="search"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Buscar servicios, trámites, información…"
+        class="font-poppins w-full border-0 bg-transparent py-1 text-base text-gray-800 outline-none placeholder:text-gray-400"
+      />
+
+      <!-- Botón de cierre -->
+      <button
+        type="button"
+        id="search-close"
+        class="flex shrink-0 items-center justify-center rounded-md p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
+        aria-label="Cerrar búsqueda"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Resultados / estados -->
+    <div
+      id="search-results"
+      class="flex-1 overflow-y-auto px-2 py-2 sm:px-3"
+      role="listbox"
+      aria-label="Resultados de búsqueda"
+    >
+      <!-- Estado inicial -->
+      <div id="search-state-empty" class="px-4 py-10 text-center">
+        <p class="font-poppins text-sm text-gray-500">
+          Escribe para buscar en todo el sitio.
+        </p>
+        <p class="font-poppins mt-2 text-xs text-gray-400">
+          Prueba con «urgencias», «cotización» o «PQRS».
+        </p>
+      </div>
+
+      <!-- Estado cargando -->
+      <div id="search-state-loading" class="hidden px-4 py-10 text-center">
+        <p class="font-poppins text-sm text-gray-500">Buscando…</p>
+      </div>
+
+      <!-- Estado sin resultados -->
+      <div id="search-state-no-results" class="hidden px-4 py-10 text-center">
+        <p class="font-poppins text-sm text-gray-600">
+          No encontramos resultados para «<span id="search-no-results-term" class="font-semibold"></span>».
+        </p>
+        <p class="font-poppins mt-3 text-xs text-gray-500">
+          Explora las secciones principales:
+        </p>
+        <div class="mt-3 flex flex-wrap justify-center gap-2">
+          <a href="/servicios" class="font-nunito rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-brand hover:text-white">Servicios</a>
+          <a href="/paciente-y-visitantes" class="font-nunito rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-brand hover:text-white">Paciente y visitantes</a>
+          <a href="/agenda-tu-cita" class="font-nunito rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white hover:opacity-90">Agenda tu cita</a>
+        </div>
+      </div>
+
+      <!-- Estado índice no disponible (dev) -->
+      <div id="search-state-unavailable" class="hidden px-4 py-10 text-center">
+        <p class="font-poppins text-sm text-gray-600">
+          La búsqueda no está disponible en modo desarrollo.
+        </p>
+        <p class="font-poppins mt-2 text-xs text-gray-400">
+          Ejecuta <code class="rounded bg-gray-100 px-1 py-0.5">npm run build</code> y luego <code class="rounded bg-gray-100 px-1 py-0.5">npm run preview</code>.
+        </p>
+      </div>
+
+      <!-- Lista de resultados -->
+      <ul id="search-results-list" class="hidden" role="list"></ul>
+    </div>
+
+    <!-- Footer con tips de teclado (solo desktop) -->
+    <div class="hidden items-center justify-between border-t border-gray-100 px-5 py-2 text-xs text-gray-400 sm:flex">
+      <span class="font-poppins">
+        <kbd class="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans">↑</kbd>
+        <kbd class="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans">↓</kbd>
+        navegar
+      </span>
+      <span class="font-poppins">
+        <kbd class="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans">↵</kbd>
+        abrir
+      </span>
+      <span class="font-poppins">
+        <kbd class="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans">Esc</kbd>
+        cerrar
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---------------------------------------------------------------------------
+  // Lógica del modal de búsqueda
+  // ---------------------------------------------------------------------------
+  type PagefindSubResult = {
+    url: string;
+    title: string;
+    excerpt: string;
+  };
+
+  type PagefindResultData = {
+    url: string;
+    meta: { title?: string; [k: string]: unknown };
+    excerpt: string;
+    sub_results?: PagefindSubResult[];
+  };
+
+  type PagefindResult = { id: string; data: () => Promise<PagefindResultData> };
+
+  type Pagefind = {
+    search: (q: string) => Promise<{ results: PagefindResult[] }>;
+  };
+
+  const modal = document.getElementById('search-modal');
+  const input = document.getElementById('search-input') as HTMLInputElement | null;
+  const closeBtn = document.getElementById('search-close');
+  const resultsList = document.getElementById('search-results-list');
+  const stateEmpty = document.getElementById('search-state-empty');
+  const stateLoading = document.getElementById('search-state-loading');
+  const stateNoResults = document.getElementById('search-state-no-results');
+  const stateUnavailable = document.getElementById('search-state-unavailable');
+  const noResultsTerm = document.getElementById('search-no-results-term');
+
+  if (modal && input && closeBtn && resultsList) {
+    let pagefind: Pagefind | null = null;
+    let pagefindLoadFailed = false;
+    let lastFocused: HTMLElement | null = null;
+    let debounceTimer: number | undefined;
+
+    // Cargar Pagefind la primera vez que se abre el modal (lazy).
+    // Usamos `new Function` para que Vite NO analice estáticamente el import()
+    // (Pagefind solo existe tras `astro build && pagefind --site dist`,
+    // no en `astro dev`). Sin esto, el servidor de dev falla al resolver la URL.
+    async function loadPagefind(): Promise<Pagefind | null> {
+      if (pagefind) return pagefind;
+      if (pagefindLoadFailed) return null;
+      try {
+        const dynamicImport = new Function('p', 'return import(p)') as (
+          p: string
+        ) => Promise<Pagefind>;
+        const mod = await dynamicImport('/pagefind/pagefind.js');
+        pagefind = mod;
+        return pagefind;
+      } catch {
+        pagefindLoadFailed = true;
+        return null;
+      }
+    }
+
+    function showState(which: 'empty' | 'loading' | 'no-results' | 'unavailable' | 'results') {
+      stateEmpty?.classList.toggle('hidden', which !== 'empty');
+      stateLoading?.classList.toggle('hidden', which !== 'loading');
+      stateNoResults?.classList.toggle('hidden', which !== 'no-results');
+      stateUnavailable?.classList.toggle('hidden', which !== 'unavailable');
+      resultsList?.classList.toggle('hidden', which !== 'results');
+    }
+
+    function openModal() {
+      if (!modal) return;
+      lastFocused = document.activeElement as HTMLElement;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      // Autofocus después del siguiente frame para que el teclado móvil aparezca.
+      requestAnimationFrame(() => input?.focus());
+      // Precargar el índice sin bloquear UI.
+      loadPagefind();
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (input) input.value = '';
+      if (resultsList) resultsList.innerHTML = '';
+      showState('empty');
+      lastFocused?.focus();
+    }
+
+    async function runSearch(term: string) {
+      const q = term.trim();
+      if (q.length < 2) {
+        showState('empty');
+        return;
+      }
+
+      showState('loading');
+
+      const pf = await loadPagefind();
+      if (!pf) {
+        showState('unavailable');
+        return;
+      }
+
+      const search = await pf.search(q);
+
+      // La consulta pudo haber cambiado mientras cargaba; validar.
+      if (input && input.value.trim() !== q) return;
+
+      if (!search.results.length) {
+        if (noResultsTerm) noResultsTerm.textContent = q;
+        showState('no-results');
+        return;
+      }
+
+      // Hidratar los primeros 10 resultados.
+      const top = await Promise.all(search.results.slice(0, 10).map((r) => r.data()));
+
+      if (!resultsList) return;
+      resultsList.innerHTML = top
+        .map((r, idx) => {
+          const title = (r.meta?.title as string) || r.url;
+          return `
+            <li>
+              <a
+                href="${r.url}"
+                class="font-poppins block rounded-lg px-4 py-3 transition-colors hover:bg-gray-50 focus-visible:bg-gray-50 focus-visible:outline-none"
+                data-result-index="${idx}"
+              >
+                <div class="font-nunito text-sm font-semibold text-brand">${escapeHtml(title)}</div>
+                <div class="mt-1 text-xs leading-relaxed text-gray-600">${r.excerpt}</div>
+                <div class="mt-1 text-[11px] text-gray-400">${escapeHtml(r.url)}</div>
+              </a>
+            </li>
+          `;
+        })
+        .join('');
+      showState('results');
+    }
+
+    function escapeHtml(s: string): string {
+      return s
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // ─── Eventos ────────────────────────────────────────────────────────────
+    document.addEventListener('open-search', () => openModal());
+
+    closeBtn?.addEventListener('click', () => closeModal());
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    input.addEventListener('input', () => {
+      window.clearTimeout(debounceTimer);
+      debounceTimer = window.setTimeout(() => runSearch(input.value), 180);
+    });
+
+    // Navegación con teclado por los resultados.
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        const first = resultsList?.querySelector<HTMLAnchorElement>('a[data-result-index]');
+        if (first) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    resultsList.addEventListener('keydown', (e) => {
+      const current = document.activeElement as HTMLElement | null;
+      if (!current || !current.matches('a[data-result-index]')) return;
+      const items = Array.from(
+        resultsList.querySelectorAll<HTMLAnchorElement>('a[data-result-index]')
+      );
+      const idx = items.indexOf(current as HTMLAnchorElement);
+      if (e.key === 'ArrowDown' && idx < items.length - 1) {
+        e.preventDefault();
+        items[idx + 1].focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (idx === 0) input?.focus();
+        else items[idx - 1].focus();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  }
+</script>

@@ -1,53 +1,53 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import ServiceHeroWithProcedure from "../../components/servicios/ServiceHeroWithProcedure.astro";
+import ServiceHero from "../../components/servicios/ServiceHero.astro";
 ---
 
 <Layout title="Cirugía | Clínica Antioquia">
   <main class="min-h-screen">
-    <ServiceHeroWithProcedure
+    <ServiceHero
       title="Cirugía"
-      cornerImage="/servicios/img-cirugia.png"
+      cornerImage="/servicios/img-servicio-cirugia.webp"
       directedTo="Paciente adulto y pediátrico"
       locations={[
         {
           nombre: "Sede Itagüí",
-          detalle: "(7 quirófanos)",
+          detalle: "Sede Itagüí (7 quirófanos)",
         },
         {
-            nombre: "Sede Bello",
-            detalle: "(3 quirófanos)",
+          nombre: "Sede Bello",
+          detalle: "Sede Bello (3 quirófanos)",
         },
       ]}
       features={[
         {
           texto:
-            "En la sede de Itagüí Clínica Antioquia cuenta con 7 programación de procedimiento quirúrgicos de las siguientes especialidades:",
-            procedimientos:[
-                "Cirugía General",
-                "Cirugía Ginecológica",
-                "Cirugía maxilofacial",
-                "Cirugía Ortopédica",
-                "Cirugía de Otorrinolaringología",
-                "Cirugía Pediátrica",
-                "Cirugía Plástica y Estética",
-                "Cirugía Vascular y Angiología",
-                "Cirugía Urológica",
-                "Neurocirugía",
-                "Cirugía Gastroenterológica",
-            ]
+            "En la sede de Itagüí Clínica Antioquia cuenta con 7 quirófanos para la programación de procedimiento quirúrgicos de las siguientes especialidades:",
+          procedimientos: [
+            "Cirugía General",
+            "Cirugía Ginecológica",
+            "Cirugía maxilofacial",
+            "Cirugía Ortopédica",
+            "Cirugía de Otorrinolaringología",
+            "Cirugía Pediátrica",
+            "Cirugía Plástica y Estética",
+            "Cirugía Vascular y Angiología",
+            "Cirugía Urológica",
+            "Neurocirugía",
+            "Cirugía Gastroenterológica",
+          ],
         },
         {
-            texto:
+          texto:
             "En la sede de Bello se cuentan con 3 quirófanos donde se realizan procedimientos relacionados con las siguientes especialidades:",
-            procedimientos:[
-                "Cirugía general",
-                "Cirugía Ginecológica",
-                "Cirugía maxilofacial",
-                "Cirugía de Otorrinolaringología",
-                "Cirugía Ortopédica",
-                "Cirugía Vascular y Angiología"
-            ]
+          procedimientos: [
+            "Cirugía General",
+            "Cirugía Ginecológica",
+            "Cirugía Maxilofacial",
+            "Cirugía de Otorrinolaringología",
+            "Cirugía Ortopédica",
+            "Cirugía Vascular y Angiología",
+          ],
         },
       ]}
     />

@@ -14,6 +14,18 @@ const compromisos = [
   "Fortalecer una cultura de transparencia y participación, donde la voz de nuestros usuarios sea parte de la construcción de una mejor atención en salud",
 ];
 
+// Flores decorativas: posiciones tomadas del mock (% del ancho/alto de la página)
+const FLOR = "/atencion-centrada-persona/conocenos/flor-icon-conocenos.webp";
+const flores = [
+  "right-[2%] top-[-0.5%] w-[34%]",
+  "left-[-8%] top-[14.8%] w-[25%]",
+  "right-[-3%] top-[17.9%] w-[25%]",
+  "left-[-7%] top-[42.3%] w-[40%]",
+  "left-[55%] top-[67.3%] w-[40%]",
+  "left-[-12%] top-[75.2%] w-[26%]",
+  "right-[-4%] top-[88.3%] w-[44%]",
+];
+
 const cardClass = "rounded-3xl bg-sky-100 px-6 py-8 sm:px-10 sm:py-10 text-gray-900 text-base sm:text-lg leading-relaxed sm:text-justify";
 const headingClass = "font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#1c4482] text-center leading-tight";
 ---
@@ -22,8 +34,11 @@ const headingClass = "font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5x
   title="Participación Ciudadana | Clínica Antioquia"
   description="Conoce la Política de Participación Social en Salud de Clínica Antioquia y cómo tu voz contribuye al mejoramiento de nuestros servicios."
 >
-  <main class="w-full bg-white overflow-hidden">
-    <div class="w-full max-w-4xl mx-auto px-6 sm:px-10 py-8 sm:py-12 lg:py-14 flex flex-col gap-14 sm:gap-20">
+  <main class="relative w-full bg-white overflow-hidden">
+    {flores.map((pos) => (
+      <img src={FLOR} alt="" aria-hidden="true" class={`pointer-events-none absolute z-0 h-auto ${pos}`} />
+    ))}
+    <div class="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-10 py-8 sm:py-12 lg:py-14 flex flex-col gap-14 sm:gap-20">
 
       <!-- 1. Qué es la política -->
       <section>
@@ -53,7 +68,7 @@ const headingClass = "font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5x
           </p>
         </div>
         <img
-          src={`${BASE}/img-participacion-cuidadana-08.png`}
+          src={`${BASE}/img-participacion-cuidadana-08.webp`}
           alt="Mascota de Clínica Antioquia acompañando a una paciente"
           class="relative -mt-12 sm:-mt-20 mx-auto sm:ml-[28%] sm:mr-0 w-64 sm:w-80 h-auto object-contain"
         />
@@ -75,7 +90,7 @@ const headingClass = "font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5x
           </p>
         </div>
         <img
-          src={`${BASE}/img-participacion-cuidadana-09.png`}
+          src={`${BASE}/img-participacion-cuidadana-09.webp`}
           alt="Mascota de Clínica Antioquia conversando con un usuario"
           class="relative -mt-10 sm:-mt-16 ml-auto sm:mr-6 w-56 sm:w-72 h-auto object-contain"
         />
@@ -113,7 +128,7 @@ const headingClass = "font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5x
           </p>
         </div>
         <img
-          src={`${BASE}/img-participacion-cuidadana-10.png`}
+          src={`${BASE}/img-participacion-cuidadana-10.webp`}
           alt="Mascota de Clínica Antioquia abrazando a una usuaria"
           class="relative -mt-10 sm:-mt-16 w-44 sm:w-56 h-auto object-contain"
         />
