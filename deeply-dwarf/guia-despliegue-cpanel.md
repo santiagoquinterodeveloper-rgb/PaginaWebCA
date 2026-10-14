@@ -164,3 +164,8 @@ Abrir en ventana de incógnito (o con Ctrl+F5):
 - **SEO:** las URLs antiguas de WordPress (por ejemplo `/nosotros/` o `/?p=123`) ya no existen. Conviene redirigir las más importantes a las páginas nuevas con reglas `Redirect 301 /ruta-vieja /ruta-nueva` en el `.htaccess`.
 - **Espacio en disco:** la cuenta tenía solo unos 376 MB libres. Revisar *Disk Usage* en cPanel para ver qué ocupa más espacio (sin borrar `moodledata2`, `mail` ni `intranet`).
 - **Futuras actualizaciones:** para cambiar contenido, repetir `npm run build` y subir el contenido de `dist/` a `public_html`, sin tocar `intranet`, `cursos`, `cursos2`, `wp-viejo`, `.well-known`, `cgi-bin` ni `.htaccess`.
+
+## 12. htaccess
+
+- Se añadio el archivo original **htaccess** del wp viejo a este proyecto en la carpeta raiz `/deeply-dwarf/` 
+por si en algun momento se requiere restaurar la antigua pagina

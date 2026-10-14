@@ -1,0 +1,140 @@
+---
+const BASE = "/footer";
+const FLOR = "/trabaja-con-nosotros/florGigante.webp";
+
+interface Line {
+  text: string;
+  href?: string;
+}
+
+interface Group {
+  label?: string;
+  lines: Line[];
+}
+
+// Los iconos traen márgenes transparentes; width/left/top (en % del contenedor)
+// recortan la imagen al área visible. `size` define el ancho responsive del icono.
+interface Column {
+  title: string;
+  icon: { src: string; width: number; left: number; top: number; ratio: string; size: string };
+  boldLabels?: boolean;
+  groups: Group[];
+}
+
+const columns: Column[] = [
+  {
+    title: "Ubicaciones:",
+    icon: { src: "ICON-PIE-DE-PAGINA-03.webp", width: 162, left: -24.9, top: -15.9, ratio: "aspect-[453/578]", size: "w-10 sm:w-12 lg:w-14" },
+    boldLabels: true,
+    groups: [
+      { label: "Sede Itagüí:", lines: [{ text: "Calle 45 N° 49-02" }, { text: "Antioquia, Colombia" }] },
+      { label: "Sede Bello:", lines: [{ text: "Carrera 48 N° 47-16" }, { text: "Antioquia, Colombia" }] },
+    ],
+  },
+  {
+    title: "Teléfonos:",
+    icon: { src: "ICON-PIE-DE-PAGINA-01.webp", width: 147.6, left: -30.1, top: -12.6, ratio: "aspect-square", size: "w-10 sm:w-12 lg:w-14" },
+    groups: [
+      { lines: [{ text: "PBX: 604 322 22 11", href: "tel:+576043222211" }] },
+      {
+        label: "Citas médicas:",
+        lines: [
+          { text: "AntonIA: 316 234 2298 WhatsApp" },
+          { text: "Call center: 604 283 68 30", href: "tel:+576042836830" },
+        ],
+      },
+      { label: "Línea telefónica 24/7:", lines: [{ text: "604 322 22 11", href: "tel:+576043222211" }] },
+    ],
+  },
+  {
+    title: "Correos:",
+    icon: { src: "ICON-PIE-DE-PAGINA-02.webp", width: 140.1, left: -21, top: -23.7, ratio: "aspect-[643/452]", size: "w-14 sm:w-16 lg:w-20" },
+    groups: [
+      {
+        label: "Línea de transparencia:",
+        lines: [{ text: "transparencia@clinicantioquia.com.co", href: "mailto:transparencia@clinicantioquia.com.co" }],
+      },
+      {
+        label: "Notificaciones judiciales:",
+        lines: [{ text: "gerencia@clinicantioquia.com.co", href: "mailto:gerencia@clinicantioquia.com.co" }],
+      },
+      {
+        label: "Gestión de PQRS:",
+        lines: [{ text: "usuarios@clinicantioquia.com.co", href: "mailto:usuarios@clinicantioquia.com.co" }],
+      },
+    ],
+  },
+];
+---
+
+<footer class="relative w-full overflow-hidden bg-[#5a6777] font-nunito text-white">
+  <!-- Flores decorativas (solo desde lg) -->
+  <img
+    src={FLOR}
+    alt=""
+    aria-hidden="true"
+    class="hidden lg:block pointer-events-none absolute left-[9%] top-[60%] -translate-x-1/2 -translate-y-1/2 w-[46%] max-w-none z-0 brightness-0 invert opacity-60"
+  />
+  <img
+    src={FLOR}
+    alt=""
+    aria-hidden="true"
+    class="hidden lg:block pointer-events-none absolute left-[74%] top-[28%] -translate-x-1/2 -translate-y-1/2 w-[60%] max-w-none z-0 brightness-0 invert opacity-60"
+  />
+
+  <div class="relative z-10 w-full mx-auto px-6 sm:px-10 lg:px-12 py-10 lg:py-14">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-14 lg:gap-8 text-center">
+      {columns.map((col) => (
+        <div class="flex flex-col items-center">
+          <div class="h-14 sm:h-16 lg:h-20 flex items-start justify-center">
+            <div class={`relative overflow-hidden ${col.icon.ratio} ${col.icon.size}`}>
+              <img
+                src={`${BASE}/${col.icon.src}`}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                class="absolute max-w-none h-auto"
+                style={`width:${col.icon.width}%;left:${col.icon.left}%;top:${col.icon.top}%`}
+              />
+            </div>
+          </div>
+
+          <h2 class="mt-2 lg:mt-4 font-bold text-xl lg:text-2xl 2xl:text-3xl leading-tight">{col.title}</h2>
+
+          <div class="mt-4 lg:mt-6 space-y-4 text-sm sm:text-base xl:text-lg 2xl:text-xl leading-snug">
+            {col.groups.map((group) => (
+              <p class="break-words">
+                {group.label && (
+                  <span class={`block ${col.boldLabels ? "font-bold" : ""}`}>{group.label}</span>
+                )}
+                {group.lines.map((line) => (
+                  <span class="block">
+                    {line.href ? (
+                      <a
+                        href={line.href}
+                        class="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                      >
+                        {line.text}
+                      </a>
+                    ) : (
+                      line.text
+                    )}
+                  </span>
+                ))}
+              </p>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 lg:mt-14 flex justify-center">
+      <img
+        src={`${BASE}/logo-vigilado-supersalud-2025.webp`}
+        alt="Vigilado Supersalud"
+        loading="lazy"
+        class="w-60 sm:w-72 lg:w-96 2xl:w-106 h-auto"
+      />
+    </div>
+  </div>
+</footer>
