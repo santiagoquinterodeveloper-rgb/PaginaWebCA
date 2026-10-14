@@ -1,0 +1,125 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const BASE = "/agenda-tu-cita";
+const FLOR = "/trabaja-con-nosotros/florGigante.webp";
+const TELEFONO = "(604) 283 63 30";
+const TELEFONO_HREF = "tel:+576042836330";
+
+// Las mascotas traen márgenes transparentes; width/left/top (en % del contenedor)
+// recortan la imagen al área visible.
+interface Crop {
+  src: string;
+  alt: string;
+  width: number;
+  left: number;
+  top: number;
+}
+
+const mascotaSaludando: Crop = {
+  src: encodeURI(`${BASE}/IMG-ASIGNACION DE CITAS-02.webp`),
+  alt: "Mascota de la Clínica con audífonos saludando",
+  width: 189.8,
+  left: -48.8,
+  top: -10.9,
+};
+
+const mascotaEscritorio: Crop = {
+  src: encodeURI(`${BASE}/IMG-ASIGNACION DE CITAS-03.webp`),
+  alt: "Mascota de la Clínica con audífonos atendiendo frente a un computador",
+  width: 131.1,
+  left: -21.5,
+  top: -17.1,
+};
+---
+
+<Layout
+  title="Agenda tu cita | Clínica Antioquia"
+  description="Agenda tu cita llamando a nuestro número de contacto o acércate a consulta externa. Conoce los horarios de asignación y atención."
+>
+  <main class="relative w-full min-h-screen overflow-hidden bg-white">
+    <!-- Flores decorativas (solo desde lg) -->
+    <img
+      src={FLOR}
+      alt=""
+      aria-hidden="true"
+      class="hidden lg:block pointer-events-none absolute left-[13%] top-[54%] -translate-x-1/2 -translate-y-1/2 w-[52%] max-w-none z-0"
+    />
+    <img
+      src={FLOR}
+      alt=""
+      aria-hidden="true"
+      class="hidden lg:block pointer-events-none absolute left-[90%] top-[54%] -translate-x-1/2 -translate-y-1/2 w-[52%] max-w-none z-0"
+    />
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-0 py-10 sm:py-14 lg:py-16">
+      <h1 class="font-nunito font-bold text-center text-5xl sm:text-6xl lg:text-8xl text-[#1c4482] leading-tight mb-10 sm:mb-12 lg:mb-16">
+        Asignación de cita
+      </h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-40 items-start max-w-md lg:max-w-none mx-auto">
+        <!-- ── Tarjeta: agenda por teléfono ── -->
+        <section class="font-nunito text-white text-center rounded-[3rem] lg:rounded-[5rem] bg-[#3b94d1] px-6 sm:px-8 lg:px-12 pt-10 pb-10 lg:pb-12">
+          <h2 class="font-medium text-xl sm:text-2xl lg:text-3xl leading-snug mb-6 lg:mb-8">
+            Agenda tu cita llamando a nuestro número de contacto
+          </h2>
+
+          <a
+            href={TELEFONO_HREF}
+            class="block mx-auto w-full max-w-xs lg:max-w-md rounded-full bg-white px-6 py-4 lg:py-5 text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#1c4482] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            {TELEFONO}
+          </a>
+
+          <div class="mt-6 flex items-center justify-center gap-4 sm:gap-6">
+            <div class="relative w-2/5 lg:w-[35%] shrink-0 aspect-[820/1434] overflow-hidden">
+              <img
+                src={mascotaSaludando.src}
+                alt={mascotaSaludando.alt}
+                loading="lazy"
+                class="absolute max-w-none h-auto"
+                style={`width:${mascotaSaludando.width}%;left:${mascotaSaludando.left}%;top:${mascotaSaludando.top}%`}
+              />
+            </div>
+
+            <div class="flex-1 text-left sm:text-center">
+              <h3 class="font-medium text-lg sm:text-xl lg:text-2xl leading-snug">
+                Horario para asignación de citas
+              </h3>
+              <p class="mt-3 text-base sm:text-lg lg:text-xl leading-snug">
+                Lunes a viernes<br />7:00 AM a 4:30 PM
+              </p>
+              <p class="mt-3 text-base sm:text-lg lg:text-xl leading-snug">
+                Sábado<br />8:00 AM a 12:00 PM
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Tarjeta: atención presencial ── -->
+        <section class="font-nunito text-white text-center rounded-[3rem] lg:rounded-[5rem] bg-[#3b94d1] px-6 sm:px-8 lg:px-12 pt-10 pb-10 lg:pb-12">
+          <h2 class="font-medium text-xl sm:text-2xl lg:text-3xl leading-snug">
+            Acércate a consulta externa y solicita la cita personalmente
+          </h2>
+
+          <div class="relative mx-auto mt-6 w-3/5 aspect-[1288/1193] overflow-hidden">
+            <img
+              src={mascotaEscritorio.src}
+              alt={mascotaEscritorio.alt}
+              loading="lazy"
+              class="absolute max-w-none h-auto"
+              style={`width:${mascotaEscritorio.width}%;left:${mascotaEscritorio.left}%;top:${mascotaEscritorio.top}%`}
+            />
+          </div>
+
+          <h3 class="mt-4 font-semibold text-3xl lg:text-4xl leading-snug">
+            Horarios de atención
+          </h3>
+          <p class="mt-2 text-base sm:text-lg lg:text-xl leading-snug">
+            Lunes a viernes<br />7:00 AM a 4:30 PM
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>
