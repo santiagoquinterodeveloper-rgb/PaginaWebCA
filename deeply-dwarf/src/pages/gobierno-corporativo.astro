@@ -1,0 +1,449 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const FLOR = "/trabaja-con-nosotros/florGigante.webp";
+
+interface Principio {
+  title: string;
+  description: string;
+}
+
+const principios: Principio[] = [
+  {
+    title: "Ética profesional",
+    description:
+      "Actuamos con integridad, responsabilidad y respeto, orientando nuestras decisiones al bienestar de las personas y al cumplimiento de nuestros deberes.",
+  },
+  {
+    title: "Trabajo en equipo",
+    description:
+      "Colaboramos de manera respetuosa y coordinada, reconociendo el aporte de cada persona para alcanzar los objetivos institucionales.",
+  },
+  {
+    title: "Proceso de mejoramiento",
+    description:
+      "Buscamos permanentemente oportunidades para fortalecer nuestros procesos, mejorar la calidad y alcanzar mejores resultados.",
+  },
+  {
+    title: "Uso adecuado de la tecnología",
+    description:
+      "Utilizamos los recursos tecnológicos de manera responsable, eficiente y segura, promoviendo su cuidado y conservación.",
+  },
+  {
+    title: "Transparencia",
+    description:
+      "Actuamos con claridad y honestidad, promoviendo relaciones basadas en la confianza y en información confiable y oportuna.",
+  },
+];
+
+const politicas: string[] = [
+  "Política de riesgo, antifraude, antisoborno y anticorrupción",
+  "Política de calidad",
+  "Política ambiental",
+  "Política de seguridad y salud en el trabajo",
+  "Política de atención centrada en la persona",
+  "Política de seguridad del paciente",
+  "Política en relación con la atención de los pacientes",
+  "Política de responsabilidad social",
+  "Política de confidencialidad",
+  "Política de convivencia laboral",
+  "Política de priorización",
+  "Política de inversiones en activos, compras y transacciones inmobiliarias",
+  "Sistema de administración del riesgo de lavado de activos y financiación del terrorismo",
+];
+
+const niveles: string[] = [
+  "Junta Directiva",
+  "Comités asesores: Gobierno, Contraloría Interna, Riesgo y Conducta",
+  "Comité Directivo",
+  "Dirección de Calidad",
+  "Coordinadores de servicios o procesos y colaboradores",
+];
+
+interface GrupoInteres {
+  numero: string;
+  titulo: string;
+  items: string[];
+  color: string;
+}
+
+const gruposInteres: GrupoInteres[] = [
+  {
+    numero: "01",
+    titulo: "Por responsabilidad legal, financiera y operativa",
+    color: "bg-emerald-500",
+    items: [
+      "Pacientes y sus familias",
+      "Colaboradores",
+      "Comunidad",
+      "Medio ambiente",
+      "Entes territoriales",
+      "Aseguradoras",
+      "Accionistas",
+    ],
+  },
+  {
+    numero: "02",
+    titulo: "Por capacidad de influencia",
+    color: "bg-[#45a1e6]",
+    items: [
+      "Estado",
+      "Entes territoriales",
+      "Medios de comunicación",
+      "Comunidad",
+    ],
+  },
+  {
+    numero: "03",
+    titulo: "Por cercanía",
+    color: "bg-violet-500",
+    items: ["Aseguradoras", "Proveedores", "Contratistas"],
+  },
+  {
+    numero: "04",
+    titulo: "Por dependencia",
+    color: "bg-teal-500",
+    items: [
+      "Pacientes y sus familias",
+      "Colaboradores",
+      "Proveedores",
+      "Contratistas",
+    ],
+  },
+  {
+    numero: "05",
+    titulo: "Por representación",
+    color: "bg-fuchsia-500",
+    items: ["Asociación de usuarios"],
+  },
+];
+
+interface Canal {
+  label: string;
+  href: string;
+  description: string;
+}
+
+const canales: Canal[] = [
+  {
+    label: "PQRSF",
+    href: "/paciente-y-visitantes/gestion-de-pqrs",
+    description: "Peticiones, quejas, reclamos, sugerencias y felicitaciones.",
+  },
+  {
+    label: "Atención al usuario",
+    href: "/atencion-centrada-en-la-persona/asociacion-de-usuarios",
+    description: "Orientación personalizada para pacientes y familias.",
+  },
+  {
+    label: "Contacto institucional",
+    href: "/agenda-tu-cita",
+    description: "Comunícate con nuestras sedes y líneas de atención.",
+  },
+  {
+    label: "Línea de transparencia",
+    href: "/nosotros/linea-de-transparencia",
+    description: "Reporta situaciones relacionadas con la ética institucional.",
+  },
+];
+---
+
+<Layout
+  title="Código de Ética y Buen Gobierno | Clínica Antioquia"
+  description="Conoce el Código de Ética y Buen Gobierno de la Clínica Antioquia: principios corporativos, políticas, estructura de gobierno y grupos de interés."
+>
+  <main class="relative w-full overflow-hidden bg-white">
+    <!-- Flores decorativas (solo desde lg) -->
+    <img
+      src={FLOR}
+      alt=""
+      aria-hidden="true"
+      class="hidden lg:block pointer-events-none absolute -left-56 top-24 w-[700px] opacity-30 z-0"
+    />
+    <img
+      src={FLOR}
+      alt=""
+      aria-hidden="true"
+      class="hidden lg:block pointer-events-none absolute -right-60 top-[55%] w-[800px] opacity-30 z-0"
+    />
+    <img
+      src={FLOR}
+      alt=""
+      aria-hidden="true"
+      class="hidden lg:block pointer-events-none absolute -left-48 bottom-10 w-[650px] opacity-25 z-0"
+    />
+
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-20 lg:space-y-28">
+
+      <!-- ── Hero ────────────────────────────────────────────────── -->
+      <header class="text-center max-w-4xl mx-auto">
+        <h1 class="font-nunito font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#1c4482] leading-tight">
+          Código de Ética y Buen Gobierno
+        </h1>
+        <p class="mt-5 sm:mt-6 font-poppins text-base sm:text-lg text-slate-600 leading-relaxed">
+          En Clínica Antioquia promovemos una cultura basada en la ética, la transparencia,
+          el respeto y la responsabilidad. Conoce los principios y lineamientos que orientan
+          nuestra actuación institucional y nuestras relaciones con los diferentes grupos de interés.
+        </p>
+      </header>
+
+      <!-- ── Conócenos ───────────────────────────────────────────── -->
+      <section aria-labelledby="conocenos-title">
+        <div class="flex items-center gap-4 mb-8 sm:mb-10">
+          <span class="h-10 w-1.5 bg-[#45a1e6] rounded-full" aria-hidden="true"></span>
+          <h2 id="conocenos-title" class="font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#003085]">
+            Conócenos
+          </h2>
+        </div>
+
+        <!-- Nuestro compromiso -->
+        <div class="bg-[#003085] rounded-[28px] sm:rounded-[36px] p-8 sm:p-10 lg:p-12 text-white shadow-[0_20px_50px_-15px_rgba(0,48,133,0.35)] relative overflow-hidden">
+          <div class="absolute inset-y-0 right-0 w-1/2 bg-[#45a1e6] opacity-60 blur-3xl rounded-full -mr-20" aria-hidden="true"></div>
+          <div class="relative">
+          <h3 class="font-nunito font-bold text-2xl sm:text-3xl mb-3">
+            Nuestro compromiso
+          </h3>
+          <p class="font-poppins text-base sm:text-lg leading-relaxed text-white/95 max-w-3xl">
+            Promovemos una cultura basada en la ética, la transparencia, el respeto y la
+            responsabilidad. Presentamos aquí los principios y lineamientos que orientan
+            nuestra actuación institucional y nuestras relaciones con los diferentes grupos
+            de interés.
+          </p>
+          </div>
+        </div>
+
+        <!-- Principios Corporativos -->
+        <div class="mt-12 sm:mt-14">
+          <h3 class="font-nunito font-bold text-2xl sm:text-3xl text-[#1c4482] text-center">
+            Principios corporativos
+          </h3>
+          <p class="mt-3 font-poppins text-center text-slate-600 max-w-2xl mx-auto">
+            Reflejan los comportamientos que orientan la manera en que actuamos y tomamos
+            decisiones.
+          </p>
+
+          <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {principios.map((p, i) => (
+              <article class="group relative bg-white rounded-3xl p-7 lg:p-8 border border-slate-200 shadow-[0_10px_30px_-15px_rgba(0,48,133,0.18)] hover:shadow-[0_15px_40px_-10px_rgba(0,48,133,0.28)] hover:-translate-y-1 transition-all duration-300">
+                <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#45a1e6]/15 text-[#003085] font-nunito font-extrabold text-xl mb-5">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h4 class="font-nunito font-bold text-xl text-[#003085] mb-3">
+                  {p.title}
+                </h4>
+                <p class="font-poppins text-sm sm:text-base text-slate-600 leading-relaxed">
+                  {p.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Cómo nos gobernamos ─────────────────────────────────── -->
+      <section aria-labelledby="gobernamos-title">
+        <div class="flex items-center gap-4 mb-8 sm:mb-10">
+          <span class="h-10 w-1.5 bg-[#45a1e6] rounded-full" aria-hidden="true"></span>
+          <h2 id="gobernamos-title" class="font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#003085]">
+            Cómo nos gobernamos
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10">
+          <!-- Políticas -->
+          <div class="lg:col-span-3">
+            <h3 class="font-nunito font-bold text-2xl sm:text-3xl text-[#1c4482]">
+              Políticas
+            </h3>
+            <p class="mt-2 font-poppins text-slate-600">
+              Lineamientos que orientan nuestra gestión y respaldan el cumplimiento de los
+              objetivos de Clínica Antioquia.
+            </p>
+
+            <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {politicas.map((pol) => (
+                <li class="flex items-start gap-3 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-[#45a1e6] hover:bg-[#45a1e6]/5 transition-colors">
+                  <span class="mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-[#45a1e6]" aria-hidden="true"></span>
+                  <span class="font-poppins text-sm sm:text-[15px] text-slate-700 leading-snug">{pol}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Estructura y niveles de autoridad -->
+          <div class="lg:col-span-2">
+            <h3 class="font-nunito font-bold text-2xl sm:text-3xl text-[#1c4482]">
+              Estructura y niveles de autoridad
+            </h3>
+            <p class="mt-2 font-poppins text-slate-600">
+              Nuestra estructura organizacional define los roles, responsabilidades y niveles
+              de autoridad.
+            </p>
+
+            <ul class="mt-6 space-y-4 list-none">
+              {niveles.map((nivel, i) => (
+                <li class="flex items-start gap-4">
+                  <span
+                    class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-[#003085] text-white font-nunito font-bold text-sm shadow-md"
+                    aria-hidden="true"
+                  >
+                    {i + 1}
+                  </span>
+                  <p class="font-poppins text-sm sm:text-base text-slate-700 leading-snug pt-1.5">
+                    {nivel}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Con quiénes nos relacionamos ────────────────────────── -->
+      <section aria-labelledby="relacionamos-title">
+        <div class="flex items-center gap-4 mb-8 sm:mb-10">
+          <span class="h-10 w-1.5 bg-[#45a1e6] rounded-full" aria-hidden="true"></span>
+          <h2 id="relacionamos-title" class="font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#003085]">
+            Con quiénes nos relacionamos
+          </h2>
+        </div>
+
+        <!-- Intro grupos de interés -->
+        <div class="text-center max-w-3xl mx-auto">
+          <h3 class="font-nunito font-bold text-2xl sm:text-3xl text-[#1c4482]">
+            Nuestros grupos de interés
+          </h3>
+          <p class="mt-3 font-poppins text-slate-600">
+            Personas, organizaciones e instituciones con las que nos relacionamos y que
+            pueden influir o verse impactadas por nuestra gestión.
+          </p>
+        </div>
+
+        <!-- Diagrama simplificado: Clínica al centro + 5 categorías alrededor -->
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {gruposInteres.map((g) => (
+            <article class="bg-white rounded-3xl p-6 lg:p-7 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-3 mb-4">
+                <span class={`flex items-center justify-center w-10 h-10 rounded-full ${g.color} text-white font-nunito font-extrabold text-sm`}>
+                  {g.numero}
+                </span>
+                <h4 class="font-nunito font-bold text-base lg:text-lg text-[#003085] leading-snug">
+                  {g.titulo}
+                </h4>
+              </div>
+              <ul class="space-y-1.5">
+                {g.items.map((item) => (
+                  <li class="flex items-start gap-2 font-poppins text-sm text-slate-600">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#45a1e6] flex-shrink-0" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+
+          <!-- Tarjeta final: la clínica al centro -->
+          <article class="rounded-3xl p-6 lg:p-7 bg-[#003085] text-white shadow-[0_15px_35px_-10px_rgba(0,48,133,0.4)] flex flex-col items-center justify-center text-center">
+            <p class="font-nunito font-extrabold text-2xl sm:text-3xl leading-tight">
+              Clínica Antioquia
+            </p>
+            <p class="mt-2 font-poppins text-sm text-white/90 max-w-xs">
+              Un mismo grupo de interés puede pertenecer a diferentes categorías según el
+              tipo de relación.
+            </p>
+          </article>
+        </div>
+
+        <!-- Derechos y deberes -->
+        <div class="mt-14 sm:mt-16">
+          <h3 class="font-nunito font-bold text-2xl sm:text-3xl text-[#1c4482] text-center">
+            Derechos y deberes
+          </h3>
+          <p class="mt-3 font-poppins text-center text-slate-600 max-w-2xl mx-auto">
+            Promovemos relaciones basadas en el respeto y el reconocimiento de los derechos
+            y deberes de nuestros grupos de interés.
+          </p>
+
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
+            <a
+              href="/paciente-y-visitantes/derechos-y-deberes"
+              class="group flex items-center justify-between gap-4 bg-white rounded-2xl px-6 py-5 border border-slate-200 hover:border-[#45a1e6] hover:bg-[#45a1e6]/5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003085]"
+            >
+              <div>
+                <p class="font-nunito font-bold text-lg text-[#003085]">
+                  Pacientes y familias
+                </p>
+                <p class="font-poppins text-sm text-slate-600">Derechos y deberes</p>
+              </div>
+              <span
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-[#003085] text-white group-hover:translate-x-1 transition-transform"
+                aria-hidden="true"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
+
+            <a
+              href="/atencion-centrada-en-la-persona/asociacion-de-usuarios"
+              class="group flex items-center justify-between gap-4 bg-white rounded-2xl px-6 py-5 border border-slate-200 hover:border-[#45a1e6] hover:bg-[#45a1e6]/5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003085]"
+            >
+              <div>
+                <p class="font-nunito font-bold text-lg text-[#003085]">
+                  Asociación de usuarios
+                </p>
+                <p class="font-poppins text-sm text-slate-600">
+                  Información correspondiente
+                </p>
+              </div>
+              <span
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-[#003085] text-white group-hover:translate-x-1 transition-transform"
+                aria-hidden="true"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Contáctanos ─────────────────────────────────────────── -->
+      <section aria-labelledby="contactanos-title" class="rounded-[32px] sm:rounded-[40px] bg-[#003085] p-8 sm:p-12 lg:p-16 text-white shadow-[0_25px_60px_-20px_rgba(0,48,133,0.4)]">
+        <div class="text-center max-w-3xl mx-auto">
+          <h2 id="contactanos-title" class="font-nunito font-extrabold text-3xl sm:text-4xl lg:text-5xl">
+            Contáctanos
+          </h2>
+          <p class="mt-4 font-poppins text-base sm:text-lg text-white/90">
+            Estamos para escucharte. En Clínica Antioquia valoramos las inquietudes,
+            sugerencias y aportes de nuestros grupos de interés.
+          </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
+          {canales.map((c) => (
+            <a
+              href={c.href}
+              class="group bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-2xl p-5 lg:p-6 border border-white/15 hover:border-white/30 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <p class="font-nunito font-bold text-lg sm:text-xl">{c.label}</p>
+                <span class="flex items-center justify-center w-9 h-9 rounded-full bg-white/15 group-hover:bg-white/30 transition-colors" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+              <p class="mt-2 font-poppins text-sm text-white/80 leading-snug">
+                {c.description}
+              </p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </main>
+</Layout>
