@@ -1,0 +1,330 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const FLOR = "/trabaja-con-nosotros/florGigante.webp";
+// La imagen tiene líneas semitransparentes; apilar la máscara 3 veces refuerza el trazo para igualar el mock.
+const CAPA = `url(${FLOR}) center/contain no-repeat`;
+const MASCARA = [CAPA, CAPA, CAPA].join(",");
+
+// Flores decorativas de fondo (según el mock). x / y = centro de la flor en % del
+// ancho / alto de la página; el ancho (% de la página) las hace más grandes que el
+// viewport, por lo que quedan recortadas por el overflow-hidden.
+const flores = [
+  { x: 74, y: 9 },
+  { x: 69, y: 63 },
+  { x: 2, y: 94 },
+];
+
+interface Solicitud {
+  titulo: string;
+  intro: string;
+  items: string[];
+}
+
+const solicitudes: Solicitud[] = [
+  {
+    titulo: "Solicitud realizada por el titular",
+    intro: "El titular de la historia clínica podrá solicitar una copia presentando:",
+    items: [
+      "Documento de identidad original.",
+      "En caso de pérdida del documento, constancia de documento en trámite expedida por la autoridad competente.",
+    ],
+  },
+  {
+    titulo: "Solicitud realizada por un tercero autorizado",
+    intro:
+      "El paciente podrá autorizar a un tercero mayor de edad para solicitar la copia de su historia clínica. Para ello deberá presentar:",
+    items: [
+      "Formato A-GIA-F-021 – Autorización para entrega de Historia Clínica, debidamente diligenciado y firmado por el titular.",
+      "Copia del documento de identidad del paciente.",
+      "Documento de identidad original del tercero autorizado.",
+    ],
+  },
+  {
+    titulo: "Pacientes menores de edad",
+    intro:
+      "Cuando el titular sea menor de edad, la historia clínica podrá ser solicitada por el padre, la madre o el representante legal. Se deberá presentar:",
+    items: [
+      "Documento de identidad del menor.",
+      "Documento de identidad del padre, madre o representante legal.",
+      "Documento que acredite el parentesco o la representación legal (por ejemplo, registro civil de nacimiento).",
+    ],
+  },
+];
+
+interface Parentesco {
+  nombre: string;
+  items: string[];
+}
+
+const MATRIMONIO = "Registro civil o partida de matrimonio con expedición no mayor a seis (6) meses.";
+const UNION_MARITAL =
+  "Declaración de unión marital de hecho con dos testigos, vigente, suscrita conforme a la ley, con expedición no mayor a seis (6) meses.";
+
+const fallecido: Parentesco[] = [
+  {
+    nombre: "Padre o madre",
+    items: [
+      "Registro civil de defunción.",
+      "Registro civil de nacimiento del paciente.",
+      "Documento de identidad del paciente.",
+      "Documento de identidad del solicitante.",
+    ],
+  },
+  {
+    nombre: "Hijo(a)",
+    items: [
+      "Registro civil de defunción.",
+      "Registro civil de nacimiento del solicitante.",
+      "Documento de identidad del paciente.",
+      "Documento de identidad del solicitante.",
+    ],
+  },
+  {
+    nombre: "Cónyuge",
+    items: [
+      "Registro civil de defunción.",
+      MATRIMONIO,
+      "Documento de identidad del paciente.",
+      "Documento de identidad del solicitante.",
+    ],
+  },
+  {
+    nombre: "Compañero(a) permanente",
+    items: [
+      "Registro civil de defunción.",
+      UNION_MARITAL,
+      "Documento de identidad del paciente.",
+      "Documento de identidad del solicitante.",
+    ],
+  },
+  {
+    nombre: "Hermano(a)",
+    items: [
+      "Registro civil de defunción.",
+      "Registro civil de nacimiento del paciente.",
+      "Registro civil de nacimiento del solicitante.",
+      "Documento de identidad del paciente.",
+      "Documento de identidad del solicitante.",
+    ],
+  },
+];
+
+const imposibilitadoGeneral = [
+  "Certificado médico reciente que evidencie la imposibilidad del paciente para otorgar la autorización.",
+  "Documento de identidad del paciente.",
+  "Documento de identidad del solicitante.",
+];
+
+const imposibilitado: Parentesco[] = [
+  { nombre: "Padre o madre", items: ["Registro civil de nacimiento del paciente."] },
+  { nombre: "Hijo(a)", items: ["Registro civil de nacimiento del solicitante."] },
+  { nombre: "Cónyuge", items: [MATRIMONIO] },
+  { nombre: "Compañero(a) permanente", items: [UNION_MARITAL] },
+  {
+    nombre: "Hermano(a)",
+    items: [
+      "Registro civil de nacimiento del paciente.",
+      "Registro civil de nacimiento del solicitante.",
+    ],
+  },
+];
+
+const marcoNormativo = [
+  "Ley 23 de 1981.",
+  "Resolución 1995 de 1999.",
+  "Decreto 780 de 2016.",
+  "Ley 1581 de 2012 y demás normas relacionadas con la protección de datos personales y la reserva de la historia clínica.",
+];
+
+const card = "rounded-[2rem] sm:rounded-[3rem] bg-[#d9e8f5] px-6 sm:px-10 lg:px-16 py-8 sm:py-10 lg:py-14";
+const h2 = "font-nunito font-bold text-center text-3xl sm:text-4xl lg:text-5xl text-[#1c4482] leading-tight";
+const pill = "inline-block rounded-2xl sm:rounded-3xl bg-[#3b94d1] px-5 sm:px-7 py-2.5 sm:py-3 font-nunito font-medium text-base sm:text-xl lg:text-3xl text-white";
+const bullets = "list-disc pl-6 space-y-1.5 text-base sm:text-lg lg:text-2xl font-semibold leading-relaxed text-black";
+---
+
+<Layout
+  title="Entrega de historia clínica | Clínica Antioquia"
+  description="Conoce quién puede acceder a la historia clínica, los requisitos para solicitar una copia y cómo hacerlo en Clínica Antioquia."
+>
+  <main class="relative w-full overflow-hidden bg-white font-nunito">
+    <!-- Flores decorativas -->
+    {flores.map((f) => (
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute z-0 -translate-x-1/2 -translate-y-1/2 w-[170%] aspect-[1920/1868] bg-[#5b6b9c] opacity-40"
+        style={`left:${f.x}%;top:${f.y}%;mask:${MASCARA};-webkit-mask:${MASCARA}`}
+      ></div>
+    ))}
+
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 py-10 sm:py-14 lg:py-16 space-y-14 sm:space-y-20 lg:space-y-24">
+      <h1 class="font-nunito font-bold text-center text-5xl sm:text-6xl lg:text-8xl text-[#1c4482] leading-tight">
+        Entrega de<br />historia clínica
+      </h1>
+
+      <!-- Acceso y quién puede acceder -->
+      <div class="space-y-8 sm:space-y-10">
+        <section class={card}>
+          <h2 class="font-bold text-lg sm:text-xl lg:text-3xl text-[#1c4482]">Acceso a la Historia Clínica</h2>
+          <p class="mt-2 text-base sm:text-lg lg:text-2xl leading-snug text-black sm:text-justify">
+            La historia clínica es un documento privado, sometido a reserva legal, que contiene información
+            relacionada con el estado de salud del paciente y los procedimientos realizados durante su atención.
+            Su acceso está regulado por la normatividad colombiana vigente, con el fin de garantizar la
+            confidencialidad y protección de la información.
+          </p>
+        </section>
+
+        <section class={card}>
+          <h2 class="font-bold text-lg sm:text-xl lg:text-3xl text-[#1c4482]">¿Quién puede acceder a la historia clínica?</h2>
+          <p class="mt-2 text-base sm:text-lg lg:text-2xl leading-relaxed text-black">
+            De conformidad con la legislación vigente, podrán acceder a la historia clínica:
+          </p>
+          <ul class="mt-1 list-disc pl-6 space-y-1 text-base sm:text-lg lg:text-2xl leading-relaxed text-black">
+            <li>El titular de la historia clínica (paciente).</li>
+            <li>El equipo de salud que participa en su atención, dentro del ejercicio de sus funciones.</li>
+            <li>Las autoridades judiciales y de salud, en los casos previstos por la ley.</li>
+            <li>Las personas expresamente autorizadas por la normatividad vigente.</li>
+          </ul>
+          <p class="mt-2 text-base sm:text-lg lg:text-2xl leading-relaxed text-black sm:text-justify">
+            Importante: La custodia de la historia clínica es responsabilidad de CLÍNICA ANTIOQUIA S.A.
+          </p>
+        </section>
+      </div>
+
+      <!-- Solicitud de copia -->
+      <section aria-labelledby="copia-title" class="space-y-8 sm:space-y-10">
+        <h2 id="copia-title" class={h2}>Solicitud de copia de la historia clínica</h2>
+
+        <ol class="space-y-8 sm:space-y-10">
+          {solicitudes.map((s, i) => (
+            <li class="flex items-start gap-3 sm:gap-5">
+              <span class="shrink-0 w-8 sm:w-12 pt-6 sm:pt-10 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#1c4482] leading-none" aria-hidden="true">
+                {i + 1}.
+              </span>
+              <div class={`${card} flex-1 min-w-0`}>
+                <h3 class="font-bold text-lg sm:text-xl lg:text-3xl text-[#1c4482]">{s.titulo}</h3>
+                <p class="mt-2 text-base sm:text-lg lg:text-2xl leading-relaxed text-black">{s.intro}</p>
+                <ul class="mt-1 list-disc pl-6 space-y-1 text-base sm:text-lg lg:text-2xl leading-relaxed text-black">
+                  {s.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <!-- Paciente fallecido -->
+      <section aria-labelledby="fallecido-title" class="space-y-8 sm:space-y-10">
+        <h2 id="fallecido-title" class={h2}>Solicitud de historia clínica de paciente fallecido</h2>
+
+        <p class={`${card} text-center text-base sm:text-lg lg:text-2xl leading-loose text-black`}>
+          Cuando el paciente haya fallecido, el solicitante deberá acreditar el parentesco o vínculo con el
+          paciente y presentar los documentos correspondientes.
+        </p>
+
+        <div class="space-y-8 sm:space-y-10 px-1 sm:px-4">
+          {fallecido.map((p) => (
+            <div class="space-y-3">
+              <h3 class={pill}>{p.nombre}</h3>
+              <ul class={bullets}>
+                {p.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Paciente imposibilitado -->
+      <section aria-labelledby="imposibilitado-title" class="space-y-8 sm:space-y-10">
+        <h2 id="imposibilitado-title" class={h2}>
+          Solicitud de historia clínica de paciente imposibilitado para autorizar
+        </h2>
+
+        <p class={`${card} text-center text-base sm:text-lg lg:text-2xl leading-loose text-black`}>
+          Cuando el paciente, por su condición de salud, se encuentre imposibilitado para otorgar autorización,
+          el solicitante deberá acreditar dicha condición y demostrar el vínculo con el paciente.
+        </p>
+
+        <div class="space-y-8 sm:space-y-10 px-1 sm:px-4">
+          <div class="space-y-3">
+            <h3 class={pill}>En todos los casos deberá aportarse:</h3>
+            <ul class={bullets}>
+              {imposibilitadoGeneral.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class={pill}>Además, según el parentesco, deberá anexarse:</h3>
+            <div class="space-y-4">
+              {imposibilitado.map((p) => (
+                <div>
+                  <h4 class="font-medium text-lg sm:text-xl lg:text-3xl text-[#1c4482]">{p.nombre}</h4>
+                  <ul class={`${bullets} mt-1`}>
+                    {p.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Aseguradoras -->
+      <section aria-labelledby="aseguradoras-title" class="space-y-8 sm:space-y-10">
+        <h2 id="aseguradoras-title" class={h2}>Solicitudes realizadas por aseguradoras</h2>
+
+        <div class={`${card} text-sm sm:text-base lg:text-xl leading-loose text-black`}>
+          <p>
+            De conformidad con el artículo 2.5.3.4.11 del Decreto 780 de 2016, las Entidades Administradoras de
+            Planes de Beneficios (EPS), las Administradoras de Riesgos Laborales (ARL) y demás entidades
+            autorizadas podrán acceder a la historia clínica y sus soportes dentro de las actividades de
+            auditoría que les asigna la ley y en armonía con las disposiciones aplicables en materia de
+            facturación.
+          </p>
+          <p>
+            Las solicitudes deberán enviarse únicamente desde un correo electrónico corporativo a la dirección:
+          </p>
+          <p>
+            <a
+              href="mailto:coorarchivo@clinicantioquia.com.co"
+              class="text-[#1c4482] break-words hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c4482]"
+            >coorarchivo@clinicantioquia.com.co</a>
+          </p>
+          <p>La respuesta será remitida al mismo correo electrónico desde el cual se realizó la solicitud.</p>
+        </div>
+      </section>
+
+      <!-- Marco normativo -->
+      <section aria-labelledby="marco-title" class="space-y-6 sm:space-y-8">
+        <h2 id="marco-title" class={h2}>Marco normativo</h2>
+
+        <div class="px-1 sm:px-4">
+          <p class="font-medium text-lg sm:text-xl lg:text-3xl text-[#3b94d1] leading-snug">
+            Este procedimiento se desarrolla conforme a lo dispuesto, entre otras normas, en:
+          </p>
+          <ul class="mt-3 list-disc pl-6 space-y-2 text-lg sm:text-xl lg:text-3xl leading-relaxed text-black">
+            {marcoNormativo.map((norma) => <li>{norma}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <!-- Canales institucionales -->
+      <section class="rounded-[2.5rem] sm:rounded-[4rem] lg:rounded-[5rem] bg-[#d9e8f5] px-6 sm:px-12 lg:px-20 py-10 sm:py-14 lg:py-16 text-center text-xl sm:text-2xl lg:text-4xl leading-relaxed text-[#1c4482]">
+        <p class="max-w-2xl mx-auto">
+          Si desea ampliar esta información lo invitamos a que se comunique a nuestros canales institucionales:
+        </p>
+        <p class="mt-1">
+          Línea telefónica{" "}
+          <a href="tel:+576043222211,1124" class="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c4482]">604 322 22 11 Ext. 1124</a>
+        </p>
+        <p class="mt-1">E-mail:</p>
+        <p>
+          <a
+            href="mailto:archivoclinico@clinicantioquia.com.co"
+            class="break-words hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c4482]"
+          >archivoclinico@clinicantioquia.com.co</a>
+        </p>
+      </section>
+    </div>
+  </main>
+</Layout>

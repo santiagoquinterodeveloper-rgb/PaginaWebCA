@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const FLOR = "/trabaja-con-nosotros/florGigante.webp";
+const BASE = "/nosotros/colaboradores";
+
+const INTRANET_URL = "https://www.intranet.clinicantioquia.com.co/";
+const ALMERA_URL = "https://sgi.almeraim.com/sgi/index.php?conid=sgiclinicaantioquia";
+
+// Flores decorativas (según el mock). x / y = centro de la flor en % del ancho / alto
+// de la página; el ancho es % de la página. Quedan recortadas por el overflow-hidden.
+const flores = [
+  { x: 90, y: 21 },
+  { x: 9, y: 83 },
+];
+
+// El logo trae márgenes blancos; width/left/top (en % del contenedor) recortan la
+// imagen al área visible.
+const logo = { width: 309.7, left: -106.3, top: -92.9 };
+
+const botones = [
+  { label: "Ingresa a la intranet", href: INTRANET_URL },
+  { label: "Ingresa a Almera", href: ALMERA_URL },
+];
+
+const botonClasses =
+  "flex items-center justify-center rounded-full bg-[#1f3a73] px-6 py-4 sm:py-5 lg:py-7 text-center font-medium text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl text-white shadow-sm transition-colors hover:bg-[#162b57] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2990cb]";
+---
+
+<Layout
+  title="Colaboradores | Clínica Antioquia"
+  description="Experiencia del colaborador: ingresa a la Intranet y a Almera y encuentra las herramientas, recursos e información para tu día a día en Clínica Antioquia."
+>
+  <main class="relative w-full min-h-[calc(100vh-4.5rem)] overflow-hidden bg-white">
+    <!-- Flores decorativas (solo desde md) -->
+    {flores.map((f) => (
+      <img
+        src={FLOR}
+        alt=""
+        aria-hidden="true"
+        class="hidden md:block pointer-events-none absolute z-0 -translate-x-1/2 -translate-y-1/2 w-[42%] max-w-none"
+        style={`left:${f.x}%;top:${f.y}%`}
+      />
+    ))}
+
+    <div class="relative z-10 w-full mx-auto px-5 sm:px-8 lg:px-[10%] py-8 sm:py-10 lg:py-14">
+      <h1 class="font-nunito font-bold text-center text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-[#1f3a73] leading-tight">
+        Experiencia del colaborador
+      </h1>
+
+      <p class="mt-6 sm:mt-8 lg:mt-10 rounded-4xl sm:rounded-full bg-[#7ab8e3] px-6 sm:px-12 lg:px-20 py-5 sm:py-6 lg:py-8 text-center font-nunito text-base sm:text-xl lg:text-2xl 2xl:text-3xl leading-snug text-white">
+        Ingresa a nuestra Intranet y Almera y encuentra las herramientas, recursos e información que
+        necesitas para tu día a día en Clínica Antioquia
+      </p>
+
+      <div class="mt-6 sm:mt-8 lg:mt-10 lg:w-5/6 mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-24 font-nunito">
+        {botones.map((b) => (
+          <a href={b.href} target="_blank" rel="noopener noreferrer" class={botonClasses}>
+            {b.label}
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-6 sm:mt-8 flex justify-center">
+        <div class="relative w-44 sm:w-56 lg:w-72 aspect-[496/367] overflow-hidden">
+          <img
+            src={`${BASE}/logo-modo-e.webp`}
+            alt="Modo E, experiencia del colaborador"
+            loading="lazy"
+            class="absolute max-w-none h-auto"
+            style={`width:${logo.width}%;left:${logo.left}%;top:${logo.top}%`}
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
