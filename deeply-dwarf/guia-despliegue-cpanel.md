@@ -81,15 +81,15 @@ Crear primero la carpeta `public_html/wp-viejo`. Luego **mover** (botón *Move*,
 
 ## 6. Qué se QUEDA en `public_html`
 
-- `intranet`
-- `cursos`
-- `cursos2`
+- `.tmb`
 - `.well-known` (validación del certificado SSL)
 - `cgi-bin`
-- `.tmb`
+- `cursos`
+- `cursos2`
+- `intranet`
+- `wp-viejo` (la carpeta de respaldo)
 - `.monarx-user` (protección contra malware)
 - `error_log`
-- `wp-viejo` (la carpeta de respaldo)
 
 Más, por supuesto, **el contenido del sitio nuevo**.
 
