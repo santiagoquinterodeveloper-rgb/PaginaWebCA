@@ -5,6 +5,8 @@ const FLOR = "/trabaja-con-nosotros/florGigante.webp";
 const BASE = "/nosotros/colaboradores";
 
 const INTRANET_URL = "https://www.intranet.clinicantioquia.com.co/";
+// Sitio externo (no está en Astro): se enlaza con la URL completa
+const AULA_VIRTUAL_URL = "https://www.clinicantioquia.com.co/cursos/";
 const ALMERA_URL = "https://sgi.almeraim.com/sgi/index.php?conid=sgiclinicaantioquia";
 
 // Flores decorativas (según el mock). x / y = centro de la flor en % del ancho / alto
@@ -21,6 +23,7 @@ const logo = { width: 309.7, left: -106.3, top: -92.9 };
 const botones = [
   { label: "Ingresa a la intranet", href: INTRANET_URL },
   { label: "Ingresa a Almera", href: ALMERA_URL },
+  { label: "Aula virtual", href: AULA_VIRTUAL_URL },
 ];
 
 const botonClasses =
@@ -54,8 +57,13 @@ const botonClasses =
       </p>
 
       <div class="mt-6 sm:mt-8 lg:mt-10 lg:w-5/6 mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-24 font-nunito">
-        {botones.map((b) => (
-          <a href={b.href} target="_blank" rel="noopener noreferrer" class={botonClasses}>
+        {botones.map((b, i) => (
+          <a
+            href={b.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`${botonClasses} ${i === botones.length - 1 && botones.length % 2 === 1 ? "sm:col-span-2 sm:w-1/2 sm:justify-self-center" : ""}`}
+          >
             {b.label}
           </a>
         ))}
